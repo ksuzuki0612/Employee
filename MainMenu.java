@@ -1,4 +1,23 @@
 public class MainMenu{
+    MainMenuUI menuUI = new MainMenu();
+    AdminMenu adminMenu = new AdminMenu();
+    UserMenu userMenu = new UserMenu();
+
+    public void choiceMenu(){
+        int choice = menuUI.choiceMenuUI();
+        //1,利用者メニュー 2,管理者メニュー
+        if(choice == 1){
+            userMainMenu();
+        }
+        else if(choice == 2){
+            adminMainMenu();
+        }
+        else{
+            System.out.println("1か2を入力してください");
+            choiceMenu();
+        }
+    }
+
     public void adminMainMenu(){
         //メニュー番号
 		private static final int selectedAdmin1 = 1;
@@ -11,66 +30,40 @@ public class MainMenu{
 		private static final int selectedAdmin8 = 8;
         
         loop:while(true){
-            System.out.println("メニュー画面");
-            
-			System.out.println("1，図書登録");
-			System.out.println("2，図書削除");
-			System.out.println("3，登録変更");
-			System.out.println("4，貸出承認");
-			System.out.println("5，返却受取");
-			System.out.println("6，期限切れ図書一覧");
-			System.out.println("7，延長の承認");
-			System.out.println("8，終了");
-			
-			System.out.println("メニュー番号を入力してください。");
-		
-			int selected = new java.util.Scanner(System.in).nextInt();
+            int selected = menuUI.adminMenuUI();
 			
 		switch(selected){
 			
         case selectedAdmin1:
-            System.out.println("図書登録");
-            
+            //図書登録
+            adminMenu.resisterBook();            
             break;
         
         case selectedAdmin2:
-            System.out.println("図書削除");
-            
+            //図書削除
+            adminMenu.deleteBook();
             break;
         
         case selectedAdmin3:
-                System.out.println("登録変更");
-            
+            //登録変更
+            adminMenu.updataBook();
             break;
         
             case selectedAdmin4:
-            System.out.println("貸出承認");
-
+            //貸出承認
+            adminMenu.allowBorrowBook();
             break;
         
         case selectedAdmin5:
-            System.out.println("返却受取");
-            
+            //返却申請
+            adminMenu.returnBook();
             break;
         
         case selectedAdmin6:
-            System.out.println("期限切れ図書一覧");
-            
-            break;
-               
-        case selectedAdmin7:
-            System.out.println("延長の承認");
-            
-            break;
-               
-        case selectedAdmin8:
             System.out.println("終了");
-                
             break loop;
       	  }
  	   }
-        
-
     }
 
     public void userMainMenu(){
@@ -80,16 +73,7 @@ public class MainMenu{
 		private static final int selectedUser3 = 3;
         
         loop:while(true){
-            System.out.println("メニュー画面");
-            
-			System.out.println("1，図書検索");
-            System.out.println("2，予約取消");
-            System.out.println("3，終了");
-			
-			System.out.println("メニュー番号を入力してください。");
-		
-			int selected = new java.util.Scanner(System.in).nextInt();
-			
+			int selected = menuUI.userMenuUI();
 		switch(selected){
 			
         case selectedUser1:
@@ -103,7 +87,6 @@ public class MainMenu{
          
         case selectedUser3:
             System.out.println("終了");
-                
             break loop;
       	  }
  	   }
