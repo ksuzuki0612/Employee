@@ -74,4 +74,29 @@ public class AdminMenuUi{
         int bookPeriod = new java.util.Scanner(System.in).nextInt();
 	    return bookPeriod;
     }
+     public int selectUi(){
+     	System.out.println("‘Ğ‚ğ’Ç‰Á‚·‚éê‡‚Í‚PAíœ‚·‚éê‡‚Í‚Q‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B");
+        int select = new java.util.Scanner(System.in).nextInt();
+	    return select;
+    }
+    
+    public int addInventoryUi(){
+     	System.out.println("’Ç‰Á‚·‚é‘Ğ”‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢");
+    	int addInventory = new java.util.Scanner(System.in).nextInt();
+	    return addInventory;
+	    
+    }public int deInventoryUi(){
+     	System.out.println("íœ‚·‚é‘Ğ”‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢");
+    	int deInventory = new java.util.Scanner(System.in).nextInt();
+	    return deInventory;
+	    
+    }public long addBorrowedAmountUi(){
+     	System.out.println("2.‚»‚Ì‘Ğ‚Ì‘İo”‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢");
+        int addBorrowedAmount = new java.util.Scanner(System.in).nextInt();
+	    return addBorrowedAmount;
+	    
+    }
+    
+    
+    
 }
