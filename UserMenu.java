@@ -5,19 +5,28 @@ import java.io.*;
 
 public class UserMenu{
 
-  //‘Ğ‚ÌƒŠƒXƒg¶¬
+  //æ›¸ç±ã®ãƒªã‚¹ãƒˆç”Ÿæˆ
     static List<Book> books;
 
-  //ƒJƒ“ƒ}
+  //ã‚«ãƒ³ãƒ
     private final String COMMA = ",";
 
-  //“Ç‚İ‚ñ‚¾ƒtƒ@ƒCƒ‹‚Ì—L–³
+  //èª­ã¿è¾¼ã‚“ã ãƒ•ã‚¡ã‚¤ãƒ«ã®æœ‰ç„¡
     private boolean exist = false;
 
-  //ƒGƒ‰[‚Ì”Ô†
+  //ã‚¨ãƒ©ãƒ¼ã®ç•ªå·
     private int errorNum = 0;
 
-  //–{’I‚Ì¶¬
+  //æ›¸ç±åæ¤œç´¢çµæœã®æœ¬
+    ArrayList<Book> searchedBooksByTitle = new ArrayList<Book>();
+
+  //è‘—è€…åæ¤œç´¢çµæœã®æœ¬
+    ArrayList<Book> searchedBooksByAuthor = new ArrayList<Book>();
+
+  //åˆ†é‡æ¤œç´¢çµæœã®æœ¬
+    ArrayList<Book> searchedBooksByField = new ArrayList<Book>();
+
+  //æœ¬æ£šã®ç”Ÿæˆ
     public void BookShelf() {
       books = new ArrayList<Book>();
     }
@@ -26,57 +35,48 @@ public class UserMenu{
         return books;
     }
 
-  //‘Ğ–¼‚Å‘Ğ‚ğŒŸõ
+  //æ›¸ç±åã§æ›¸ç±ã‚’æ¤œç´¢
     public ArrayList<Book> searchBooksByTitle(String bookTitle) {
-        exist = false;    //‘Ğ‚ª‚ ‚é‚©‚Ç‚¤‚©”»’f
-        ArrayList<Book> numBooks = new ArrayList<Book>();
         for(int i = 0 ; i < this.books.size() ; i++){
             if(bookTitle.equals(this.books.get(i).getTitle())) {
-                numBooks.add(this.books.get(i));
-                exist = true;
+                searchedBooksByTitle.add(this.books.get(i));
             }else{
             }
         }
-        return numBooks;
+        return searchedBooksByTitle;
     }
 
-  //’˜Ò–¼‚Å‘Ğ‚ğŒŸõ
+  //è‘—è€…åã§æ›¸ç±ã‚’æ¤œç´¢
     public ArrayList<Book> searchBooksByAuthor(String bookAuthor) {
-        exist = false;    //‘Ğ‚ª‚ ‚é‚©‚Ç‚¤‚©”»’f
-        ArrayList<Book> numBooks = new ArrayList<Book>();
         for(int i = 0 ; i < this.books.size() ; i++){
             if(this.books.get(i).getAuthors().contains(bookAuthor)) {
-                numBooks.add(this.books.get(i));
-                exist = true;
+                searchedBooksByAuthor.add(this.books.get(i));
             }else{
             }
         }
-        return numBooks;
+        return searchedBooksByAuthor;
     }
 
-  //•ª–ì‚Å‘Ğ‚ğŒŸõ
+  //åˆ†é‡ã§æ›¸ç±ã‚’æ¤œç´¢
     public ArrayList<Book> searchBooksByField(String bookField) {
-        exist = false;    //‘Ğ‚ª‚ ‚é‚©‚Ç‚¤‚©”»’f
-        ArrayList<Book> numBooks = new ArrayList<Book>();
         for(int i = 0 ; i < this.books.size() ; i++){
             if(bookField.equals(this.books.get(i).getField())) {
-                numBooks.add(this.books.get(i));
-                exist = true;
+                searchedBooksByField.add(this.books.get(i));
             }else{
             }
         }
-        return numBooks;
+        return searchedBooksByField;
     }
 
-  //‘Ğ‚Ì•Û‘¶(‘Ğ–¼‚ÌŒŸõŒ‹‰Ê)
+  //æ›¸ç±ã®ä¿å­˜(æ›¸ç±åã®æ¤œç´¢çµæœ)
     public void saveBooksByTitle(String saveFile) {
        try{
            File csv = new File(saveFile);
            BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-           for(Book t : searchBooksByTitle()){
+           for(Book t : searchedBooksByTitle){
                bw.write("ISBN");
                bw.write(COMMA);
-               bw.write(t.getISBN());
+               bw.write(t.getStringISBN());
                bw.write(COMMA);
                bw.write("Title");
                bw.write(COMMA);
@@ -92,7 +92,7 @@ public class UserMenu{
                bw.write(COMMA);
                bw.write("Authors");
                bw.write(COMMA);
-               bw.write(t.getAuthors());
+               bw.write(t.getStringAuthors());
                bw.write(COMMA);
                bw.write("Field");
                bw.write(COMMA);
@@ -109,20 +109,20 @@ public class UserMenu{
            }
            bw.close();
        }catch(IOException e){
-         errorNum = 1;    //“ú•t‚ÌŒ^‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ
+         errorNum = 1;    //æ—¥ä»˜ã®å‹ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“
            e.printStackTrace();
        }
    }
 
-  //‘Ğ‚Ì•Û‘¶(’˜Ò–¼‚ÌŒŸõŒ‹‰Ê)
+  //æ›¸ç±ã®ä¿å­˜(è‘—è€…åã®æ¤œç´¢çµæœ)
     public void saveBooksByAuthors(String saveFile) {
       try{
           File csv = new File(saveFile);
           BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-          for(Book a : searchBooksByAuthor()){
+          for(Book a : searchedBooksByAuthor){
               bw.write("ISBN");
               bw.write(COMMA);
-              bw.write(a.getISBN());
+              bw.write(a.getStringISBN());
               bw.write(COMMA);
               bw.write("Title");
               bw.write(COMMA);
@@ -138,7 +138,7 @@ public class UserMenu{
               bw.write(COMMA);
               bw.write("Authors");
               bw.write(COMMA);
-              bw.write(a.getAuthors());
+              bw.write(a.getStringAuthors());
               bw.write(COMMA);
               bw.write("Field");
               bw.write(COMMA);
@@ -155,20 +155,20 @@ public class UserMenu{
           }
           bw.close();
       }catch(IOException e){
-        errorNum = 1;    //“ú•t‚ÌŒ^‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ
+        errorNum = 1;    //æ—¥ä»˜ã®å‹ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“
           e.printStackTrace();
       }
   }
 
-  //‘Ğ‚Ì•Û‘¶(•ª–ì‚ÌŒŸõŒ‹‰Ê)
+  //æ›¸ç±ã®ä¿å­˜(åˆ†é‡ã®æ¤œç´¢çµæœ)
     public void saveBooksByField(String saveFile) {
        try{
            File csv = new File(saveFile);
            BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-           for(Book f : searchBooksByField()){
+           for(Book f : searchedBooksByField){
                bw.write("ISBN");
                bw.write(COMMA);
-               bw.write(f.getISBN());
+               bw.write(f.getStringISBN());
                bw.write(COMMA);
                bw.write("Title");
                bw.write(COMMA);
@@ -184,7 +184,7 @@ public class UserMenu{
                bw.write(COMMA);
                bw.write("Authors");
                bw.write(COMMA);
-               bw.write(f.getAuthors());
+               bw.write(f.getStringAuthors());
                bw.write(COMMA);
                bw.write("Field");
                bw.write(COMMA);
@@ -201,7 +201,7 @@ public class UserMenu{
            }
            bw.close();
        }catch(IOException e){
-         errorNum = 1;    //“ú•t‚ÌŒ^‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ
+         errorNum = 1;    //æ—¥ä»˜ã®å‹ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“
            e.printStackTrace();
        }
    }
