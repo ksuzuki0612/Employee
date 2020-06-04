@@ -17,8 +17,8 @@ public class AdminMenu{
      	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
          try{ 
     	     List<String> authorList = new ArrayList<String>();
-    	　　 String strDate = ui.strDate();
-    	　　 SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMdd")
+    	     String strDate = ui.strDate();
+    	     SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMdd");
              Date publishDate = sdFormat.parse(strDate);
              do{
                  int i = 0;
@@ -35,7 +35,7 @@ public class AdminMenu{
              }    
              while(i == 1);
              int borrowedAmount = 0;
-             sql.DBregisterBook(ui.isbnUi(),ui.titleUi(),ui.publisher(), publishDate,ui.field(),authorList,ui.inventory(),borrowedAmount)
+             sql.DBregisterBook(ui.isbnUi(),ui.titleUi(),ui.publisher(), publishDate,ui.field(),authorList,ui.inventory(),borrowedAmount);
     	 }
     	 catch(ParseException e){
     		 e.printStackTrace();
@@ -56,13 +56,14 @@ public class AdminMenu{
 			     case 1:
                      long allowISBN = ui.isbnUi();
                      int select = ui.selectUi();
-                 　　if(select==1){
-                 　　	 int addInventory = ui.addInventoryUi(); 
-    	                 sql.DBupdataInventory( allowISBN,addInventory );
-    	             }
+                     if(select==1){
+                     int addInventory = ui.addInventoryUi(); 
+                     sql.DBupdataInventory( allowISBN,addInventory );
+                     }
     	             else if (select ==2){
     	             	 int deInventory = ui.deInventoryUi();
-    	                 int deleteInventory -= deInventory;
+    	                 int deleteInventory;
+    	                 deleteInventory -= deInventory;
     	                 sql.DBupdataInventory( allowISBN,deleteInventory );
     	             }else{
     	             	 System.out.println("最初からやり直してください");
