@@ -54,14 +54,14 @@ public class MainMenu{
     public void adminMainMenu(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         //メニュー番号
-		private static final int selectedAdmin1 = 1;
-		private static final int selectedAdmin2 = 2;
-		private static final int selectedAdmin3 = 3;
-		private static final int selectedAdmin4 = 4;
-		private static final int selectedAdmin5 = 5;
-		private static final int selectedAdmin6 = 6;
-		private static final int selectedAdmin7 = 7;
-		private static final int selectedAdmin8 = 8;
+		final int selectedAdmin1 = 1;
+		final int selectedAdmin2 = 2;
+		final int selectedAdmin3 = 3;
+		final int selectedAdmin4 = 4;
+		final int selectedAdmin5 = 5;
+		final int selectedAdmin6 = 6;
+		final int selectedAdmin7 = 7;
+		final int selectedAdmin8 = 8;
         
         loop:while(true){
             int selected = menuUI.adminMenuUI();
@@ -104,9 +104,9 @@ public class MainMenu{
     public void userMainMenu(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         //メニュー番号
-		private static final int selectedUser1 = 1;
-		private static final int selectedUser2 = 2;
-		private static final int selectedUser3 = 3;
+		final int selectedUser1 = 1;
+		final int selectedUser2 = 2;
+		final int selectedUser3 = 3;
         
         loop:while(true){
 			int selected = menuUI.userMenuUI();

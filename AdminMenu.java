@@ -13,6 +13,7 @@ public class AdminMenu{
 	Logger logger = Logger.getLogger(AdminMenu.class.getName());
 	 SQL_method sql =new SQL_method();
 	 UI ui =new UI();
+	 
      public void registerBook(){
      	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
          try{ 
@@ -35,19 +36,21 @@ public class AdminMenu{
              }    
              while(i == 1);
              int borrowedAmount = 0;
-             sql.DBregisterBook(ui.isbnUi(),ui.titleUi(),ui.publisher(), publishDate,ui.field(),authorList,ui.inventory(),borrowedAmount);
+             sql.sqlRegister(ui.isbnUi(),ui.titleUi(),ui.publisher(), publishDate,ui.field(),authorList,ui.inventory(),borrowedAmount);
     	 }
     	 catch(ParseException e){
     		 e.printStackTrace();
 	 	 }
 	 	 logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
      }
+     
      public void deleteBook() {
      	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
          String deleteBook = ui.deleteBook();
     	 sql.DBdeleteBook(deleteBook);
     	 logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
      }
+     
      public void updataBook(){
      	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
          loop:while (true){
@@ -81,6 +84,7 @@ public class AdminMenu{
          }
          logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
      }    
+     
      //貸出承認
      public void allowBorrowBook(){
      	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
