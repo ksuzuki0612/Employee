@@ -3,27 +3,29 @@ import java.sql.*;
 import java.text.*;
 
 public class SQL_method{
-    public static void sqlRegister(){
-        Scanner keyboard = new Scanner(System.in);
+    public static void sqlRegister((long ISBN, String title, String publisher, 
+                                    Date publishDate, String field, List<String> authors,
+                                    int inventory, int borrowedAmount)){
+//        Scanner keyboard = new Scanner(System.in);
 
-        System.out.println("Enter ISBN");
-        long isbn = keyboard.nextLong();
-        keyboard.nextLine();
-        System.out.println("Enter title");
-        String title = keyboard.nextLine();
-        System.out.println("Enter publisher");
-        String publisher = keyboard.nextLine();
+//        System.out.println("Enter ISBN");
+//        long isbn = keyboard.nextLong();
+//        keyboard.nextLine();
+//        System.out.println("Enter title");
+//        String title = keyboard.nextLine();
+//        System.out.println("Enter publisher");
+//        String publisher = keyboard.nextLine();
         
-        System.out.println("Enter publish date (as YYYY-MM-dd)");
-        String pubdate = keyboard.nextLine(); 
-        System.out.println("Enter field");
-        String field = keyboard.nextLine();
-        System.out.println("Enter authors(s)");
-        String author = keyboard.nextLine();
-        System.out.println("Enter inventory number");
-        int inventory = keyboard.nextInt();
-        int borrowed = 0;
-        keyboard.close();
+//        System.out.println("Enter publish date (as YYYY-MM-dd)");
+//        String pubdate = keyboard.nextLine(); 
+//        System.out.println("Enter field");
+//        String field = keyboard.nextLine();
+//        System.out.println("Enter authors(s)");
+//        String author = keyboard.nextLine();
+//        System.out.println("Enter inventory number");
+//        int inventory = keyboard.nextInt();
+//        int borrowed = 0;
+//        keyboard.close();
         
 
         try{
@@ -43,14 +45,7 @@ public class SQL_method{
             }catch(Exception e) { System.out.println(e);}
     }
 
-    public static void borrowbook(){
-        Scanner keyboard = new Scanner(System.in);
-
-        System.out.println("Please enter ISBN.");
-        long isbn = keyboard.nextLong();
-        keyboard.nextLine();
-        
-
+    public static void borrowbook(long isbn){
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String userName = "root";
@@ -280,13 +275,8 @@ public class SQL_method{
 
 
     }
-    public static void returnbook(){
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println("Enter ISBN");
-        long isbn = keyboard.nextLong();
-        keyboard.nextLine();
-        System.out.println("Enter id");
-        int id = keyboard.nextInt();
+    public static void sqlReturnbook(long isbn,int id){
+
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String userName = "root";
@@ -304,7 +294,7 @@ public class SQL_method{
             con.close();
             }catch(Exception e) { System.out.println(e);}
     }
-    public static deleteBook(){ 
+    public static sqlDeleteBook(){ 
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter ISBN you wish to delete. ");
         long isbn = keyboard.nextLong();
@@ -325,8 +315,46 @@ public class SQL_method{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}  
+      
 
-
+    }
+    
+    
+      
+      public  void DBupdataInventory(long ISBN,int Inventory ){
+        try{
+            String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+            String userName = "root";
+            String pwd = "password1234";
+            String query = "UPDATE bookinfo SET inventory += '" + Inventory + "' WHERE ISBN = '" + ISBN +"'"; //note have to modify code to work
+            	
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(url, userName, pwd); 
+            Statement st = con.createStatement();
+            int count = st.executeUpdate(query);  
+        
+            System.out.println(count + " row(s) affected");
+            st.close();
+            con.close();
+            }catch(Exception e) { System.out.println(e);}
+    }
+    
+    public  void DBaddBorrowedAmount(long ISBN,int addBorrowedAmount ){
+        try{
+            String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+            String userName = "root";
+            String pwd = "password1234";
+            String query = "UPDATE bookinfo SET borrowed += '" + addBorrowedAmount + "' WHERE ISBN = '" + ISBN +"'"; //note have to modify code to work
+            	
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(url, userName, pwd); 
+            Statement st = con.createStatement();
+            int count = st.executeUpdate(query);  
+        
+            System.out.println(count + " row(s) affected");
+            st.close();
+            con.close();
+            }catch(Exception e) { System.out.println(e);}
     }
 
 }

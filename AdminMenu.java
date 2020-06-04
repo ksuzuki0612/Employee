@@ -13,7 +13,6 @@ public class AdminMenu{
 	Logger logger = Logger.getLogger(AdminMenu.class.getName());
 	 SQL_method sql =new SQL_method();
 	 UI ui =new UI();
-	 
      public void registerBook(){
      	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
          try{ 
@@ -43,14 +42,11 @@ public class AdminMenu{
 	 	 }
 	 	 logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
      }
-     
      public void deleteBook() {
      	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-         String deleteBook = ui.deleteBook();
-    	 sql.DBdeleteBook(deleteBook);
+          sql.sqlDeleteBook();
     	 logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
      }
-     
      public void updataBook(){
      	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
          loop:while (true){
@@ -84,29 +80,18 @@ public class AdminMenu{
          }
          logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
      }    
-     
      //貸出承認
      public void allowBorrowBook(){
      	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
          long allowISBN = ui.isbnUi();
-         int employee = ui.employee();
-         int bookPeriod = ui.bookPeriod();
-         int theBorrowedAmount =sql./**/;
-         int theInventory =sql./**/;
-    	 if(theInventory > theBorrowedAmount){
-    		 System.out.println("貸出OK");
-         }
-         else{
-         	  System.out.println("貸出NG");
-         }
-         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+         sql.borrowbook(allowISBN);
     }
     //返却申請
     public void returnBook(){
-    	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-         long allowISBN = ui.isbnUi();
-         int employee = ui.employee();
-         ui./*sqlメソッド */(allowISBN,employee);
+    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	int id = ui.employeeUi();
+    	long isbn =ui.isbnUi();
+         sql.sqlReturnbook()
          logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 }
