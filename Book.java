@@ -104,8 +104,8 @@ public class Book {
   //ISBNのlong値を文字列に変換したものを取り出す
     public String getStringISBN(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        return ISBNToString(this.ISBN);
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+        return ISBNToString(this.ISBN);
     }
 
   //著者名のリストを文字列に変換
@@ -126,8 +126,9 @@ public class Book {
   //著者のリストを文字列に変換したものを取り出す
     public String getStringAuthors(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         return authorsListToString(this.authors);
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+        
     }
 
 }
