@@ -94,7 +94,7 @@ public class SQL_method{
             con.close();
             }catch(Exception e) { System.out.println(e);}
     }
-    public static void DBcheckLogin(int empID,String password){
+    public static int DBcheckLogin(int empID,String password){
             
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -129,7 +129,7 @@ public class SQL_method{
 
 
     }
-    public static boolean DBcheckRight(int empID){
+    public static int DBcheckRight(int empID){
             
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -146,10 +146,10 @@ public class SQL_method{
             ResultSet right = pstmt.executeQuery();
 
             if(right == Y){
-                return true;
+                return 0;
             }
             else{
-                return false;
+                return 1;
             }
 
             st.close();

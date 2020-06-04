@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 public class Login{
 	Logger logger = Logger.getLogger(AdminMenu.class.getName());
-    UI uiLogin = new LoginUI();
+    UI uiLogin = new UI();
     MainMenu mainMenu = new MainMenu();
 	SQL_method sqlmethod = new SQL_method();
 	
@@ -21,13 +21,11 @@ public class Login{
         //ログイン=1,パスワードの再設定=2
         if(loginChoice == 1){
             loginCheck();
-            mainMenu.choiceMenu();
         }
         else if(loginChoice == 2){
             resetPassword();
         }
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-
     }
 
     public void loginCheck(){
@@ -50,8 +48,8 @@ public class Login{
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         int checkID = empID;
         //従業員リスト SQL
-        boolean adminRight = sqlmethod.DBcheckRight();
-        if(adminRight = true){
+        int adminRight = sqlmethod.DBcheckRight();
+        if(adminRight == 0){
             mainMenu.choiceMenuAdmin();
         }
         else{
