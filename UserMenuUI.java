@@ -7,6 +7,7 @@ public class UserMenuUI{
     private static UserMenu userMenu = new UserMenu();
 
     public static void userMenu(){
+        int selected=0;
         System.out.println("検索する項目を選んでください");
         System.out.println("1.タイトル");
         System.out.println("2.著者");
@@ -16,12 +17,42 @@ public class UserMenuUI{
         switch(selected){
             case 1:
                 searchBooksByTitleUI();
+                System.out.println("検索結果を保存しますか？");
+                System.out.println("1.はい");
+                System.out.println("2.前の画面に戻る");
+                String s1 = new java.util.Scanner(System.in).nextLine();
+                selected = Integer.parseInt(s1);
+                if(selected == 1){
+                    saveBooksByTitleUI();
+                }else{
+                    userMenu();
+                }
                 break;
             case 2:
                 searchBooksByAuthorUI();
+                System.out.println("検索結果を保存しますか？");
+                System.out.println("1.はい");
+                System.out.println("2.前の画面に戻る");
+                String s2 = new java.util.Scanner(System.in).nextLine();
+                selected = Integer.parseInt(s2);
+                if(selected == 1){
+                    saveBooksByAuthorsUI();
+                }else{
+                    userMenu();
+                }
                 break;
             case 3:
                 searchBooksByFieldUI();
+                System.out.println("検索結果を保存しますか？");
+                System.out.println("1.はい");
+                System.out.println("2.前の画面に戻る");
+                String s3 = new java.util.Scanner(System.in).nextLine();
+                selected = Integer.parseInt(s3);
+                if(selected == 1){
+                    saveBooksByFieldUI();
+                }else{
+                    userMenu();
+                }
                 break;
         }
     }
@@ -47,7 +78,7 @@ public class UserMenuUI{
     }
 
 //分野で書籍の検索
-    public static void searchBooksByUI(){
+    public static void searchBooksByFieldUI(){
         System.out.println("検索したい分野名を入力してください");
         String bookField = new java.util.Scanner(System.in).nextLine();
         for(int i = 0 ; i < userMenu.searchBooksByField(bookField).size() ; i++){
@@ -56,21 +87,21 @@ public class UserMenuUI{
     }
 
 //ファイルの保存(書籍名)
-    public static void saveBooksUI(){
+    public static void saveBooksByTitleUI(){
         System.out.println("書籍を保存するファイル名を入力してください。");
         String saveFile = new java.util.Scanner(System.in).nextLine();
         userMenu.saveBooksByTitle(saveFile);
         }
 
 //ファイルの保存(著者名)
-    public static void saveBooksUI(){
+    public static void saveBooksByAuthorsUI(){
         System.out.println("書籍を保存するファイル名を入力してください。");
         String saveFile = new java.util.Scanner(System.in).nextLine();
         userMenu.saveBooksByAuthors(saveFile);
         }
 
 //ファイルの保存(分野)
-    public static void saveBooksUI(){
+    public static void saveBooksByFieldUI(){
         System.out.println("書籍を保存するファイル名を入力してください。");
         String saveFile = new java.util.Scanner(System.in).nextLine();
         userMenu.saveBooksByField(saveFile);
