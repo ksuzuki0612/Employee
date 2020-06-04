@@ -11,7 +11,8 @@ public class Login{
 	Logger logger = Logger.getLogger(AdminMenu.class.getName());
     UI uiLogin = new LoginUI();
     MainMenu mainMenu = new MainMenu();
-
+	SQL_method sqlmethod = new SQL_method();
+	
     public void login(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         uiLogin.loginUI();
@@ -33,7 +34,7 @@ public class Login{
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         int empID = uiLogin.getEmpID();
         String password = uiLogin.getPassword();
-        int checkEmpID = SQL_method.DBcheckLogin();
+        int checkEmpID = sqlmethod.DBcheckLogin();
 
         if(checkEmpID == 0){
             System.out.println("IDとパスワードが一致していません");
@@ -49,7 +50,7 @@ public class Login{
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         int checkID = empID;
         //従業員リスト SQL
-        boolean adminRight = SQL_method.DBcheckRight();
+        boolean adminRight = sqlmethod.DBcheckRight();
         if(adminRight = true){
             mainMenu.choiceMenuAdmin();
         }
