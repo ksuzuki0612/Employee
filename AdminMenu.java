@@ -22,7 +22,7 @@ public class AdminMenu{
              Date publishDate = sdFormat.parse(strDate);
              do{
                  int i = 0;
-                 String str4 =ui.str4();
+                 String str4 =ui.str4Ui();
                  if(authorList.contains(str4)){
                  System.out.println("既にその著者名は登録されています。");
                  i += 1;
