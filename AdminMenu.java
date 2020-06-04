@@ -1,10 +1,20 @@
+import java.io.IOException;
+import java.util.function.Supplier;
+import java.util.logging.FileHandler;
+import java.util.logging.Formatter;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 import java.util.*;
 import java.text.*;
 import java.io.*;
 public class AdminMenu{
+	Logger logger = Logger.getLogger(AdminMenu.class.getName());
 	 SQL_method sql =new SQL_method();
 	 UI ui =new UI();
      public void registerBook(){
+     	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
          try{ 
     	     List<String> authorList = new ArrayList<String>();
     	　　 String strDate = ui.strDate();
@@ -30,12 +40,16 @@ public class AdminMenu{
     	 catch(ParseException e){
     		 e.printStackTrace();
 	 	 }
+	 	 logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
      }
      public void deleteBook() {
+     	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
          String deleteBook = ui.deleteBook();
     	 sql.DBdeleteBook(deleteBook);
+    	 logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
      }
      public void updataBook(){
+     	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
          loop:while (true){
 			 int selected = ui.selectedUi();
 		     switch(selected){
@@ -64,8 +78,11 @@ public class AdminMenu{
                      break loop;        
              }
          }
+         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
      }    
-     public void allowBorrowBook(){//貸出承認
+     //貸出承認
+     public void allowBorrowBook(){
+     	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
          long allowISBN = ui.isbnUi();
          int employee = ui.employee();
          int bookPeriod = ui.bookPeriod();
@@ -77,10 +94,14 @@ public class AdminMenu{
          else{
          	  System.out.println("貸出NG");
          }
+         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
-    public void returnBook(){//返却申請
+    //返却申請
+    public void returnBook(){
+    	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
          long allowISBN = ui.isbnUi();
          int employee = ui.employee();
-        ui./*sqlメソッド */(allowISBN,employee);
+         ui./*sqlメソッド */(allowISBN,employee);
+         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 }
