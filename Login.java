@@ -1,10 +1,19 @@
 import java.util.*;
-
+import java.io.IOException;
+import java.util.function.Supplier;
+import java.util.logging.FileHandler;
+import java.util.logging.Formatter;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 public class Login{
+	Logger logger = Logger.getLogger(AdminMenu.class.getName());
     UI uiLogin = new LoginUI();
     MainMenu mainMenu = new MainMenu();
 
     public void login(){
+    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         uiLogin.loginUI();
 
         int loginChoice = new java.util.Scanner(System.in).nextInt();
@@ -16,10 +25,12 @@ public class Login{
         else if(loginChoice == 2){
             resetPassword();
         }
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
 
     }
 
     public void loginCheck(){
+    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         int empID = uiLogin.getEmpID();
         String password = uiLogin.getPassword();
         int checkEmpID = SQL_method.DBcheckLogin();
@@ -30,10 +41,12 @@ public class Login{
         else{
             checkRight(checkEmpID);
         }
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
 
     }
 
     public void checkRight(int empID){
+    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         int checkID = empID;
         //従業員リスト SQL
         boolean adminRight = SQL_method.DBcheckRight();
@@ -43,10 +56,12 @@ public class Login{
         else{
             mainMenu.choiceMenuUser();
         }
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
 
     }
 
     public void resetPassword(){
+    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.println("パスワード再設定画面");
         int empID = uiLogin.getEmpID();
         String password = uiLogin.getPassword();
@@ -67,6 +82,7 @@ public class Login{
         else if(ans == 2){
             login();
         }
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
 
