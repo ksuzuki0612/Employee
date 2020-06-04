@@ -9,7 +9,7 @@ import java.util.logging.SimpleFormatter;
 
 public class MainMenu{
 	Logger logger = Logger.getLogger(PasswordList.class.getName());
-    UI menuUI = new MainMenu();
+    UI menuUI = new UI();
     AdminMenu adminMenu = new AdminMenu();
     UserMenu userMenu = new UserMenu();
     
@@ -26,7 +26,7 @@ public class MainMenu{
         }
         else{
             System.out.println("1か2を入力してください");
-            choiceMenu();
+            choiceMenuAdmin();
         }
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
@@ -44,12 +44,10 @@ public class MainMenu{
         }
         else{
             System.out.println("1か2を入力してください");
-            choiceMenu();
+            choiceMenuUser();
         }
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
-
-
 
     public void adminMainMenu(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -70,7 +68,7 @@ public class MainMenu{
 			
         case selectedAdmin1:
             //図書登録
-            adminMenu.resisterBook();            
+            adminMenu.registerBook();         
             break;
         
         case selectedAdmin2:

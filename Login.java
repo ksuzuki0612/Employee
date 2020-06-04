@@ -66,7 +66,7 @@ public class Login{
         String password = uiLogin.getPassword();
         String checkPassword = uiLogin.getCheckPassword();
 
-        int ans = uiLogin.resetPassword();
+        int ans = uiLogin.resetPassUI();
         //ans = 1 パスワードを再設定する
         if(ans == 1){
             if(password.equals(checkPassword)){
