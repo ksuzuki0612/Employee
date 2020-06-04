@@ -1,10 +1,8 @@
 import java.util.*;
 
-public void Login{
-    LoginUI uiLogin = new LoginUI();
+public class Login{
+    UI uiLogin = new LoginUI();
     MainMenu mainMenu = new MainMenu();
-
-    List<PasswordList> passwordList = new ArrayList<PasswordList>();
 
     public void login(){
         uiLogin.loginUI();
@@ -24,14 +22,14 @@ public void Login{
     public void loginCheck(){
         int empID = uiLogin.getEmpID();
         String password = uiLogin.getPassword();
-        
+        //SQLからパスワードリストを受取
+        //List PasswordList = SQL
         for(PasswordList p : passwordList){
             int compareEmpID = p.getEmpID();
             if(empID == compareEmpID){
-                checkID++;
                 comparePass = p.getPassword();
                 if(comparePass.equals(password)){
-                    //機能選択
+                    checkRight(empID);
                     break;
                 }
                 else{
@@ -43,6 +41,18 @@ public void Login{
 
     }
 
+    public void checkRight(int empID){
+        int empID = empID;
+        //従業員リスト
+        if(adminRight = true){
+            mainMenu.choiceMenuAdmin();
+        }
+        else{
+            mainMenu.choiceMenuUser();
+        }
+
+    }
+
     public void resetPassword(){
         System.out.println("パスワード再設定画面");
         int empID = uiLogin.getEmpID();
@@ -50,16 +60,17 @@ public void Login{
         String checkPassword = uiLogin.getCheckPassword();
 
         int ans = uiLogin.resetPassword();
-
+        //ans = 1 パスワードを再設定する
         if(ans == 1){
             if(password.equals(checkPassword)){
-                //SQL文
+                //SQL文 パスワードを更新する
             }
             else{
                 System.out.println("入力されたパスワードが一致していません");
                 login();
             }
         }
+        //ans = 2:パスワードを再設定しない
         else if(ans == 2){
             login();
         }

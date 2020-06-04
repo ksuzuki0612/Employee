@@ -1,9 +1,10 @@
 public class MainMenu{
-    MainMenuUI menuUI = new MainMenu();
+    UI menuUI = new MainMenu();
     AdminMenu adminMenu = new AdminMenu();
     UserMenu userMenu = new UserMenu();
+    
 
-    public void choiceMenu(){
+    public void choiceMenuAdmin(){
         int choice = menuUI.choiceMenuUI();
         //1,利用者メニュー 2,管理者メニュー
         if(choice == 1){
@@ -17,6 +18,24 @@ public class MainMenu{
             choiceMenu();
         }
     }
+
+    public void choiceMenuUser(){
+        int choice = menuUI.choiceMenuUI();
+        //1,利用者メニュー 2,管理者メニュー
+        if(choice == 1){
+            userMainMenu();
+        }
+        else if(choice == 2){
+            System.out.println("管理者権限がありません");
+            choiceMenuUser();
+        }
+        else{
+            System.out.println("1か2を入力してください");
+            choiceMenu();
+        }
+    }
+
+
 
     public void adminMainMenu(){
         //メニュー番号
@@ -78,7 +97,6 @@ public class MainMenu{
 			
         case selectedUser1:
             System.out.println("1,図書検索");
-            
             break;
         
         case selectedUser2:
