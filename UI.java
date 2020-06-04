@@ -39,6 +39,7 @@ public class UI{
         System.out.println("2,図書館管理者機能");
 
         int choice = new java.util.Scanner(System.in).nextInt();
+        return choice;
     }
 
     public int adminMenuUI(){
@@ -68,6 +69,7 @@ public class UI{
 		System.out.println("メニュー番号を入力してください。");
 		
 		int selected = new java.util.Scanner(System.in).nextInt();
+		return selected;
     }
     //UserMenuUi.java
 //インスタンスの生成
