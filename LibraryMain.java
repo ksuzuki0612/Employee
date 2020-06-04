@@ -10,14 +10,17 @@ public class LibraryMain{
 	static Logger logger = Logger.getLogger(LibraryMain.class.getName());
     public static void main(String[] args){
     	 // Create a file handler object 
-        FileHandler handler 
+        try{
+            FileHandler handler 
             = new FileHandler("log.txt"); 
-        handler.setFormatter(new SimpleFormatter()); 
-        logger.addHandler(handler); 
-        // ログレベルの設定
-        logger.setLevel(Level.FINER);
+            handler.setFormatter(new SimpleFormatter()); 
+            logger.addHandler(handler); 
+            // ログレベルの設定
+            logger.setLevel(Level.FINER);
     	
-        Login login = new Login();
-        login.login();
+            Login login = new Login();
+            login.login();
+        }catch(IOException e){
+        }
     }
 }
