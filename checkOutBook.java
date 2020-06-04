@@ -1,3 +1,11 @@
+import java.io.IOException;
+import java.util.function.Supplier;
+import java.util.logging.FileHandler;
+import java.util.logging.Formatter;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 //貸し出された本
 public class CheckOutBook{
 	 Logger logger = Logger.getLogger( CheckOutBook.class.getName());
@@ -65,8 +73,8 @@ public class CheckOutBook{
 
     public void setBorrowedUntil(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         this.borrowedUntil = borrowedUntil;
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
 }
