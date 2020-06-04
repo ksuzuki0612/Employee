@@ -113,7 +113,7 @@ public class MainMenu{
 		switch(selected){
 			
         case selectedUser1:
-            System.out.println("1,図書検索");
+           	menuUI.userMenu();
             break;
         
         case selectedUser2:
