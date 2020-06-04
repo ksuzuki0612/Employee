@@ -94,7 +94,7 @@ public class SQL_method{
             con.close();
             }catch(Exception e) { System.out.println(e);}
     }
-    public static void DBcheckLogin(int empID,String password){
+    public static int DBcheckLogin(int empID,String password){
             
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -103,12 +103,12 @@ public class SQL_method{
             Connection con = DriverManager.getConnection(url, userName, pwd); 
             Statement st = con.createStatement();
             
-            int empID = empID;
-            String password = password;
+            int ID = empID;
+            String pass = password;
     
             PreparedStatement pstmt = con.PreparedStatement("SELECT*FROM passwordlist WHERE emmployee_id=?,password = ?");
-            pstmt.setInt(1,empID);
-            pstmt.setString(2,password);
+            pstmt.setInt(1,ID);
+            pstmt.setString(2,pass);
     
             ResultSet rs = pstmt.executeQuery();
     
@@ -116,7 +116,7 @@ public class SQL_method{
                 return 0;
             }
             else{
-                return empID;
+                return ID;
             }
 
 
@@ -129,7 +129,7 @@ public class SQL_method{
 
 
     }
-    public static boolean DBcheckRight(int empID){
+    public static int DBcheckRight(int empID){
             
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -140,12 +140,12 @@ public class SQL_method{
 
             int checkID = empID;
 
-            PreparedStatement pstmt = con.PreparedStatement("SELECT administrator right FROM employee WHERE emmployee_id=?");
+            PreparedStatement pstmt = con.PreparedStatement("SELECT administrator_right FROM employee WHERE employee_id=?");
             pstmt.setInt(1,checkID);
 
             ResultSet right = pstmt.executeQuery();
 
-            if(right == Y){
+            if(right.equals(Y)){
                 return true;
             }
             else{
