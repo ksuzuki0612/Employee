@@ -3,7 +3,7 @@ import java.text.*;
 import java.io.*;
 public class AdminMenu{
 	 SQL_method sql =new SQL_method();
-	 AdminMenuUi ui =new AdminMenuUi();
+	 UI ui =new UI();
      public void registerBook(){
          try{ 
     	     List<String> authorList = new ArrayList<String>();
