@@ -1,21 +1,10 @@
-import java.io.IOException;
-import java.util.function.Supplier;
-import java.util.logging.FileHandler;
-import java.util.logging.Formatter;
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
-
 public class MainMenu{
-	Logger logger = Logger.getLogger(MainMenu.class.getName());
     UI menuUI = new MainMenu();
     AdminMenu adminMenu = new AdminMenu();
     UserMenu userMenu = new UserMenu();
     
 
     public void choiceMenuAdmin(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         int choice = menuUI.choiceMenuUI();
         //1,利用者メニュー 2,管理者メニュー
         if(choice == 1){
@@ -28,11 +17,9 @@ public class MainMenu{
             System.out.println("1か2を入力してください");
             choiceMenu();
         }
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
     public void choiceMenuUser(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         int choice = menuUI.choiceMenuUI();
         //1,利用者メニュー 2,管理者メニュー
         if(choice == 1){
@@ -46,13 +33,11 @@ public class MainMenu{
             System.out.println("1か2を入力してください");
             choiceMenu();
         }
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
 
 
     public void adminMainMenu(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         //メニュー番号
 		private static final int selectedAdmin1 = 1;
 		private static final int selectedAdmin2 = 2;
@@ -98,11 +83,9 @@ public class MainMenu{
             break loop;
       	  }
  	   }
- 	   logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
     public void userMainMenu(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         //メニュー番号
 		private static final int selectedUser1 = 1;
 		private static final int selectedUser2 = 2;
@@ -125,6 +108,5 @@ public class MainMenu{
             break loop;
       	  }
  	   }
- 	   logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 }
