@@ -124,7 +124,8 @@ public class MainMenu{
             System.out.println("終了");
             break loop;
       	  }
- 	   }
+        }
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
-    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+    
 }
