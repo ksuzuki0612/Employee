@@ -4,72 +4,63 @@ import java.io.*;
 
 
 public class UserMenu{
-
-  //書籍のリスト生成
-    static List<Book> books;
+    static Logger logger = Logger.getLogger(Main.class.getName());
+    SQL_method sql =new SQL_method();
 
   //カンマ
     private final String COMMA = ",";
 
-  //読み込んだファイルの有無
-    private boolean exist = false;
-
   //エラーの番号
     private int errorNum = 0;
-
-  //書籍名検索結果の本
-    ArrayList<Book> searchedBooksByTitle = new ArrayList<Book>();
-
-  //著者名検索結果の本
-    ArrayList<Book> searchedBooksByAuthor = new ArrayList<Book>();
-
-  //分野検索結果の本
-    ArrayList<Book> searchedBooksByField = new ArrayList<Book>();
 
   //本棚の生成
     public void BookShelf() {
       books = new ArrayList<Book>();
     }
 
-    public List<Book> getAllBooks() {
-        return books;
+    public static void main (String[] args) throws Exception{
+        FileHandler handler = new FileHandler("log.txt");
+        handler.setFormatter(new SimpleFormatter());
+        logger.addHandler(handler);
+        logger.setLevel(Level.FINER);
     }
 
   //書籍名で書籍を検索
     public ArrayList<Book> searchBooksByTitle(String bookTitle) {
-        for(int i = 0 ; i < this.books.size() ; i++){
-            if(bookTitle.equals(this.books.get(i).getTitle())) {
-                searchedBooksByTitle.add(this.books.get(i));
-            }else{
-            }
+        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+        try{
+            sql.DBsearchBookTitle();
+        }catch(Exception e){
+            logger.severe("SEVERE");
         }
-        return searchedBooksByTitle;
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
   //著者名で書籍を検索
     public ArrayList<Book> searchBooksByAuthor(String bookAuthor) {
-        for(int i = 0 ; i < this.books.size() ; i++){
-            if(this.books.get(i).getAuthors().contains(bookAuthor)) {
-                searchedBooksByAuthor.add(this.books.get(i));
-            }else{
-            }
+        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+        try{
+            sql.DBsearchBookAuthor();
+        }catch(Exception e){
+            logger.severe("SEVERE");
         }
-        return searchedBooksByAuthor;
+            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
   //分野で書籍を検索
     public ArrayList<Book> searchBooksByField(String bookField) {
-        for(int i = 0 ; i < this.books.size() ; i++){
-            if(bookField.equals(this.books.get(i).getField())) {
-                searchedBooksByField.add(this.books.get(i));
-            }else{
-            }
+        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+        try{
+        sql.DBsearchBookField();
+        }catch(Exception e){
+            logger.severe("SEVERE");
         }
-        return searchedBooksByField;
+            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
   //書籍の保存(書籍名の検索結果)
     public void saveBooksByTitle(String saveFile) {
+       logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
        try{
            File csv = new File(saveFile);
            BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
@@ -111,11 +102,14 @@ public class UserMenu{
        }catch(IOException e){
          errorNum = 1;    //日付の型が正しくありません
            e.printStackTrace();
+           logger.severe("SEVERE");
        }
+           logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
    }
 
   //書籍の保存(著者名の検索結果)
     public void saveBooksByAuthors(String saveFile) {
+      logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
       try{
           File csv = new File(saveFile);
           BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
@@ -157,11 +151,14 @@ public class UserMenu{
       }catch(IOException e){
         errorNum = 1;    //日付の型が正しくありません
           e.printStackTrace();
+          logger.severe("SEVERE");
       }
+          logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
   }
 
   //書籍の保存(分野の検索結果)
     public void saveBooksByField(String saveFile) {
+       logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
        try{
            File csv = new File(saveFile);
            BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
@@ -203,7 +200,9 @@ public class UserMenu{
        }catch(IOException e){
          errorNum = 1;    //日付の型が正しくありません
            e.printStackTrace();
+           logger.severe("SEVERE");
        }
+           logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
    }
 
 }
