@@ -17,11 +17,12 @@ public class AdminMenu{
      	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
          try{ 
     	     List<String> authorList = new ArrayList<String>();
-    	     String strDate = ui.strDate();
+    	     String strDate = ui.strDateUi();
     	     SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMdd");
              Date publishDate = sdFormat.parse(strDate);
+             int i = 0;
              do{
-                 int i = 0;
+                  i = 0;
                  String str4 =ui.str4Ui();
                  if(authorList.contains(str4)){
                  System.out.println("既にその著者名は登録されています。");
@@ -29,13 +30,13 @@ public class AdminMenu{
                  }
                  else{
                      authorList.add(str4);
-                     int authorAdd = ui.authorAdd();
+                     int authorAdd = ui.authorAddUi();
                      i += authorAdd;
                  }
              }    
-             while(i == 1);
+             while(i = 1);
              int borrowedAmount = 0;
-             sql.sqlRegister(ui.isbnUi(),ui.titleUi(),ui.publisher(), publishDate,ui.field(),authorList,ui.inventory(),borrowedAmount);
+             sql.sqlRegister(ui.isbnUi(),ui.titleUi(),ui.publisherUi(), publishDate,ui.fieldUi(),authorList,ui.inventoryUi(),borrowedAmount);
     	 }
     	 catch(ParseException e){
     		 e.printStackTrace();
@@ -70,9 +71,9 @@ public class AdminMenu{
                      break;
                      
                  case 2:
-                     long allowISBN = ui.isbnUi();
+                     long aISBN = ui.isbnUi();
                      int addBorrowedAmount =ui.addBorrowedAmountUi();
-                     sql.DBaddBorrowedAmount( allowISBN,addBorrowedAmount);
+                     sql.DBaddBorrowedAmount( aISBN,addBorrowedAmount);
                      break;
                  case 3:
                      break loop;        
@@ -91,7 +92,7 @@ public class AdminMenu{
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	int id = ui.employeeUi();
     	long isbn =ui.isbnUi();
-         sql.sqlReturnbook()
+         sql.sqlReturnbook(isbn,id);
          logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 }

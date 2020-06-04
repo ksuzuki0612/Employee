@@ -3,9 +3,9 @@ import java.sql.*;
 import java.text.*;
 
 public class SQL_method{
-    public static void sqlRegister((long ISBN, String title, String publisher, 
+    public  void sqlRegister(long ISBN, String title, String publisher, 
                                     Date publishDate, String field, List<String> authors,
-                                    int inventory, int borrowedAmount)){
+                                    int inventory, int borrowedAmount){
 //        Scanner keyboard = new Scanner(System.in);
 
 //        System.out.println("Enter ISBN");
@@ -45,7 +45,7 @@ public class SQL_method{
             }catch(Exception e) { System.out.println(e);}
     }
 
-    public static void borrowbook(long isbn){
+    public  void borrowbook(long isbn){
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String userName = "root";
@@ -94,7 +94,7 @@ public class SQL_method{
             con.close();
             }catch(Exception e) { System.out.println(e);}
     }
-    public static int DBcheckLogin(int empID,String password){
+    public static void DBcheckLogin(int empID,String password){
             
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -129,7 +129,7 @@ public class SQL_method{
 
 
     }
-    public static int DBcheckRight(int empID){
+    public static boolean DBcheckRight(int empID){
             
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -146,10 +146,10 @@ public class SQL_method{
             ResultSet right = pstmt.executeQuery();
 
             if(right == Y){
-                return 0;
+                return true;
             }
             else{
-                return 1;
+                return false;
             }
 
             st.close();
@@ -275,7 +275,7 @@ public class SQL_method{
 
 
     }
-    public static void sqlReturnbook(long isbn,int id){
+    public  void sqlReturnbook(long isbn,int id){
 
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -294,7 +294,7 @@ public class SQL_method{
             con.close();
             }catch(Exception e) { System.out.println(e);}
     }
-    public static sqlDeleteBook(){ 
+    public void sqlDeleteBook(){ 
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter ISBN you wish to delete. ");
         long isbn = keyboard.nextLong();
