@@ -13,11 +13,6 @@ public class UserMenu{
   //エラーの番号
     private int errorNum = 0;
 
-  //本棚の生成
-    public void BookShelf() {
-      books = new ArrayList<Book>();
-    }
-
     public static void main (String[] args) throws Exception{
         FileHandler handler = new FileHandler("log.txt");
         handler.setFormatter(new SimpleFormatter());
@@ -29,7 +24,7 @@ public class UserMenu{
     public ArrayList<Book> searchBooksByTitle(String bookTitle) {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
-            sql.DBsearchBookTitle();
+            sql.SQLsearch();
         }catch(Exception e){
             logger.severe("SEVERE");
         }
@@ -40,7 +35,7 @@ public class UserMenu{
     public ArrayList<Book> searchBooksByAuthor(String bookAuthor) {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
-            sql.DBsearchBookAuthor();
+            sql.SQLsearchAuthor();
         }catch(Exception e){
             logger.severe("SEVERE");
         }
@@ -51,7 +46,7 @@ public class UserMenu{
     public ArrayList<Book> searchBooksByField(String bookField) {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
-        sql.DBsearchBookField();
+        sql.SQLsearchField();
         }catch(Exception e){
             logger.severe("SEVERE");
         }
@@ -64,7 +59,7 @@ public class UserMenu{
        try{
            File csv = new File(saveFile);
            BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-           for(Book t : searchedBooksByTitle){
+           for(Book t : sql.SQLsearch().searchRecord){
                bw.write("ISBN");
                bw.write(COMMA);
                bw.write(t.getStringISBN());
@@ -113,7 +108,7 @@ public class UserMenu{
       try{
           File csv = new File(saveFile);
           BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-          for(Book a : searchedBooksByAuthor){
+          for(Book a : sql.SQLsearchAuthor().searchRecord){
               bw.write("ISBN");
               bw.write(COMMA);
               bw.write(a.getStringISBN());
@@ -162,7 +157,7 @@ public class UserMenu{
        try{
            File csv = new File(saveFile);
            BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-           for(Book f : searchedBooksByField){
+           for(Book f : sql.SQLsearchField().searchRecord){
                bw.write("ISBN");
                bw.write(COMMA);
                bw.write(f.getStringISBN());
