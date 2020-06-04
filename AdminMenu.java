@@ -34,7 +34,7 @@ public class AdminMenu{
                      i += authorAdd;
                  }
              }    
-             while(i = 1);
+             while(i == 1);
              int borrowedAmount = 0;
              sql.sqlRegister(ui.isbnUi(),ui.titleUi(),ui.publisherUi(), publishDate,ui.fieldUi(),authorList,ui.inventoryUi(),borrowedAmount);
     	 }
