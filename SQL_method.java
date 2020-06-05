@@ -20,7 +20,7 @@ public class SQL_method{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String userName = "root";
             String pwd = "password1234";
-            String query = "INSERT INTO bookinfo (ISBN, title, publisher, publish_date, field_, author, inventory, borrowed) VALUES ('" + isbn + "', '" + title + "', '" + publisher + "', '" + strDate + "', '" + field + "', '" + author + "', '" + inventory + "', '" + borrowed + "');";
+            String query = "INSERT INTO bookinfo (ISBN, title, publisher, publish_date, field_, author, inventory, borrowed) VALUES ('" + ISBN + "', '" + title + "', '" + publisher + "', '" + publishDate + "', '" + field + "', '" + authors + "', '" + inventory + "', '" + borrowedAmount + "');";
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
@@ -36,6 +36,7 @@ public class SQL_method{
 
     public void borrowbook(long isbn){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	Scanner keyboard = new Scanner(System.in);
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String userName = "root";
@@ -87,6 +88,7 @@ public class SQL_method{
     }
     public int DBcheckLogin(int empID,String password){
             logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+            Scanner keyboard = new Scanner(System.in);
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String userName = "root";
@@ -291,6 +293,7 @@ public class SQL_method{
 
     public void sqlReturnbook(long isbn,int id){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	Scanner keyboard = new Scanner(System.in);
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String userName = "root";
