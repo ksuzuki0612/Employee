@@ -56,7 +56,7 @@ public class User{
 
     public void setnewEmployeeName(String newEmployeeName){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	this.employee = newEmployeeName;
+    	this.employeeName = newEmployeeName;
     	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         
     }

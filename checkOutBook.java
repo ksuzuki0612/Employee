@@ -7,8 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 //貸し出された本
-public class CheckOutBook{
-	 Logger logger = Logger.getLogger( CheckOutBook.class.getName());
+public class checkOutBook{
+	 Logger logger = Logger.getLogger(checkOutBook.class.getName());
     private int checkOutNumber;
     private long ISBN;
     private String title;
@@ -44,7 +44,7 @@ public class CheckOutBook{
     public String getTitle(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-        return this.Title;
+        return this.title;
     }
 
     public int getEmployeeID(){
@@ -65,15 +65,15 @@ public class CheckOutBook{
         return this.borrowedFrom;
     }
 
-    public Date getBorrowedUntil(){
+    public String getBorrowedUntil(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         return this.borrowedUntil;
     }
 
-    public void setBorrowedUntil(){
+    public void setBorrowedUntil(String newBorrowedUntil){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        this.borrowedUntil = borrowedUntil;
+        this.borrowedUntil = newBorrowedUntil;
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
