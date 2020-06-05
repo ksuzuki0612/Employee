@@ -4,7 +4,7 @@ import java.io.*;
 
 
 public class UserMenu{
-    static Logger logger = Logger.getLogger(Main.class.getName());
+    Logger logger = Logger.getLogger(UserMenu.class.getName());
     SQL_method sql =new SQL_method();
 
   //カンマ
@@ -12,13 +12,6 @@ public class UserMenu{
 
   //エラーの番号
     private int errorNum = 0;
-
-    public static void main (String[] args) throws Exception{
-        FileHandler handler = new FileHandler("log.txt");
-        handler.setFormatter(new SimpleFormatter());
-        logger.addHandler(handler);
-        logger.setLevel(Level.FINER);
-    }
 
   //書籍名で書籍を検索
     public ArrayList<Book> searchBooksByTitle(String bookTitle) {
@@ -59,7 +52,7 @@ public class UserMenu{
        try{
            File csv = new File(saveFile);
            BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-           for(Book t : sql.SQLsearch().searchRecord){
+           for(Book t : sql.getSearchRecordTitle){
                bw.write("ISBN");
                bw.write(COMMA);
                bw.write(t.getStringISBN());
@@ -108,7 +101,7 @@ public class UserMenu{
       try{
           File csv = new File(saveFile);
           BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-          for(Book a : sql.SQLsearchAuthor().searchRecord){
+          for(Book a : sql.getSearchRecordAuthor()){
               bw.write("ISBN");
               bw.write(COMMA);
               bw.write(a.getStringISBN());
@@ -157,7 +150,7 @@ public class UserMenu{
        try{
            File csv = new File(saveFile);
            BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-           for(Book f : sql.SQLsearchField().searchRecord){
+           for(Book f : sql.getSearchRecordField()){
                bw.write("ISBN");
                bw.write(COMMA);
                bw.write(f.getStringISBN());
