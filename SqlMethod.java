@@ -29,7 +29,23 @@ public class SqlMethod{
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             
-            String query = "INSERT INTO bookinfo (ISBN, title, publisher, publish_date, field_, author, inventory, borrowed) VALUES ('" + ISBN + "', '" + title + "', '" + publisher + "', '" + publishDate + "', '" + field + "', '" + authors + "', '" + inventory + "', '" + borrowedAmount + "');";
+            String query = "INSERT INTO bookinfo (ISBN," +
+                                                "title,"+ 
+                                                "publisher,"+
+                                                "publish_date,"+ 
+                                                "field_," +
+                                                "author,"+
+                                                "inventory," +
+                                                "borrowed)"+ 
+                                                "VALUES" +
+                                                "('" + ISBN + "',"+
+                                                " '" + title + "',"+
+                                                " '" + publisher + "',"+
+                                                " '" + publishDate + "',"+
+                                                " '" + field + "',"+
+                                                " '" + authors + "',"+
+                                                " '" + inventory + "',"+
+                                                " '" + borrowedAmount + "');";
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
@@ -48,7 +64,9 @@ public class SqlMethod{
     	Scanner keyboard = new Scanner(System.in);
         try{
             
-            String query = "SELECT * FROM bookinfo WHERE ISBN = '" + isbn + "'";
+            String query = "SELECT * FROM bookinfo "+
+                            "WHERE"+
+                            " ISBN = '" + isbn + "'";
             //String query2 ="SELECT * FROM employee WHERE employee_id = '" + empid + "'";
             
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -73,17 +91,33 @@ public class SqlMethod{
                 String end = keyboard.nextLine();
                 keyboard.close();
                 
-                String query2 ="SELECT * FROM employee WHERE employee_id = '" + id + "'";
+                String query2 ="SELECT * FROM employee"+
+                                 "WHERE"+
+                                 " employee_id = '" + id + "'";
                 Statement st2 = con.createStatement();
                 ResultSet rs2 = st2.executeQuery(query2);
                 rs2.next();
                 String ename = rs2.getString("employee_name");
                 
-                String query3 ="INSERT INTO checkout (ISBN, title, employee_id, employee_name, borrowed_from, borrowed_until) VALUES ('" + isbn + "', '" + title + "', '" + id + "', '" + ename + "', '" + start + "', '" + end + "')";
+                String query3 ="INSERT INTO checkout (ISBN,"+
+                                                    " title,"+
+                                                    " employee_id,"+
+                                                    " employee_name,"+
+                                                    " borrowed_from,"+
+                                                    " borrowed_until) "+
+                                                    "VALUES "+
+                                                    "('" + isbn + "',"+
+                                                    " '" + title + "',"+
+                                                    " '" + id + "',"+
+                                                    " '" + ename + "',"+
+                                                    " '" + start + "',"+
+                                                    " '" + end + "')";
                 Statement st3 = con.createStatement();
                 int count = st3.executeUpdate(query3);
                 
-                String query4 ="UPDATE bookinfo SET borrowed =borrowed+1 WHERE ISBN='" + isbn + "'";
+                String query4 ="UPDATE bookinfo SET borrowed =borrowed+1 "+
+                                "WHERE "+
+                                "ISBN='" + isbn + "'";
                 Statement st4 = con.createStatement();
                 int count2 = st4.executeUpdate(query4);                                                 
             }
@@ -104,7 +138,9 @@ public class SqlMethod{
             int ID = empID;
             String pass = password;
     
-            PreparedStatement pstmt = con.PreparedStatement("SELECT*FROM passwordlist WHERE emmployee_id=?,password = ?");
+            PreparedStatement pstmt = con.PreparedStatement("SELECT*FROM passwordlist "+
+                                                            "WHERE"+
+                                                            " emmployee_id=?,password = ?");
             pstmt.setInt(1,ID);
             pstmt.setString(2,pass);
     
@@ -137,7 +173,9 @@ public class SqlMethod{
 
             int checkID = empID;
 
-            PreparedStatement pstmt = con.PreparedStatement("SELECT administrator_right FROM employee WHERE employee_id=?");
+            PreparedStatement pstmt = con.PreparedStatement("SELECT administrator_right FROM employee"+
+                                                            " WHERE"+
+                                                            " employee_id=?");
             pstmt.setInt(1,checkID);
 
             ResultSet right = pstmt.executeQuery();
@@ -164,7 +202,9 @@ public class SqlMethod{
 
         try{
            
-            String query = "SELECT * FROM bookinfo WHERE author = '" + author + "'";
+            String query = "SELECT * FROM bookinfo "+
+                            "WHERE"+
+                            " author = '" + author + "'";
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
@@ -185,8 +225,10 @@ public class SqlMethod{
                 values.add(rs.getInt(7));//inventory
                 values.add(rs.getInt(8));//lent out
                 searchRecordAuthor.add(values);
-                System.out.println("ISBN   Title   Publisher   Publishdate    Field    Author   Inventory   Lent out");
-                bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) + rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
+                System.out.println("ISBN   Title   Publisher   Publishdate    "+
+                                    "Field    Author   Inventory   Lent out");
+                bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) + 
+                            rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
                 System.out.println(bookData);
             }
 
@@ -208,7 +250,9 @@ public class SqlMethod{
 
         try{
            
-            String query = "SELECT * FROM bookinfo WHERE field_ = '" + searchField + "'";
+            String query = "SELECT * FROM bookinfo "+
+                            "WHERE"+
+                            " field_ = '" + searchField + "'";
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
@@ -229,8 +273,10 @@ public class SqlMethod{
                 values.add(rs.getInt(7));//inventory
                 values.add(rs.getInt(8));//lent out
                 searchRecordField.add(values);
-                System.out.println("ISBN   Title   Publisher   Publishdate    Field    Author   Inventory   Lent out");
-                bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) + rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
+                System.out.println("ISBN   Title   Publisher   Publishdate   "+
+                                    " Field    Author   Inventory   Lent out");
+                bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) +
+                            rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
                 System.out.println(bookData);
             }
 
@@ -254,7 +300,9 @@ public class SqlMethod{
         
         try{
             
-            String query = "SELECT * FROM bookinfo WHERE title = '" + searchtitle + "'";
+            String query = "SELECT * FROM bookinfo"+
+                            " WHERE"+
+                            " title = '" + searchtitle + "'";
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
@@ -275,8 +323,10 @@ public class SqlMethod{
                 values.add(rs.getInt(7));//inventory
                 values.add(rs.getInt(8));//lent out
                 searchRecordTitle.add(values);
-                System.out.println("ISBN   Title   Publisher   Publishdate    Field    Author   Inventory   Lent out");
-                bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) + rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
+                System.out.println("ISBN   Title   Publisher   Publishdate "+
+                                    "   Field    Author   Inventory   Lent out");
+                bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) + 
+                            rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
                 System.out.println(bookData);
             }
 
@@ -294,7 +344,9 @@ public class SqlMethod{
     	Scanner keyboard = new Scanner(System.in);
         try{
            
-            String query = "DELETE FROM checkout WHERE employee_id = " + id + " && ISBN = " + isbn + ";";
+            String query = "DELETE FROM checkout "+
+                            "WHERE"+
+                            " employee_id = " + id + " && ISBN = " + isbn + ";";
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
@@ -317,7 +369,9 @@ public class SqlMethod{
         
         try{
             
-            String query = "DELETE FROM bookinfo WHERE ISBN = '" + isbn + "'";
+            String query = "DELETE FROM bookinfo "+
+                            "WHERE"+
+                            "ISBN = '" + isbn + "'";
             
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
@@ -338,7 +392,9 @@ public class SqlMethod{
       	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             
-            String query = "UPDATE bookinfo SET inventory += '" + Inventory + "' WHERE ISBN = '" + ISBN +"'"; //note have to modify code to work
+            String query = "UPDATE bookinfo SET inventory += '" + Inventory + "' "+
+                            "WHERE"+
+                            " ISBN = '" + ISBN +"'"; 
             	
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
@@ -356,7 +412,9 @@ public class SqlMethod{
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             
-            String query = "UPDATE bookinfo SET borrowed += '" + addBorrowedAmount + "' WHERE ISBN = '" + ISBN +"'"; //note have to modify code to work
+            String query = "UPDATE bookinfo SET borrowed += '" + addBorrowedAmount + "' "+
+                            "WHERE"+ 
+                            "ISBN = '" + ISBN +"'"; 
             	
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
@@ -373,7 +431,9 @@ public class SqlMethod{
     public void dbUpdatePassword(int empID,String password){
     try{
        
-        String query = "UPDATE passwordlist SET employee_id = '" + empID + "' WHERE password = '" + password +"'"; 
+        String query = "UPDATE passwordlist SET employee_id = '" + empID + "'"+
+                        " WHERE"+
+                        " password = '" + password +"'"; 
             
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection(url, userName, pwd); 
