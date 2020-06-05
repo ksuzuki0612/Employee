@@ -17,9 +17,9 @@ public class AdminMenu{
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{ 
             List<String> authorList = new ArrayList<String>();
-    	    String strDate = ui.strDateUi();
-    	    SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMdd");
-            Date publishDate = sdFormat.parse(strDate);
+    	    String publishDate = ui.strDateUi();
+//    	    SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMdd");
+//          Date publishDate = sdFormat.parse(strDate);
             int i = 0;
             do{
                 i = 0;

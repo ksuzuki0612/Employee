@@ -13,7 +13,7 @@ import java.text.*;
 public class SQL_method{
 	Logger logger = Logger.getLogger(AdminMenu.class.getName());
     public  void sqlRegister(long ISBN, String title, String publisher, 
-                                    Date publishDate, String field, List<String> authors,
+                                    String publishDate, String field, List<String> authors,
                                     int inventory, int borrowedAmount){
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
