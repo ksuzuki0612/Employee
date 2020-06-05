@@ -12,6 +12,10 @@ import java.text.*;
 
 public class SQL_method{
 	Logger logger = Logger.getLogger(AdminMenu.class.getName());
+	List searchRecordTitle = new ArrayList<>();
+	List searchRecordField = new ArrayList<>();
+	List searchRecordAuthor = new ArrayList<>();
+	
     public  void sqlRegister(long ISBN, String title, String publisher, 
                                     String publishDate, String field, List<String> authors,
                                     int inventory, int borrowedAmount){
@@ -171,7 +175,7 @@ public class SQL_method{
             ResultSet rs = st.executeQuery(query);
             String bookData = "";
 
-            List searchRecordAuthor = new ArrayList<>();
+           
 
             while(rs.next()){
                 List values = new ArrayList<>();
@@ -217,7 +221,7 @@ public class SQL_method{
             ResultSet rs = st.executeQuery(query);
             String bookData = "";
 
-            List searchRecordField = new ArrayList<>();
+         
 
             while(rs.next()){
                 List values = new ArrayList<>();
@@ -247,6 +251,7 @@ public class SQL_method{
 
     public void SQLsearch(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	 
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter title.");
         String searchtitle = keyboard.nextLine();
@@ -264,7 +269,7 @@ public class SQL_method{
             ResultSet rs = st.executeQuery(query);
             String bookData = "";
 
-            List searchRecordTitle = new ArrayList<>();
+           
 
             while(rs.next()){
                 List values = new ArrayList<>();
