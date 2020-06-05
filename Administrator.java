@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 public class Administrator{
-	Logger logger = Logger.getLogger(LoggerSample.class.getName());
+	Logger logger = Logger.getLogger(Administrator.class.getName());
     private int employeeID;
     private String password;
 
