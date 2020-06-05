@@ -168,7 +168,7 @@ public class SQL_method{
             ResultSet rs = st.executeQuery(query);
             String bookData = "";
 
-            List searchRecordAuthor = new ArrayList<>();
+            List searchRecord = new ArrayList<>();
 
             while(rs.next()){
                 List values = new ArrayList<>();
@@ -180,7 +180,7 @@ public class SQL_method{
                 values.add(rs.getString(6));//author
                 values.add(rs.getInt(7));//inventory
                 values.add(rs.getInt(8));//lent out
-                searchRecordAuthor.add(values);
+                searchRecord.add(values);
                 System.out.println("ISBN   Title   Publisher   Publishdate    Field    Author   Inventory   Lent out");
                 bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) + rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
                 System.out.println(bookData);
@@ -189,10 +189,6 @@ public class SQL_method{
         }catch(Exception e) { System.out.println(e);}
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
 
-    }
-
-    public List getSearchRecordAuthor(){
-        return searchRecordAuthor;
     }
     public static void SQLsearchField(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -213,7 +209,7 @@ public class SQL_method{
             ResultSet rs = st.executeQuery(query);
             String bookData = "";
 
-            List searchRecordField = new ArrayList<>();
+            List searchRecord = new ArrayList<>();
 
             while(rs.next()){
                 List values = new ArrayList<>();
@@ -225,7 +221,7 @@ public class SQL_method{
                 values.add(rs.getString(6));//author
                 values.add(rs.getInt(7));//inventory
                 values.add(rs.getInt(8));//lent out
-                searchRecordField.add(values);
+                searchRecord.add(values);
                 System.out.println("ISBN   Title   Publisher   Publishdate    Field    Author   Inventory   Lent out");
                 bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) + rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
                 System.out.println(bookData);
@@ -236,11 +232,6 @@ public class SQL_method{
 
 
     }
-
-    public List getSearchRecordField(){
-        return searchRecordField;
-    }
-
     public static void SQLsearch(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
@@ -260,7 +251,7 @@ public class SQL_method{
             ResultSet rs = st.executeQuery(query);
             String bookData = "";
 
-            List searchRecordTitle = new ArrayList<>();
+            List searchRecord = new ArrayList<>();
 
             while(rs.next()){
                 List values = new ArrayList<>();
@@ -272,7 +263,7 @@ public class SQL_method{
                 values.add(rs.getString(6));//author
                 values.add(rs.getInt(7));//inventory
                 values.add(rs.getInt(8));//lent out
-                searchRecordTitle.add(values);
+                searchRecord.add(values);
                 System.out.println("ISBN   Title   Publisher   Publishdate    Field    Author   Inventory   Lent out");
                 bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) + rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
                 System.out.println(bookData);
@@ -282,11 +273,6 @@ public class SQL_method{
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
 
     }
-
-    public List getSearchRecordTitle(){
-        return searchRecordTitle;
-    }
-
     public  void sqlReturnbook(long isbn,int id){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
@@ -380,7 +366,7 @@ public class SQL_method{
         String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         String userName = "root";
         String pwd = "password1234";
-        String query = "UPDATE bookinfo SET employee_id += '" + empID + "' WHERE password = '" + password +"'"; //note have to modify code to work
+        String query = "UPDATE passwordlist SET employee_id = '" + empID + "' WHERE password = '" + password +"'"; 
             
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection(url, userName, pwd); 
