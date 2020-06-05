@@ -7,7 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 public class LibraryMain{
-	static Logger logger = Logger.getLogger(LibraryMain.class.getName());
+    static Logger logger = Logger.getLogger(LibraryMain.class.getName());
+    Login login = new Login();
     public static void main(String[] args){
     	 // Create a file handler object 
         try{
