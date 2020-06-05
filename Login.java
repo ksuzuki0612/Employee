@@ -1,6 +1,4 @@
 import java.util.*;
-import java.io.IOException;
-import java.util.function.Supplier;
 import java.util.logging.FileHandler;
 import java.util.logging.Formatter;
 import java.util.logging.Handler;
@@ -48,9 +46,10 @@ public class Login{
     public void checkRight(int empID){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         int checkID = empID;
-        //従業員リスト SQL
-        int adminRight = sqlmethod.DBcheckRight(checkID);
-        if(adminRight == 0){
+        
+        boolean adminRight = sqlmethod.DBcheckRight(checkID);
+
+        if(adminRight = true){
             mainMenu.choiceMenuAdmin();
         }
         else{

@@ -121,7 +121,7 @@ public class SQL_method{
 
 
     }
-    public int DBcheckRight(int empID){
+    public boolean DBcheckRight(int empID){
             logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -136,8 +136,9 @@ public class SQL_method{
             pstmt.setInt(1,checkID);
 
             ResultSet right = pstmt.executeQuery();
+            String check = "Y";
 
-            if(right.equals(Y)){
+            if(right.equals(check)){
                 return true;
             }
             else{

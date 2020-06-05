@@ -1,11 +1,5 @@
 import java.io.IOException;
-import java.util.function.Supplier;
-import java.util.logging.FileHandler;
-import java.util.logging.Formatter;
-import java.util.logging.Handler;
-import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 public class MainMenu{
 	Logger logger = Logger.getLogger(PasswordList.class.getName());
@@ -13,7 +7,6 @@ public class MainMenu{
     AdminMenu adminMenu = new AdminMenu();
     UserMenu userMenu = new UserMenu();
     
-
     public void choiceMenuAdmin(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         int choice = menuUI.choiceMenuUI();
@@ -58,8 +51,6 @@ public class MainMenu{
 		final int selectedAdmin4 = 4;
 		final int selectedAdmin5 = 5;
 		final int selectedAdmin6 = 6;
-		final int selectedAdmin7 = 7;
-		final int selectedAdmin8 = 8;
         
         loop:while(true){
             int selected = menuUI.adminMenuUI();
