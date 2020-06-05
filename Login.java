@@ -33,7 +33,7 @@ public class Login{
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         int empID = uiLogin.getEmpID();
         String password = uiLogin.getPassword();
-        int checkEmpID = sqlmethod.DBcheckLogin();
+        int checkEmpID = sqlmethod.DBcheckLogin(empID,password);
 
         if(checkEmpID == 0){
             System.out.println("IDとパスワードが一致していません");
@@ -49,7 +49,7 @@ public class Login{
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         int checkID = empID;
         //従業員リスト SQL
-        int adminRight = sqlmethod.DBcheckRight();
+        int adminRight = sqlmethod.DBcheckRight(checkID);
         if(adminRight == 0){
             mainMenu.choiceMenuAdmin();
         }

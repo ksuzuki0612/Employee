@@ -34,7 +34,7 @@ public class SQL_method{
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
-    public  void borrowbook(long isbn){
+    public void borrowbook(long isbn){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -85,7 +85,7 @@ public class SQL_method{
             }catch(Exception e) { System.out.println(e);}
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
-    public static int DBcheckLogin(int empID,String password){
+    public int DBcheckLogin(int empID,String password){
             logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -121,7 +121,7 @@ public class SQL_method{
 
 
     }
-    public static int DBcheckRight(int empID){
+    public int DBcheckRight(int empID){
             logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -149,7 +149,7 @@ public class SQL_method{
             }catch(Exception e) { System.out.println(e);}
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
-    public static void SQLsearchAuthor(){
+    public void SQLsearchAuthor(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter author.");
@@ -190,7 +190,7 @@ public class SQL_method{
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
 
     }
-    public static void SQLsearchField(){
+    public void SQLsearchField(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter field.");
@@ -232,7 +232,7 @@ public class SQL_method{
 
 
     }
-    public static void SQLsearch(){
+    public void SQLsearch(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter title.");
@@ -273,7 +273,7 @@ public class SQL_method{
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
 
     }
-    public  void sqlReturnbook(long isbn,int id){
+    public void sqlReturnbook(long isbn,int id){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -321,7 +321,7 @@ public class SQL_method{
     
     
       
-      public  void DBupdataInventory(long ISBN,int Inventory ){
+      public void DBupdataInventory(long ISBN,int Inventory ){
       	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -341,7 +341,7 @@ public class SQL_method{
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
     
-    public  void DBaddBorrowedAmount(long ISBN,int addBorrowedAmount ){
+    public void DBaddBorrowedAmount(long ISBN,int addBorrowedAmount ){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -361,7 +361,7 @@ public class SQL_method{
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
     
-    public  void DBupdataPassword(int empID,String password){
+    public void DBupdataPassword(int empID,String password){
     try{
         String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         String userName = "root";
