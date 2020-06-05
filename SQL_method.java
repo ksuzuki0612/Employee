@@ -360,5 +360,23 @@ public class SQL_method{
             }catch(Exception e) { System.out.println(e);}
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
+    
+    public  void DBupdataPassword(int empID,String password){
+    try{
+        String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        String userName = "root";
+        String pwd = "password1234";
+        String query = "UPDATE bookinfo SET employee_id += '" + empID + "' WHERE password = '" + password +"'"; //note have to modify code to work
+            
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(url, userName, pwd); 
+        Statement st = con.createStatement();
+        int count = st.executeUpdate(query);  
+    
+        System.out.println(count + " row(s) affected");
+        st.close();
+        con.close();
+        }catch(Exception e) { System.out.println(e);}
+}
 
 }

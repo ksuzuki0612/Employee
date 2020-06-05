@@ -7,6 +7,7 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
 public class Login{
 	Logger logger = Logger.getLogger(AdminMenu.class.getName());
     UI uiLogin = new UI();
@@ -70,10 +71,11 @@ public class Login{
         //ans = 1 パスワードを再設定する
         if(ans == 1){
             if(password.equals(checkPassword)){
-                //SQL文 パスワードを更新する
+                sqlmethod.DBupdataPassword(empID,password);
+                System.out.println("パスワードが更新されました。");
             }
             else{
-                System.out.println("入力されたパスワードが一致していません");
+                System.out.println("入力されたパスワードが一致していません。");
                 login();
             }
         }
