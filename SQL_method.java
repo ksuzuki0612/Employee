@@ -169,7 +169,7 @@ public class SQL_method{
             ResultSet rs = st.executeQuery(query);
             String bookData = "";
 
-            List searchRecord = new ArrayList<>();
+            List searchRecordAuthor = new ArrayList<>();
 
             while(rs.next()){
                 List values = new ArrayList<>();
@@ -181,7 +181,7 @@ public class SQL_method{
                 values.add(rs.getString(6));//author
                 values.add(rs.getInt(7));//inventory
                 values.add(rs.getInt(8));//lent out
-                searchRecord.add(values);
+                searchRecordAuthor.add(values);
                 System.out.println("ISBN   Title   Publisher   Publishdate    Field    Author   Inventory   Lent out");
                 bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) + rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
                 System.out.println(bookData);
@@ -191,6 +191,11 @@ public class SQL_method{
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
 
     }
+
+    public List getSearchRecordAuthor(){
+        return searchRecordAuthor;
+    }
+
     public void SQLsearchField(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
@@ -210,7 +215,7 @@ public class SQL_method{
             ResultSet rs = st.executeQuery(query);
             String bookData = "";
 
-            List searchRecord = new ArrayList<>();
+            List searchRecordField = new ArrayList<>();
 
             while(rs.next()){
                 List values = new ArrayList<>();
@@ -222,7 +227,7 @@ public class SQL_method{
                 values.add(rs.getString(6));//author
                 values.add(rs.getInt(7));//inventory
                 values.add(rs.getInt(8));//lent out
-                searchRecord.add(values);
+                searchRecordField.add(values);
                 System.out.println("ISBN   Title   Publisher   Publishdate    Field    Author   Inventory   Lent out");
                 bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) + rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
                 System.out.println(bookData);
@@ -233,6 +238,11 @@ public class SQL_method{
 
 
     }
+
+    public List getSearchRecordField(){
+        return searchRecordField;
+    }
+
     public void SQLsearch(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
@@ -252,7 +262,7 @@ public class SQL_method{
             ResultSet rs = st.executeQuery(query);
             String bookData = "";
 
-            List searchRecord = new ArrayList<>();
+            List searchRecordTitle = new ArrayList<>();
 
             while(rs.next()){
                 List values = new ArrayList<>();
@@ -264,7 +274,7 @@ public class SQL_method{
                 values.add(rs.getString(6));//author
                 values.add(rs.getInt(7));//inventory
                 values.add(rs.getInt(8));//lent out
-                searchRecord.add(values);
+                searchRecordTitle.add(values);
                 System.out.println("ISBN   Title   Publisher   Publishdate    Field    Author   Inventory   Lent out");
                 bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) + rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
                 System.out.println(bookData);
@@ -274,6 +284,11 @@ public class SQL_method{
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
 
     }
+
+    public List getSearchRecordTitle(){
+        return searchRecordTitle;
+    }
+
     public void sqlReturnbook(long isbn,int id){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
