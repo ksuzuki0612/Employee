@@ -52,7 +52,9 @@ public class UserMenu{
        try{
            File csv = new File(saveFile);
            BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-           for(Book t : sql.getSearchRecordTitle){
+           List<Book> titleList = new ArrayList<>();
+           titleList = sql.getSearchRecordTitle();
+           for(Book t : titleList){
                bw.write("ISBN");
                bw.write(COMMA);
                bw.write(t.getStringISBN());
@@ -101,7 +103,9 @@ public class UserMenu{
       try{
           File csv = new File(saveFile);
           BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-          for(Book a : sql.getSearchRecordAuthor()){
+          List<Book> authorList = new ArrayList<>();
+          authorList = sql.getSearchRecordAuthor();
+          for(Book a : authorList){
               bw.write("ISBN");
               bw.write(COMMA);
               bw.write(a.getStringISBN());
@@ -150,7 +154,9 @@ public class UserMenu{
        try{
            File csv = new File(saveFile);
            BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-           for(Book f : sql.getSearchRecordField()){
+           List<Book> fieldList = new ArrayList<>();
+           fieldList = sql.getSearchRecordField();
+           for(Book f : fieldList){
                bw.write("ISBN");
                bw.write(COMMA);
                bw.write(f.getStringISBN());
