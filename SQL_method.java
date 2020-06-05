@@ -1,33 +1,21 @@
+import java.io.IOException;
+import java.util.function.Supplier;
+import java.util.logging.FileHandler;
+import java.util.logging.Formatter;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 import java.util.*;
 import java.sql.*;
 import java.text.*;
 
 public class SQL_method{
+	Logger logger = Logger.getLogger(AdminMenu.class.getName());
     public  void sqlRegister(long ISBN, String title, String publisher, 
                                     Date publishDate, String field, List<String> authors,
                                     int inventory, int borrowedAmount){
-//        Scanner keyboard = new Scanner(System.in);
-
-//        System.out.println("Enter ISBN");
-//        long isbn = keyboard.nextLong();
-//        keyboard.nextLine();
-//        System.out.println("Enter title");
-//        String title = keyboard.nextLine();
-//        System.out.println("Enter publisher");
-//        String publisher = keyboard.nextLine();
-        
-//        System.out.println("Enter publish date (as YYYY-MM-dd)");
-//        String pubdate = keyboard.nextLine(); 
-//        System.out.println("Enter field");
-//        String field = keyboard.nextLine();
-//        System.out.println("Enter authors(s)");
-//        String author = keyboard.nextLine();
-//        System.out.println("Enter inventory number");
-//        int inventory = keyboard.nextInt();
-//        int borrowed = 0;
-//        keyboard.close();
-        
-
+        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String userName = "root";
@@ -43,9 +31,11 @@ public class SQL_method{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
+            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
     public  void borrowbook(long isbn){
+    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String userName = "root";
@@ -93,9 +83,10 @@ public class SQL_method{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
+            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
     public static int DBcheckLogin(int empID,String password){
-            
+            logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String userName = "root";
@@ -125,12 +116,13 @@ public class SQL_method{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
+            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
 
 
 
     }
     public static int DBcheckRight(int empID){
-            
+            logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String userName = "root";
@@ -155,8 +147,10 @@ public class SQL_method{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
+            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
     public static void SQLsearchAuthor(){
+    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter author.");
         String author = keyboard.nextLine();
@@ -193,9 +187,11 @@ public class SQL_method{
             }
 
         }catch(Exception e) { System.out.println(e);}
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
 
     }
     public static void SQLsearchField(){
+    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter field.");
         String searchField = keyboard.nextLine();
@@ -232,10 +228,12 @@ public class SQL_method{
             }
 
         }catch(Exception e) { System.out.println(e);}
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
 
 
     }
     public static void SQLsearch(){
+    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter title.");
         String searchtitle = keyboard.nextLine();
@@ -272,11 +270,11 @@ public class SQL_method{
             }
 
         }catch(Exception e) { System.out.println(e);}
-
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
 
     }
     public  void sqlReturnbook(long isbn,int id){
-
+    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String userName = "root";
@@ -293,8 +291,10 @@ public class SQL_method{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
     public void sqlDeleteBook(){ 
+    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter ISBN you wish to delete. ");
         long isbn = keyboard.nextLong();
@@ -315,13 +315,14 @@ public class SQL_method{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}  
-      
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
 
     }
     
     
       
       public  void DBupdataInventory(long ISBN,int Inventory ){
+      	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String userName = "root";
@@ -337,9 +338,11 @@ public class SQL_method{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
     
     public  void DBaddBorrowedAmount(long ISBN,int addBorrowedAmount ){
+    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             String url = "jdbc:mysql://localhost:3306/書籍管理システム?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String userName = "root";
@@ -355,6 +358,7 @@ public class SQL_method{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
 }
