@@ -1,12 +1,19 @@
-import java.text.ParseException;
 import java.util.logging.Logger;
 
+/**
+ * メインメニュークラス
+ * @author 平松和貴
+ * @see Login
+ */
 public class MainMenu{
-	Logger logger = Logger.getLogger(PasswordList.class.getName());
+	static Logger logger = Logger.getLogger(PasswordList.class.getName());
     static UI menuUI = new UI();
     static AdminMenu adminMenu = new AdminMenu();
     static UserMenu userMenu = new UserMenu();
 
+    /**
+     * 管理者がメニューを選択するメソッド
+     */
     public void choiceMenuAdmin() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try {
@@ -20,12 +27,15 @@ public class MainMenu{
                 System.out.println("1か2を入力してください");
                 choiceMenuAdmin();
             }
-        } 
-        finally {
+        } finally {
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }
     }
 
+    /**
+     * 一般利用者がメニューを選択するメソッド
+     * 利用者メニューのみ選択可能
+     */
     public void choiceMenuUser() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try {
@@ -45,6 +55,9 @@ public class MainMenu{
         }
     }
 
+    /**
+     * 管理者メニューを選択するメソッド
+     */
     public static void adminMainMenu() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try {
@@ -63,40 +76,42 @@ public class MainMenu{
 
                     case selectedAdmin1:
                         // 図書登録
-                    adminMenu.registerBook();
-                    break;
-        
-                case selectedAdmin2:
-                    //図書削除
-                    adminMenu.deleteBook();
-                    break;
-        
-                case selectedAdmin3:
-                    //登録変更
-                    adminMenu.updataBook();
-                    break;
-        
-                case selectedAdmin4:
-                    //貸出承認
-                    adminMenu.allowBorrowBook();
-                    break;
-        
-                case selectedAdmin5:
-                    //返却申請
-                    adminMenu.returnBook();
-                    break;
-        
-                case selectedAdmin6:
-                    System.out.println("終了");
-                    break loop;
-      	        }
- 	        }
-        }
-        finally{
+                        adminMenu.registerBook();
+                        break;
+
+                    case selectedAdmin2:
+                        // 図書削除
+                        adminMenu.deleteBook();
+                        break;
+
+                    case selectedAdmin3:
+                        // 登録変更
+                        adminMenu.updataBook();
+                        break;
+
+                    case selectedAdmin4:
+                        // 貸出承認
+                        adminMenu.allowBorrowBook();
+                        break;
+
+                    case selectedAdmin5:
+                        // 返却申請
+                        adminMenu.returnBook();
+                        break;
+
+                    case selectedAdmin6:
+                        System.out.println("終了");
+                        break loop;
+                }
+            }
+        } finally {
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }
     }
 
+    /**
+     * 利用者メニューを選択するメソッド
+     */
     public static void userMainMenu(){
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         

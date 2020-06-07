@@ -6,13 +6,24 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+/**
+ * ログインクラス
+ * @author 平松和貴
+ * @see LibarayMain
+ */
 
 public class Login{
 	Logger logger = Logger.getLogger(AdminMenu.class.getName());
     UI uiLogin = new UI();
-	SqlMethod sqlmethod = new SqlMethod();
-	
-    public int login() throws ParseException {
+    SqlMethod sqlmethod = new SqlMethod();
+
+    /**
+     * このプログラムの最初のメソッド
+     * ログインかパスワードの再設定を選択する
+     * @return　loginChoice
+     * @throws ParseException
+     */
+    public int begin() throws ParseException {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try {
             uiLogin.loginUI();
@@ -24,7 +35,10 @@ public class Login{
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }
     }
-
+    /**
+     * ログインのための従業員IDとパスワードを確認するメソッド
+     * @return checkEmpId
+     */
     public int loginCheck(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
@@ -39,6 +53,11 @@ public class Login{
         }
     }
 
+    /**
+     * ユーザーが管理者権限を持っているかを確認するメソッド
+     * @param empID
+     * @return boolean adminRight
+     */
     public boolean checkRight(int empID){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
@@ -51,6 +70,10 @@ public class Login{
         }
     }
 
+    /**
+     * パスワードをリセットするメソッド
+     * パスワードの再設定が終わるとbegin()に戻る
+     */
     public void resetPassword(){
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
@@ -65,16 +88,16 @@ public class Login{
                 if(password.equals(checkPassword)){
                     sqlmethod.dbUpdataPassword(empID,password);
                     System.out.println("パスワードが更新されました。");
-                    login();
+                    begin();
                 }
-            else{
-                System.out.println("入力されたパスワードが一致していません。");
-                login();
-                }
+                else{
+                    System.out.println("入力されたパスワードが一致していません。");
+                    begin();
+                    }
             }
             //ans = 2:パスワードを再設定しない
             else if(ans == 2){
-                login();
+                begin();
             }
             else{
                 System.out.println("1か2を入力してください");
