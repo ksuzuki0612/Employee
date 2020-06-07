@@ -79,47 +79,43 @@ public class SqlMethod{
             String title =rs.getString("title");
 
             if (inv <= out){
-                System.out.println("No copy available to borrow ");
+                System.out.println("探している図書は貸出中です。 ");
             }else {
-                System.out.println("Please enter employee id.");
+                System.out.println("従業員IDを入力してください。");
                 int id = keyboard.nextInt();
                 keyboard.nextLine();
-                System.out.println("Please enter start date.");
+                System.out.println("貸出開始日を入力してください(YYYY-MM-dd)。");
                 String start = keyboard.nextLine();
                 //keyboard.nextLine();
-                System.out.println("Please enter end date.");
+                System.out.println("貸出終了日を入力してください(YYYY-MM-dd)。");
                 String end = keyboard.nextLine();
                 keyboard.close();
                 
-                String query2 ="SELECT * FROM employee"+
-                                 "WHERE"+
-                                 " employee_id = '" + id + "'";
+                String query2 ="SELECT * FROM employee WHERE employee_id = '" + id + "'";
                 Statement st2 = con.createStatement();
                 ResultSet rs2 = st2.executeQuery(query2);
                 rs2.next();
                 String ename = rs2.getString("employee_name");
-                
-                String query3 ="INSERT INTO checkout (ISBN,"+
-                                                    " title,"+
-                                                    " employee_id,"+
-                                                    " employee_name,"+
-                                                    " borrowed_from,"+
-                                                    " borrowed_until) "+
-                                                    "VALUES "+
-                                                    "('" + isbn + "',"+
-                                                    " '" + title + "',"+
-                                                    " '" + id + "',"+
-                                                    " '" + ename + "',"+
-                                                    " '" + start + "',"+
-                                                    " '" + end + "')";
+                                
+                String query3 ="SELECT COUNT('employee_name') FROM checkout WHERE employee_id='" + id + "'  ";
                 Statement st3 = con.createStatement();
-                int count = st3.executeUpdate(query3);
+                ResultSet rs3 = st3.executeQuery(query3);
+                int empcount = rs3.getRow();
                 
-                String query4 ="UPDATE bookinfo SET borrowed =borrowed+1 "+
-                                "WHERE "+
-                                "ISBN='" + isbn + "'";
-                Statement st4 = con.createStatement();
-                int count2 = st4.executeUpdate(query4);                                                 
+                //int test =10;
+                if(empcount == 10){
+                    System.out.println("One employee can only borrow 10 books maximum!");
+                }else{    
+                    String query4 ="INSERT INTO checkout (ISBN, title, employee_id, employee_name, borrowed_from, borrowed_until) VALUES ('" + isbn + "', '" + title + "', '" + id + "', '" + ename + "', '" + start + "', '" + end + "')";
+                    Statement st4 = con.createStatement();
+                    int count = st4.executeUpdate(query4);
+                    
+                    
+                    String query5 ="UPDATE bookinfo SET borrowed =borrowed+1 WHERE ISBN='" + isbn + "'";
+                    Statement st5 = con.createStatement();
+                    int count2 = st5.executeUpdate(query5);
+                }
+                                                                 
             }
                      
             st.close();
@@ -154,7 +150,7 @@ public class SqlMethod{
             }
 
 
-            System.out.println(count + " row(s) affected");
+            //System.out.println(count + " row(s) affected");
             keyboard.close();
             st.close();
             con.close();
@@ -196,15 +192,15 @@ public class SqlMethod{
     public void sqlSearchAuthor(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
-        System.out.println("Enter author.");
+        System.out.println("著者名を入力してください。");
         String author = keyboard.nextLine();
         keyboard.close();
 
         try{
            
-            String query = "SELECT * FROM bookinfo "+
+            String query = ("SELECT * FROM bookinfo "+
                             "WHERE"+
-                            " author = '" + author + "'";
+                            " author = '" + author + "'");
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
@@ -225,8 +221,8 @@ public class SqlMethod{
                 values.add(rs.getInt(7));//inventory
                 values.add(rs.getInt(8));//lent out
                 searchRecordAuthor.add(values);
-                System.out.println("ISBN   Title   Publisher   Publishdate    "+
-                                    "Field    Author   Inventory   Lent out");
+                System.out.println("ISBN   タイトル   出版社   出版日    "+
+                                    "分野    著者   在庫数   貸出中");
                 bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) + 
                             rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
                 System.out.println(bookData);
@@ -244,15 +240,15 @@ public class SqlMethod{
     public void sqlSearchField(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
-        System.out.println("Enter field.");
+        System.out.println("分野を入力してください。");
         String searchField = keyboard.nextLine();
         keyboard.close();
 
         try{
            
-            String query = "SELECT * FROM bookinfo "+
+            String query = ("SELECT * FROM bookinfo "+
                             "WHERE"+
-                            " field_ = '" + searchField + "'";
+                            " field_ = '" + searchField + "'");
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
@@ -273,8 +269,8 @@ public class SqlMethod{
                 values.add(rs.getInt(7));//inventory
                 values.add(rs.getInt(8));//lent out
                 searchRecordField.add(values);
-                System.out.println("ISBN   Title   Publisher   Publishdate   "+
-                                    " Field    Author   Inventory   Lent out");
+                System.out.println("ISBN   タイトル   出版社   出版日   "+
+                                    " 分野    著者   在庫数   貸出中");
                 bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) +
                             rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
                 System.out.println(bookData);
@@ -294,7 +290,7 @@ public class SqlMethod{
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	 
         Scanner keyboard = new Scanner(System.in);
-        System.out.println("Enter title.");
+        System.out.println("タイトルを入力してください。");
         String searchtitle = keyboard.nextLine();
         keyboard.close();
         
@@ -323,8 +319,8 @@ public class SqlMethod{
                 values.add(rs.getInt(7));//inventory
                 values.add(rs.getInt(8));//lent out
                 searchRecordTitle.add(values);
-                System.out.println("ISBN   Title   Publisher   Publishdate "+
-                                    "   Field    Author   Inventory   Lent out");
+                System.out.println("ISBN   タイトル   出版社   出版日 "+
+                                    "   分野    著者   在庫数   貸出中");
                 bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) + 
                             rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
                 System.out.println(bookData);
@@ -353,7 +349,7 @@ public class SqlMethod{
             Statement st = con.createStatement();
             int count = st.executeUpdate(query);
 
-            System.out.println(count + " row(s) affected");
+            //System.out.println(count + " row(s) affected");
             keyboard.close();
             st.close();
             con.close();
@@ -363,7 +359,7 @@ public class SqlMethod{
     public void sqlDeleteBook(){ 
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
-        System.out.println("Enter ISBN you wish to delete. ");
+        System.out.println("削除したい書籍のISBNを入力してください。 ");
         long isbn = keyboard.nextLong();
         keyboard.close();
         
@@ -378,7 +374,7 @@ public class SqlMethod{
             Statement st = con.createStatement();
             int count = st.executeUpdate(query);  
         
-            System.out.println(count + " row(s) affected");
+            System.out.println("書籍を削除しました。");
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}  
@@ -401,7 +397,7 @@ public class SqlMethod{
             Statement st = con.createStatement();
             int count = st.executeUpdate(query);  
         
-            System.out.println(count + " row(s) affected");
+            System.out.println("在庫数を更新しました。");
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
@@ -421,7 +417,7 @@ public class SqlMethod{
             Statement st = con.createStatement();
             int count = st.executeUpdate(query);  
         
-            System.out.println(count + " row(s) affected");
+            //System.out.println(count + " row(s) affected");
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
@@ -440,7 +436,7 @@ public class SqlMethod{
         Statement st = con.createStatement();
         int count = st.executeUpdate(query);  
     
-        System.out.println(count + " row(s) affected");
+        System.out.println("パスワードを更新しました。");
         st.close();
         con.close();
         }catch(Exception e) { System.out.println(e);}
