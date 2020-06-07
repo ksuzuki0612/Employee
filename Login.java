@@ -1,3 +1,4 @@
+import java.text.ParseException;
 import java.util.*;
 import java.util.logging.FileHandler;
 import java.util.logging.Formatter;
@@ -9,80 +10,83 @@ import java.util.logging.SimpleFormatter;
 public class Login{
 	Logger logger = Logger.getLogger(AdminMenu.class.getName());
     UI uiLogin = new UI();
-    MainMenu mainMenu = new MainMenu();
-	SQL_method sqlmethod = new SQL_method();
+	SqlMethod sqlmethod = new SqlMethod();
 	
-    public void login(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        uiLogin.loginUI();
-
-        int loginChoice = new java.util.Scanner(System.in).nextInt();
-        //ログイン=1,パスワードの再設定=2
-        if(loginChoice == 1){
-            loginCheck();
+    public int login() throws ParseException {
+        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+        try {
+            uiLogin.loginUI();
+            int loginChoice = new java.util.Scanner(System.in).nextInt();
+            // ログイン=1,パスワードの再設定=2
+            return loginChoice;
         }
-        else if(loginChoice == 2){
-            resetPassword();
+        finally{
+            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
-    public void loginCheck(){
+    public int loginCheck(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        int empID = uiLogin.getEmpID();
-        String password = uiLogin.getPassword();
-        int checkEmpID = sqlmethod.DBcheckLogin(empID,password);
+        try{
+            int empID = uiLogin.getEmpID();
+            String password = uiLogin.getPassword();
+            int checkEmpID = sqlmethod.dbCheckLogin(empID,password);
 
-        if(checkEmpID == 0){
-            System.out.println("IDとパスワードが一致していません");
+            return checkEmpID;
         }
-        else{
-            checkRight(checkEmpID);
+        finally{
+            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-
     }
 
-    public void checkRight(int empID){
+    public boolean checkRight(int empID){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        int checkID = empID;
-        
-        boolean adminRight = sqlmethod.DBcheckRight(checkID);
-
-        if(adminRight = true){
-            mainMenu.choiceMenuAdmin();
+        try{
+            int checkID = empID;
+            boolean adminRight = sqlmethod.dbCheckRight(checkID);
+            return adminRight;
         }
-        else{
-            mainMenu.choiceMenuUser();
+        finally{
+            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-
     }
 
     public void resetPassword(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        System.out.println("パスワード再設定画面");
-        int empID = uiLogin.getEmpID();
-        String password = uiLogin.getPassword();
-        String checkPassword = uiLogin.getCheckPassword();
+        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+        try{
+            System.out.println("パスワード再設定画面");
+            int empID = uiLogin.getEmpID();
+            String password = uiLogin.getPassword();
+            String checkPassword = uiLogin.getCheckPassword();
 
-        int ans = uiLogin.resetPassUI();
-        //ans = 1 パスワードを再設定する
-        if(ans == 1){
-            if(password.equals(checkPassword)){
-                sqlmethod.DBupdataPassword(empID,password);
-                System.out.println("パスワードが更新されました。");
-            }
+            int ans = uiLogin.resetPassUI();
+            //ans = 1 パスワードを再設定する
+            if(ans == 1){
+                if(password.equals(checkPassword)){
+                    sqlmethod.dbUpdataPassword(empID,password);
+                    System.out.println("パスワードが更新されました。");
+                    login();
+                }
             else{
                 System.out.println("入力されたパスワードが一致していません。");
                 login();
+                }
+            }
+            //ans = 2:パスワードを再設定しない
+            else if(ans == 2){
+                login();
+            }
+            else{
+                System.out.println("1か2を入力してください");
+                resetPassword();
             }
         }
-        //ans = 2:パスワードを再設定しない
-        else if(ans == 2){
-            login();
+        catch(ParseException e){
+    		e.printStackTrace();
+	 	}
+        finally{
+            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
 
