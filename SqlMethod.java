@@ -63,7 +63,7 @@ public class SqlMethod{
             Statement st = con.createStatement();
             int count = st.executeUpdate(query);
 
-            System.out.println(count + " row(s) affected");
+            System.out.println("書籍は登録されました。");
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
@@ -165,6 +165,7 @@ public class SqlMethod{
                             " employee_id='" + empID + "'&& password = '"+ pass + "'  ";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
+            rs.next();
             int empcount = rs.getRow();
     
             st.close();
@@ -403,13 +404,12 @@ public class SqlMethod{
         Scanner keyboard = new Scanner(System.in);
         System.out.println("削除したい書籍のISBNを入力してください。 ");
         long isbn = keyboard.nextLong();
+        keyboard.nextLine();
         keyboard.close();
         
         try{
             
-            String query = "DELETE FROM bookinfo "+
-                            "WHERE"+
-                            "ISBN = '" + isbn + "'";
+            String query = "DELETE FROM bookinfo WHERE ISBN = '" + isbn + "'";
             
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
