@@ -1,11 +1,7 @@
 import java.text.ParseException;
 import java.util.*;
-import java.util.logging.FileHandler;
-import java.util.logging.Formatter;
-import java.util.logging.Handler;
-import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+
 /**
  * ログインクラス
  * @author 平松和貴
@@ -86,7 +82,7 @@ public class Login{
             //ans = 1 パスワードを再設定する
             if(ans == 1){
                 if(password.equals(checkPassword)){
-                    sqlmethod.dbUpdataPassword(empID,password);
+                    sqlmethod.dbUpdatePassword(empID, password);
                     System.out.println("パスワードが更新されました。");
                     begin();
                 }
