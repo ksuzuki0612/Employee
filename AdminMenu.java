@@ -21,7 +21,7 @@ public class AdminMenu{
 	 /**
      * このプログラムの最初のメソッド
      * 本の詳細の入力を促しSqlMethodクラスのsqlRegisterメソッドを呼び出し
-     　て入力した情報をDBに登録する。
+     　て入力した情報をDBに登録する。 
      */
     public void registerBook(){
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
