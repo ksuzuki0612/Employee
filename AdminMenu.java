@@ -39,7 +39,7 @@ public class AdminMenu{
     	catch(ParseException e){
     		e.printStackTrace();
 	 	}
-	 	finally　{
+	 	finally{
 	 	    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }
     }
