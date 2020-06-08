@@ -26,7 +26,7 @@ public class SqlMethod{
                         "?useUnicode=true&useJDBCCompliantTimezoneShift" + 
                         "=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     final String userName = "MateEngler";
-    final String pwd = "keyblade24"";
+    final String pwd = "keyblade24";
     
     /**
      * 書籍を登録するメソッド。
@@ -161,9 +161,9 @@ public class SqlMethod{
             int ID = empID;
             String pass = password;
     
-            PreparedStatement pstmt = con.PreparedStatement"SELECT*FROM passwordlist "+
+            PreparedStatement pstmt = con.PreparedStatement("SELECT*FROM passwordlist "+
                                                             "WHERE"+
-                                                            " emmployee_id=?,password = ?";
+                                                            " emmployee_id=?,password = ?");
             pstmt.setInt(1,ID);
             pstmt.setString(2,pass);
     
@@ -179,7 +179,7 @@ public class SqlMethod{
 
             
             keyboard.close();
-            st.close();
+            pstmt.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -196,9 +196,9 @@ public class SqlMethod{
 
             int checkID = empID;
 
-            PreparedStatement pstmt = con.PreparedStatement"SELECT administrator_right FROM employee"+
+            PreparedStatement pstmt = con.PreparedStatement("SELECT administrator_right FROM employee"+
                                                             " WHERE"+
-                                                            " employee_id=?";
+                                                            " employee_id=?");
             pstmt.setInt(1,checkID);
 
             ResultSet right = pstmt.executeQuery();
@@ -211,7 +211,7 @@ public class SqlMethod{
                 return false;
             }
 
-            st.close();
+            pstmt.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());

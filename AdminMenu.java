@@ -9,20 +9,10 @@ import java.util.logging.SimpleFormatter;
 import java.util.*;
 import java.text.*;
 import java.io.*;
-/**
- * アドミンメニュークラス
- * @author　鈴木戒生
- * @see MainMenu
- */
 public class AdminMenu{
 	Logger logger = Logger.getLogger(AdminMenu.class.getName());
 	SqlMethod sql =new SqlMethod();
 	UI ui =new UI();
-	 /**
-     * このプログラムの最初のメソッド
-     * 本の詳細の入力を促しSqlMethodクラスのsqlRegisterメソッドを呼び出し
-     　て入力した情報をDBに登録する。 
-     */
     public void registerBook(){
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{ 
@@ -53,15 +43,11 @@ public class AdminMenu{
 	 	    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }
     }
-    /**
-     * DBにある書籍を削除するメソッド
-     */
     public void deleteBook() {
      	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         sql.sqlDeleteBook();
     	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
-    
     public void updataBook(){
      	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         loop:while (true){
@@ -72,13 +58,13 @@ public class AdminMenu{
                     int select = ui.selectUi();
                     if(select==1){
                     int addInventory = ui.addInventoryUi(); 
-                    sql.DBupdataInventory( allowISBN,addInventory );
+                    sql.dbUpdataInventory( allowISBN,addInventory );
                     }
     	            else if (select ==2){
     	             	int deInventory = ui.deInventoryUi();
     	                int deleteInventory = 0;
     	                deleteInventory -= deInventory;
-    	                sql.DBupdataInventory( allowISBN,deleteInventory );
+    	                sql.dbUpdataInventory( allowISBN,deleteInventory );
     	            }else{
     	             	System.out.println("最初からやり直してください");
                     }
@@ -87,7 +73,7 @@ public class AdminMenu{
                 case 2:
                     long aISBN = ui.isbnUi();
                     int addBorrowedAmount =ui.addBorrowedAmountUi();
-                    sql.DBaddBorrowedAmount( aISBN,addBorrowedAmount);
+                    sql.dbAddBorrowedAmount( aISBN,addBorrowedAmount);
                     break;
                 case 3:
                     break loop;        
@@ -99,7 +85,7 @@ public class AdminMenu{
     public void allowBorrowBook(){
      	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         long allowISBN = ui.isbnUi();
-        sql.borrowbook(allowISBN);
+        sql.borrowBook(allowISBN);
     }
     //返却申請
     public void returnBook(){

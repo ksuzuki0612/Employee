@@ -13,46 +13,44 @@ import java.util.logging.SimpleFormatter;
 public class LibraryMain {
     static Logger logger = Logger.getLogger(LibraryMain.class.getName());
 
-    public static void main(String[] args) throws SecurityException, IOException {
+    public static void main(final String[] args) throws SecurityException, IOException {
         // Create a file handler object
         try {
-            FileHandler handler = new FileHandler("log.txt");
+            final FileHandler handler = new FileHandler("log.txt");
             handler.setFormatter(new SimpleFormatter());
             logger.addHandler(handler);
             // ログレベルの設定
             logger.setLevel(Level.FINER);
 
-            Login login = new Login();
-            MainMenu mainMenu = new MainMenu();
+            final Login login = new Login();
+            final MainMenu mainMenu = new MainMenu();
 
-            int loginChoice = login.begin();
+            final int loginChoice = login.begin();
 
             if (loginChoice == 1) {
                 login.loginCheck();
-            } 
-            else if (loginChoice == 2) {
+            } else if (loginChoice == 2) {
                 login.resetPassword();
-            } 
-            else {
+            } else {
                 System.out.println("1か2を選択してください");
                 login.begin();
             }
 
-            int checkEmpID = login.loginCheck();
+            final int checkEmpID = login.loginCheck();
 
             if (checkEmpID == 0) {
                 System.out.println("IDとパスワードが一致していません");
                 login.loginCheck();
             }
 
-            boolean checkRight = login.checkRight(checkEmpID);
+            final boolean checkRight = login.checkRight(checkEmpID);
 
             if (checkRight == true) {
                 mainMenu.choiceMenuAdmin();
             } else {
                 mainMenu.choiceMenuUser();
             }
-        } catch (ParseException e) {
+        } catch (final ParseException e) {
             e.printStackTrace();
         }
         finally{
