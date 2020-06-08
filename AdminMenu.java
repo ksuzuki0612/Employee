@@ -1,14 +1,7 @@
-import java.io.IOException;
-import java.util.function.Supplier;
-import java.util.logging.FileHandler;
-import java.util.logging.Formatter;
-import java.util.logging.Handler;
-import java.util.logging.Level;
+
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 import java.util.*;
-import java.text.*;
-import java.io.*;
+
 public class AdminMenu{
 	Logger logger = Logger.getLogger(AdminMenu.class.getName());
 	SqlMethod sql =new SqlMethod();
@@ -35,10 +28,7 @@ public class AdminMenu{
             while(i == 1);
             int borrowedAmount = 0;
             sql.sqlRegister(ui.isbnUi(),ui.titleUi(),ui.publisherUi(), publishDate,ui.fieldUi(),authorList,ui.inventoryUi(),borrowedAmount);
-    	}
-    	catch(ParseException e){
-    		e.printStackTrace();
-	 	}
+        }
 	 	finally{
 	 	    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }

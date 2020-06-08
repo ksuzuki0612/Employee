@@ -8,10 +8,6 @@ import java.util.*;
 import java.text.*;
 import java.io.*;
 
-/**
- *利用者メニュークラス
- *@author 渡邉香穂
- */
 
 public class UserMenu{
     Logger logger = Logger.getLogger(UserMenu.class.getName());
@@ -23,25 +19,19 @@ public class UserMenu{
   //エラーの番号
     private int errorNum = 0;
 
-  /**
-   *書籍名で書籍を検索するメソッド
-   *@param bookTitle
-   */
-    public ArrayList<Book> searchBooksByTitle(String bookTitle) {
+  //書籍名で書籍を検索
+    public void searchBooksByTitle(String bookTitle) {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             sql.sqlSearch();
         }catch(Exception e){
             logger.severe("SEVERE");
         }
-            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
-  /**
-   *著者名で書籍を検索するメソッド
-   *@param bookAuthor
-   */
-    public ArrayList<Book> searchBooksByAuthor(String bookAuthor) {
+  //著者名で書籍を検索
+    public void searchBooksByAuthor(String bookAuthor) {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             sql.sqlSearchAuthor();
@@ -51,24 +41,18 @@ public class UserMenu{
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
-  /**
-   *分野で書籍を検索するメソッド
-   *@param bookField
-   */
-    public ArrayList<Book> searchBooksByField(String bookField) {
+  //分野で書籍を検索
+    public void searchBooksByField(String bookField) {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
-            sql.sqlSearchField();
+        sql.sqlSearchField();
         }catch(Exception e){
             logger.severe("SEVERE");
         }
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
-  /**
-   *書籍を保存するメソッド
-   *@param saveFile
-   */
+  //書籍の保存(書籍名の検索結果)
     public void saveBooksByTitle(String saveFile) {
        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
        try{
@@ -91,9 +75,7 @@ public class UserMenu{
                bw.write(COMMA);
                bw.write("PublishDate");
                bw.write(COMMA);
-               bw.write(
-                   new SimpleDateFormat("yyyy/MM/dd").
-                   format(t.getPublishDate()));
+               bw.write(new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate()));
                bw.write(COMMA);
                bw.write("Authors");
                bw.write(COMMA);
@@ -114,13 +96,14 @@ public class UserMenu{
            }
            bw.close();
        }catch(IOException e){
-           errorNum = 1;    //日付の型が正しくありません
+         errorNum = 1;    //日付の型が正しくありません
            e.printStackTrace();
            logger.severe("SEVERE");
        }
            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
    }
 
+  //書籍の保存(著者名の検索結果)
     public void saveBooksByAuthors(String saveFile) {
       logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
       try{
@@ -143,9 +126,7 @@ public class UserMenu{
               bw.write(COMMA);
               bw.write("PublishDate");
               bw.write(COMMA);
-              bw.write(
-                  new SimpleDateFormat("yyyy/MM/dd").
-                  format(a.getPublishDate()));
+              bw.write(new SimpleDateFormat("yyyy/MM/dd").format(a.getPublishDate()));
               bw.write(COMMA);
               bw.write("Authors");
               bw.write(COMMA);
@@ -166,13 +147,14 @@ public class UserMenu{
           }
           bw.close();
       }catch(IOException e){
-          errorNum = 1;    //日付の型が正しくありません
+        errorNum = 1;    //日付の型が正しくありません
           e.printStackTrace();
           logger.severe("SEVERE");
       }
           logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
   }
 
+  //書籍の保存(分野の検索結果)
     public void saveBooksByField(String saveFile) {
        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
        try{
@@ -195,9 +177,7 @@ public class UserMenu{
                bw.write(COMMA);
                bw.write("PublishDate");
                bw.write(COMMA);
-               bw.write(
-                   new SimpleDateFormat("yyyy/MM/dd").
-                   format(f.getPublishDate()));
+               bw.write(new SimpleDateFormat("yyyy/MM/dd").format(f.getPublishDate()));
                bw.write(COMMA);
                bw.write("Authors");
                bw.write(COMMA);
@@ -218,7 +198,7 @@ public class UserMenu{
            }
            bw.close();
        }catch(IOException e){
-           errorNum = 1;    //日付の型が正しくありません
+         errorNum = 1;    //日付の型が正しくありません
            e.printStackTrace();
            logger.severe("SEVERE");
        }

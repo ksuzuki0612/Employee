@@ -108,7 +108,7 @@ public class UI{
         selected = Integer.parseInt(str);
         switch(selected){
             case 1:
-                searchBooksByTitleUI();
+               // searchBooksByTitleUI();
                 System.out.println("検索結果を保存しますか？");
                 System.out.println("1.はい");
                 System.out.println("2.前の画面に戻る");
@@ -122,7 +122,7 @@ public class UI{
                 logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                 break;
             case 2:
-                searchBooksByAuthorUI();
+                //searchBooksByAuthorUI();
                 System.out.println("検索結果を保存しますか？");
                 System.out.println("1.はい");
                 System.out.println("2.前の画面に戻る");
@@ -136,7 +136,7 @@ public class UI{
                 logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                 break;
             case 3:
-                searchBooksByFieldUI();
+                //searchBooksByFieldUI();
                 System.out.println("検索結果を保存しますか？");
                 System.out.println("1.はい");
                 System.out.println("2.前の画面に戻る");
@@ -154,7 +154,9 @@ public class UI{
     }
 
   //書籍名で書籍の検索
-    public  void searchBooksByTitleUI(){
+
+/*
+   public  void searchBooksByTitleUI(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.println("検索したいタイトル名を入力してください");
         String bookTitle = new java.util.Scanner(System.in).nextLine();
@@ -187,7 +189,7 @@ public class UI{
         }
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
-
+*/
 //ファイルの保存(書籍名)
     public  void saveBooksByTitleUI(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());

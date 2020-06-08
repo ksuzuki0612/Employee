@@ -152,40 +152,38 @@ public class SqlMethod{
     }
     public int dbCheckLogin(int empID,String password){
             logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-            Scanner keyboard = new Scanner(System.in);
+            
         try{
             
             Connection con = DriverManager.getConnection(url, userName, pwd); 
-            Statement st = con.createStatement();
+            
             
             int ID = empID;
             String pass = password;
     
-            PreparedStatement pstmt = con.PreparedStatement("SELECT*FROM passwordlist "+
-                                                            "WHERE"+
-                                                            " emmployee_id=?,password = ?");
-            pstmt.setInt(1,ID);
-            pstmt.setString(2,pass);
+            String query = "SELECT COUNT('employee_id') FROM passwordlist WHERE"+
+                            " employee_id='" + empID + "'&& password = '"+ pass + "'  ";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            int empcount = rs.getRow();
     
-            ResultSet rs = pstmt.executeQuery();
+            st.close();
+            con.close();
     
-            if(rs == null){
+            if(empcount == 0){
                 return 0;
             }
             else{
-                return ID;
-            }
-
-
+                return empID;
+            }         
+          
             
-            keyboard.close();
-            pstmt.close();
-            con.close();
             }catch(Exception e) { System.out.println(e);}
-            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-
-
-
+            finally{
+                    
+                    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+                    return empID;
+                }
     }
     public boolean dbCheckRight(int empID){
             logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -196,25 +194,28 @@ public class SqlMethod{
 
             int checkID = empID;
 
-            PreparedStatement pstmt = con.PreparedStatement("SELECT administrator_right FROM employee"+
-                                                            " WHERE"+
-                                                            " employee_id=?");
-            pstmt.setInt(1,checkID);
-
-            ResultSet right = pstmt.executeQuery();
+            String query = "SELECT administrator_right FROM employee WHERE"+
+                            " employee_id='" + empID + "'";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            String admin = rs.getString("administrator_right");
             String check = "Y";
-
-            if(right.equals(check)){
+            st.close();
+            con.close();
+            if(admin.equals(check)){
                 return true;
             }
             else{
                 return false;
             }
 
-            pstmt.close();
-            con.close();
+            
             }catch(Exception e) { System.out.println(e);}
-            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+            finally{
+                logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+                return true;
+            }
+           
     }
     /**
      * 書籍を著者ごと検索するメソッド
