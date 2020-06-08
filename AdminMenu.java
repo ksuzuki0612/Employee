@@ -9,10 +9,20 @@ import java.util.logging.SimpleFormatter;
 import java.util.*;
 import java.text.*;
 import java.io.*;
+/**
+ * アドミンメニュークラス
+ * @author　鈴木戒生
+ * @see MainMenu
+ */
 public class AdminMenu{
 	Logger logger = Logger.getLogger(AdminMenu.class.getName());
-	SQL_method sql =new SQL_method();
+	SqlMethod sql =new SqlMethod();
 	UI ui =new UI();
+	 /**
+     * このプログラムの最初のメソッド
+     * 本の詳細の入力を促しSqlMethodクラスのsqlRegisterメソッドを呼び出し
+     　て入力した情報をDBに登録する。
+     */
     public void registerBook(){
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{ 
@@ -43,11 +53,15 @@ public class AdminMenu{
 	 	    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }
     }
+    /**
+     * DBにある書籍を削除するメソッド
+     */
     public void deleteBook() {
      	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         sql.sqlDeleteBook();
     	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
+    
     public void updataBook(){
      	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         loop:while (true){
