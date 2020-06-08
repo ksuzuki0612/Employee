@@ -9,6 +9,13 @@ import java.util.logging.SimpleFormatter;
 import java.util.*;
 import java.sql.*;
 import java.text.*;
+/**
+ * @ Sql methods for 書籍管理システム
+ * @ Author Engler Mate Janos
+ * @ Version 2.0
+ * @ Since 1.0
+ * 
+ */
 
 public class SqlMethod{
 	Logger logger = Logger.getLogger(AdminMenu.class.getName());
@@ -19,9 +26,13 @@ public class SqlMethod{
                         "?useUnicode=true&useJDBCCompliantTimezoneShift" + 
                         "=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     final String userName = "MateEngler";
-    final String pwd = "password1234";
+    final String pwd = "keyblade24"";
     
-    //Class.forName("com.mysql.cj.jdbc.Driver");
+    /**
+     * 書籍を登録するメソッド。
+     * 各変数をDBのbookinfoに入れる
+     * 
+     */
    
     public  void sqlRegister(long ISBN, String title, String publisher, 
                                     String publishDate, String field, List<String> authors,
@@ -58,7 +69,12 @@ public class SqlMethod{
             }catch(Exception e) { System.out.println(e);}
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
-
+    /**
+     * 書籍を貸出承認メソッド
+     * 書籍が全部貸出されたら終わる。
+     * 従業員は既に10冊を貸出しているなら貸出不可能
+     * 
+     */
     public void borrowBook(long isbn){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	Scanner keyboard = new Scanner(System.in);
@@ -102,7 +118,7 @@ public class SqlMethod{
                 ResultSet rs3 = st3.executeQuery(query3);
                 int empcount = rs3.getRow();
                 
-                //int test =10;
+                
                 if(empcount == 10){
                     System.out.println("One employee can only borrow 10 books maximum!");
                 }else{    
@@ -200,6 +216,10 @@ public class SqlMethod{
             }catch(Exception e) { System.out.println(e);}
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
+    /**
+     * 書籍を著者ごと検索するメソッド
+     * 
+     */
     public void sqlSearchAuthor(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
@@ -247,7 +267,10 @@ public class SqlMethod{
     public List getSearchRecordAuthor(){
         return searchRecordAuthor;
     }
-
+    /**
+     * 書籍を分野ごと検索メソッド
+     * 
+     */
     public void sqlSearchField(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
@@ -296,7 +319,10 @@ public class SqlMethod{
     public List getSearchRecordField(){
         return searchRecordField;
     }
-
+    /**
+     * 書籍をタイトルごと検索メソッド
+     * 
+     */
     public void sqlSearch(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	 
@@ -345,7 +371,11 @@ public class SqlMethod{
     public List getSearchRecordTitle(){
         return searchRecordTitle;
     }
-
+    /**
+     * 貸出書籍を返却するメソッド
+     * 入力されたISBNと従業員IDと一致する行を貸出中のDBから削除する
+     * 
+     */
     public void sqlReturnbook(long isbn,int id){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	Scanner keyboard = new Scanner(System.in);
@@ -393,7 +423,10 @@ public class SqlMethod{
 
     }
     
-    
+    /**
+     * 書籍の在庫数を更新するメソッド
+     * 
+     */
       
       public void dbUpdataInventory(long ISBN,int Inventory ){
       	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -414,7 +447,10 @@ public class SqlMethod{
             }catch(Exception e) { System.out.println(e);}
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
-    
+    /**
+     * 書籍の貸出数を更新するメソッド
+     * 
+     */
     public void dbAddBorrowedAmount(long ISBN,int addBorrowedAmount ){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
@@ -434,7 +470,10 @@ public class SqlMethod{
             }catch(Exception e) { System.out.println(e);}
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
-    
+    /**
+     * パスワードを更新するメソッド
+     * 
+     */
     public void dbUpdatePassword(int empID,String password){
     try{
        
