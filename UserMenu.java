@@ -11,7 +11,7 @@ import java.io.*;
 
 public class UserMenu{
     Logger logger = Logger.getLogger(UserMenu.class.getName());
-    SQL_method sql =new SQL_method();
+    SqlMethod sql =new SqlMethod();
 
   //カンマ
     private final String COMMA = ",";
@@ -23,7 +23,7 @@ public class UserMenu{
     public ArrayList<Book> searchBooksByTitle(String bookTitle) {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
-            sql.SQLsearch();
+            sql.sqlSearch();
         }catch(Exception e){
             logger.severe("SEVERE");
         }
@@ -34,7 +34,7 @@ public class UserMenu{
     public ArrayList<Book> searchBooksByAuthor(String bookAuthor) {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
-            sql.SQLsearchAuthor();
+            sql.sqlSearchAuthor();
         }catch(Exception e){
             logger.severe("SEVERE");
         }
@@ -45,7 +45,7 @@ public class UserMenu{
     public ArrayList<Book> searchBooksByField(String bookField) {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
-        sql.SQLsearchField();
+        sql.sqlSearchField();
         }catch(Exception e){
             logger.severe("SEVERE");
         }
