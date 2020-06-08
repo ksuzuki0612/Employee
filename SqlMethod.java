@@ -106,7 +106,18 @@ public class SqlMethod{
                 if(empcount == 10){
                     System.out.println("One employee can only borrow 10 books maximum!");
                 }else{    
-                    String query4 ="INSERT INTO checkout (ISBN, title, employee_id, employee_name, borrowed_from, borrowed_until) VALUES ('" + isbn + "', '" + title + "', '" + id + "', '" + ename + "', '" + start + "', '" + end + "')";
+                    String query4 ="INSERT INTO checkout (ISBN,"+
+                                                        " title,"+
+                                                        " employee_id,"+
+                                                        " employee_name,"+
+                                                        " borrowed_from,"+
+                                                        " borrowed_until)"+
+                                                        " VALUES"+
+                                                        " ('" + isbn + "',"+
+                                                        " '" + title + "', "+
+                                                        "'" + id + "', "+
+                                                        "'" + ename + "',"+
+                                                        " '" + start + "', '" + end + "')";
                     Statement st4 = con.createStatement();
                     int count = st4.executeUpdate(query4);
                     
