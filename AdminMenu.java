@@ -18,8 +18,6 @@ public class AdminMenu{
         try{ 
             List<String> authorList = new ArrayList<String>();
     	    String publishDate = ui.strDateUi();
-//    	    SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMdd");
-//          Date publishDate = sdFormat.parse(strDate);
             int i = 0;
             do{
                 i = 0;
@@ -41,7 +39,9 @@ public class AdminMenu{
     	catch(ParseException e){
     		e.printStackTrace();
 	 	}
-	 	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+	 	finally　{
+	 	    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+        }
     }
     public void deleteBook() {
      	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -62,7 +62,7 @@ public class AdminMenu{
                     }
     	            else if (select ==2){
     	             	int deInventory = ui.deInventoryUi();
-    	                int deleteInventory;
+    	                int deleteInventory = 0;
     	                deleteInventory -= deInventory;
     	                sql.DBupdataInventory( allowISBN,deleteInventory );
     	            }else{
