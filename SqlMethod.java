@@ -134,9 +134,9 @@ public class SqlMethod{
             int ID = empID;
             String pass = password;
     
-            PreparedStatement pstmt = con.PreparedStatement("SELECT*FROM passwordlist "+
+            PreparedStatement pstmt = con.PreparedStatement"SELECT*FROM passwordlist "+
                                                             "WHERE"+
-                                                            " emmployee_id=?,password = ?");
+                                                            " emmployee_id=?,password = ?";
             pstmt.setInt(1,ID);
             pstmt.setString(2,pass);
     
@@ -150,7 +150,7 @@ public class SqlMethod{
             }
 
 
-            //System.out.println(count + " row(s) affected");
+            
             keyboard.close();
             st.close();
             con.close();
@@ -169,9 +169,9 @@ public class SqlMethod{
 
             int checkID = empID;
 
-            PreparedStatement pstmt = con.PreparedStatement("SELECT administrator_right FROM employee"+
+            PreparedStatement pstmt = con.PreparedStatement"SELECT administrator_right FROM employee"+
                                                             " WHERE"+
-                                                            " employee_id=?");
+                                                            " employee_id=?";
             pstmt.setInt(1,checkID);
 
             ResultSet right = pstmt.executeQuery();
@@ -198,9 +198,9 @@ public class SqlMethod{
 
         try{
            
-            String query = ("SELECT * FROM bookinfo "+
+            String query = "SELECT * FROM bookinfo "+
                             "WHERE"+
-                            " author = '" + author + "'");
+                            " author = '" + author + "'";
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
@@ -246,9 +246,9 @@ public class SqlMethod{
 
         try{
            
-            String query = ("SELECT * FROM bookinfo "+
+            String query = "SELECT * FROM bookinfo "+
                             "WHERE"+
-                            " field_ = '" + searchField + "'");
+                            " field_ = '" + searchField + "'";
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
