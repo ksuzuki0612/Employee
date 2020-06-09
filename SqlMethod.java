@@ -127,7 +127,8 @@ public class SqlMethod{
                 String query3 ="SELECT COUNT('employee_name') FROM checkout WHERE employee_id='" + id + "'  ";
                 Statement st3 = con.createStatement();
                 ResultSet rs3 = st3.executeQuery(query3);
-                int empcount = rs3.getRow();
+                rs.next();
+                int empcount = rs3.getInt(1);
                  
                 if(empcount == 10){
                     System.out.println("One employee can only borrow 10 books maximum!");
@@ -279,14 +280,16 @@ public class SqlMethod{
                 values.add(rs.getString(3));//publisher
                 values.add(rs.getDate(4));//publish date
                 values.add(rs.getString(5));//field
-                values.add(rs.getString(6));//author
+                values.add(rs.getString(6));//author "%-5d", 10
                 values.add(rs.getInt(7));//inventory
                 values.add(rs.getInt(8));//lent out
                 searchRecordAuthor.add(values);
-                System.out.println("ISBN   タイトル   出版社   出版日    "+
-                                    "分野    著者   在庫数   貸出中");
-                bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) + 
-                            rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
+                System.out.println(String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s",
+                                                "ISBN","Title","Publisher","Publishdate","Field",
+                                                "Author","Inventory","Lent out"));
+                bookData =  String.format("%-15d %-15s %-15s %-15s %-15s %-15s %-15d %-15d",+
+                                            rs.getLong(1) ,rs.getString(2) , rs.getString(3) , rs.getDate(4) , 
+                                            rs.getString(5) , rs.getString(6) , rs.getInt(7), rs.getInt(8) );
                 System.out.println(bookData);
             }
 
@@ -337,10 +340,12 @@ public class SqlMethod{
                 values.add(rs.getInt(7));//inventory
                 values.add(rs.getInt(8));//lent out
                 searchRecordField.add(values);
-                System.out.println("ISBN   タイトル   出版社   出版日   "+
-                                    " 分野    著者   在庫数   貸出中");
-                bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) +
-                            rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
+                System.out.println(String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s",
+                                                "ISBN","Title","Publisher","Publishdate","Field",
+                                                "Author","Inventory","Lent out"));
+                bookData =  String.format("%-15d %-15s %-15s %-15s %-15s %-15s %-15d %-15d",+
+                                            rs.getLong(1) ,rs.getString(2) , rs.getString(3) , rs.getDate(4) , 
+                                            rs.getString(5) , rs.getString(6) , rs.getInt(7), rs.getInt(8) );
                 System.out.println(bookData);
             }
 
@@ -391,10 +396,12 @@ public class SqlMethod{
                 values.add(rs.getInt(7));//inventory
                 values.add(rs.getInt(8));//lent out
                 searchRecordTitle.add(values);
-                System.out.println("ISBN   タイトル   出版社   出版日 "+
-                                    "   分野    著者   在庫数   貸出中");
-                bookData =  rs.getLong(1) +  rs.getString(2) + rs.getString(3) + rs.getDate(4) + 
-                            rs.getString(5) + rs.getString(6) + rs.getInt(7) + rs.getInt(8) ;
+                System.out.println(String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s",
+                "ISBN","Title","Publisher","Publishdate","Field",
+                "Author","Inventory","Lent out"));
+                bookData =  String.format("%-15d %-15s %-15s %-15s %-15s %-15s %-15d %-15d",+
+                            rs.getLong(1) ,rs.getString(2) , rs.getString(3) , rs.getDate(4) , 
+                            rs.getString(5) , rs.getString(6) , rs.getInt(7), rs.getInt(8) );
                 System.out.println(bookData);
             }
 
