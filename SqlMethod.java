@@ -11,9 +11,9 @@ import java.sql.*;
 import java.text.*;
 /**
  * @ Sql methods for 書籍管理システム
- * @ Author Engler Mate Janos
- * @ Version 2.0
- * @ Since 1.0
+ * @author Engler Mate Janos
+ * @version 2.0
+ * @since 1.0
  * 
  */
 
@@ -105,7 +105,7 @@ public class SqlMethod{
                 //keyboard.nextLine();
                 System.out.println("貸出終了日を入力してください(YYYY-MM-dd)。");
                 String end = keyboard.nextLine();
-                keyboard.close();
+                //keyboard.close();
                 
                 String query2 ="SELECT * FROM employee WHERE employee_id = '" + id + "'";
                 Statement st2 = con.createStatement();
@@ -380,7 +380,7 @@ public class SqlMethod{
      */
     public void sqlReturnbook(long isbn,int id){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	Scanner keyboard = new Scanner(System.in);
+    	
         try{
            
             String query = "DELETE FROM checkout "+
@@ -390,14 +390,12 @@ public class SqlMethod{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
             Statement st = con.createStatement();
-            int count = st.executeUpdate(query);
-
-            //System.out.println(count + " row(s) affected");
-            keyboard.close();
+            int count = st.executeUpdate(query);      
+            
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName()); //finally
     }
     public void sqlDeleteBook(){ 
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -405,7 +403,7 @@ public class SqlMethod{
         System.out.println("削除したい書籍のISBNを入力してください。 ");
         long isbn = keyboard.nextLong();
         keyboard.nextLine();
-        keyboard.close();
+        //keyboard.close();
         
         try{
             
@@ -433,7 +431,7 @@ public class SqlMethod{
       	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             
-            String query = "UPDATE bookinfo SET inventory += '" + Inventory + "' "+
+            String query = "UPDATE bookinfo SET inventory = '" + Inventory + "' "+
                             "WHERE"+
                             " ISBN = '" + ISBN +"'"; 
             	
@@ -456,9 +454,9 @@ public class SqlMethod{
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             
-            String query = "UPDATE bookinfo SET borrowed += '" + addBorrowedAmount + "' "+
-                            "WHERE"+ 
-                            "ISBN = '" + ISBN +"'"; 
+            String query = "UPDATE bookinfo SET borrowed = '" + addBorrowedAmount + "' "+
+                            "WHERE"+
+                            " ISBN = '" + ISBN +"'"; 
             	
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 

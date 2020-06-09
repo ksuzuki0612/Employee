@@ -23,6 +23,9 @@ public class Book {
     }
 
     //getter
+    public long getISBN(){
+    	return this.ISBN;
+    }
 
     public String getTitle(){
     	return this.title;
@@ -40,6 +43,10 @@ public class Book {
     	return this.field;
     }
 
+    public List<String> getAuthors(){
+    	return this.authors;
+    }
+
     public int getInventory(){
     	return this.inventory;
     }
@@ -48,7 +55,14 @@ public class Book {
         return this.borrowedAmount;
     }
 
-//setter
+	//setter
+    public void setInventory(int numOfInventory){
+    	this.inventory = numOfInventory;
+    }
+
+    public void setBorrowedAmount(int numOfBorrowed){
+        this.borrowedAmount = numOfBorrowed;
+    }
 
   //ISBNのlong値を文字列に変換
     public String ISBNToString(long ISBN){
