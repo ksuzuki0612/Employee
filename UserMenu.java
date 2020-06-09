@@ -30,7 +30,7 @@ public class UserMenu{
     public void searchBooksByTitle() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
-            sql.sqlSearch();
+            sql.searchTitle();
         }catch(Exception e){
             logger.severe("SEVERE");
         }
@@ -44,7 +44,7 @@ public class UserMenu{
     public void searchBooksByAuthor() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
-            sql.sqlSearchAuthor();
+            sql.searchAuthor();
         }catch(Exception e){
             logger.severe("SEVERE");
         }
@@ -58,7 +58,7 @@ public class UserMenu{
     public void searchBooksByField() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
-        sql.sqlSearchField();
+        sql.searchField();
         }catch(Exception e){
             logger.severe("SEVERE");
         }
