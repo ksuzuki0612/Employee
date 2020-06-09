@@ -374,7 +374,7 @@ public class UI{
             break; 
         }
         
-        
+        return returnMainMenu;
     }
 
 }
