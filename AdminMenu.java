@@ -1,7 +1,7 @@
 import java.util.logging.Logger;
 import java.util.*;
 
-/**
+/**s
  * アドミンメニュークラス
  * @author　鈴木戒生
  * @see MainMenu
@@ -45,7 +45,7 @@ public class AdminMenu{
             int i = 0;
             authorList = this.registerauthors(i);
             int borrowedAmount = 0;
-            sql.sqlRegister(ui.isbnUi(),ui.titleUi(),ui.publisherUi(), publishDate,ui.fieldUi(),authorList,ui.inventoryUi(),borrowedAmount);
+            sql.registerBook(ui.isbnUi(),ui.titleUi(),ui.publisherUi(), publishDate,ui.fieldUi(),authorList,ui.inventoryUi(),borrowedAmount);
         }
         catch(Exception e){
     		    e.printStackTrace();
@@ -60,7 +60,7 @@ public class AdminMenu{
      */
     public void deleteBook() {
      	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        sql.sqlDeleteBook();
+        sql.deleteBook();
     	  logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
@@ -119,7 +119,7 @@ public class AdminMenu{
     	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	  int id = ui.employeeUi();
     	  long isbn =ui.isbnUi();
-        sql.sqlReturnbook(isbn,id);
+        sql.returnBook(isbn,id);
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 		
