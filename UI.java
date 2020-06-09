@@ -14,17 +14,18 @@ import java.util.logging.SimpleFormatter;
  * @see LibarayMain,adminMain,MainMenu,UserMenu
  */
 public class UI{
-	Logger logger = Logger.getLogger(UI.class.getName());
+	  Logger logger = Logger.getLogger(UI.class.getName());
+
     public void loginUI(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	System.out.println("ログイン画面");
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  System.out.println("ログイン画面");
         System.out.println("ログインしますか？それともパスワードの再設定をしますか？");
         System.out.println("1.ログイン  2.再設定");
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
     public int resetPassUI(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.println("パスワードを再設定しますか？");
         System.out.println("1,はい　2,いいえ");
         int ans = new java.util.Scanner(System.in).nextInt();
@@ -35,7 +36,7 @@ public class UI{
 
 
     public int getEmpID(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.print("従業員ID:");
         int empID = new java.util.Scanner(System.in).nextInt();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -43,7 +44,7 @@ public class UI{
     }
 
     public String getPassword(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.print("パスワード:");
         String password = new java.util.Scanner(System.in).nextLine();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -51,7 +52,7 @@ public class UI{
     }
 
     public String getCheckPassword(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.print("確認用パスワード:");
         String checkPassword = new java.util.Scanner(System.in).nextLine();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -59,8 +60,8 @@ public class UI{
     }
 
     //MainMenuUI
-     public int choiceMenuUI(){
-     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    public int choiceMenuUI(){
+     	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.println("機能を選択してください");
         System.out.println("1,図書館利用者機能");
         System.out.println("2,図書館管理者機能");
@@ -71,17 +72,17 @@ public class UI{
     }
 
     public int adminMenuUI(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.println("メニュー画面");
 
-		System.out.println("1，図書登録");
-		System.out.println("2，図書削除");
-		System.out.println("3，登録変更");
-		System.out.println("4，貸出承認");
-		System.out.println("5，返却受取");
-		System.out.println("6，終了");
+		    System.out.println("1，図書登録");
+		    System.out.println("2，図書削除");
+		    System.out.println("3，登録変更");
+		    System.out.println("4，貸出承認");
+		    System.out.println("5，返却受取");
+		    System.out.println("6，終了");
 
-		System.out.println("メニュー番号を入力してください。");
+		    System.out.println("メニュー番号を入力してください。");
 
         int selected = new java.util.Scanner(System.in).nextInt();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -89,15 +90,15 @@ public class UI{
     }
 
     public int userMenuUI(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.println("メニュー画面");
 				System.out.println("1，図書検索");
         System.out.println("2，予約取消");
         System.out.println("3，終了");
       	System.out.println("メニュー番号を入力してください。");
         int selected = new java.util.Scanner(System.in).nextInt();
-	 	  logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-		  return selected;
+	 	    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+		    return selected;
     }
 
     //UserMenuUi.java
@@ -105,7 +106,7 @@ public class UI{
     private static UserMenu userMenu = new UserMenu();
 
     public  void userMenu(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         int selected=0;
         System.out.println("検索する項目を選んでください");
         System.out.println("1.タイトル");
@@ -199,7 +200,7 @@ public class UI{
 */
 //ファイルの保存(書籍名)
     public  void saveBooksByTitleUI(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.println("書籍を保存するファイル名を入力してください。");
         String saveFile = new java.util.Scanner(System.in).nextLine();
         userMenu.saveBooksByTitle(saveFile);
@@ -208,7 +209,7 @@ public class UI{
 
 //ファイルの保存(著者名)
     public  void saveBooksByAuthorsUI(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.println("書籍を保存するファイル名を入力してください。");
         String saveFile = new java.util.Scanner(System.in).nextLine();
         userMenu.saveBooksByAuthors(saveFile);
@@ -217,7 +218,7 @@ public class UI{
 
 //ファイルの保存(分野)
     public  void saveBooksByFieldUI(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.println("書籍を保存するファイル名を入力してください。");
         String saveFile = new java.util.Scanner(System.in).nextLine();
         userMenu.saveBooksByField(saveFile);
@@ -225,9 +226,9 @@ public class UI{
     }
 
 //AdminMenuUi
-     public long isbnUi(){
-     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-	    System.out.println("ISBNを入力してください。");
+    public long isbnUi(){
+     	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+	      System.out.println("ISBNを入力してください。");
         String isbn = new java.util.Scanner(System.in).nextLine();
         long ISBN = Long.parseLong(isbn);
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -235,143 +236,143 @@ public class UI{
     }
 
     public String titleUi(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-	    System.out.println("書籍名をを入力してください。");
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+	      System.out.println("書籍名をを入力してください。");
         String title = new java.util.Scanner(System.in).nextLine();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         return title;
     }
 
     public String publisherUi(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	System.out.println("出版社を入力してください。");
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  System.out.println("出版社を入力してください。");
         String publisher = new java.util.Scanner(System.in).nextLine();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return publisher;
+	      return publisher;
     }
 
     public String strDateUi(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	System.out.println("登録する書籍の出版日をyyyyMMdd形式で入力してください");
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  System.out.println("登録する書籍の出版日をyyyyMMdd形式で入力してください");
         String strDate = new java.util.Scanner(System.in).nextLine();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return strDate;
+	      return strDate;
     }
 
     public String fieldUi(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	System.out.println("fieldを入力してください。");
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  System.out.println("fieldを入力してください。");
         String field = new java.util.Scanner(System.in).nextLine();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return field;
+	      return field;
     }
 
     public String str4Ui(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	System.out.println("著者を入力してください。");
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  System.out.println("著者を入力してください。");
         String str4 = new java.util.Scanner(System.in).nextLine();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return str4;
+	      return str4;
     }
 
     public int authorAddUi(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	System.out.println("著者を追加する場合は１を入力してください");
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  System.out.println("著者を追加する場合は１を入力してください");
         int authorAdd = new java.util.Scanner(System.in).nextInt();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return authorAdd;
+	      return authorAdd;
     }
 
-     public int inventoryUi(){
-     	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-     	System.out.println("inventoryを入力してください。");
+    public int inventoryUi(){
+     	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+     	  System.out.println("inventoryを入力してください。");
         int inventory = new java.util.Scanner(System.in).nextInt();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return inventory;
+	      return inventory;
     }
 
-     public int borrowedAmountUi(){
-     	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-     	System.out.println("borrowedAmountを入力してください。");
+    public int borrowedAmountUi(){
+     	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+     	  System.out.println("borrowedAmountを入力してください。");
         int borrowedAmount = new java.util.Scanner(System.in).nextInt();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return borrowedAmount;
+	      return borrowedAmount;
     }
 
     //updata
     public int selectedUi(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.println("編集項目を選択してください");
-    	System.out.println("1.在庫変更");
-    	System.out.println("2.貸出本の更新");
-    	System.out.println("3.終了");
-    	int selected = new java.util.Scanner(System.in).nextInt();
-    	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return selected;
+    	  System.out.println("1.在庫変更");
+    	  System.out.println("2.貸出本の更新");
+    	  System.out.println("3.終了");
+    	  int selected = new java.util.Scanner(System.in).nextInt();
+    	  logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+	      return selected;
     }
 
     //delete
-     public long deleteBookUi(){
-     	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-     	System.out.println("削除する本のISBMを入力してください");
+    public long deleteBookUi(){
+     	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+     	  System.out.println("削除する本のISBMを入力してください");
         String deleteISBN = new java.util.Scanner(System.in).nextLine();
         long deleteBook = Long.parseLong(deleteISBN);
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return deleteBook;
+	      return deleteBook;
     }
 
     //貸入出
-     public int employeeUi(){
-     	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-     	System.out.println("従業員IDを入力してください");
+    public int employeeUi(){
+     	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+     	  System.out.println("従業員IDを入力してください");
         int employee = new java.util.Scanner(System.in).nextInt();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return employee;
+	      return employee;
     }
 
-     public int bookPeriodUi(){
-     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-     	System.out.println("貸出期限を入力してください");
+    public int bookPeriodUi(){
+     	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+     	  System.out.println("貸出期限を入力してください");
         int bookPeriod = new java.util.Scanner(System.in).nextInt();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return bookPeriod;
+	      return bookPeriod;
     }
 
-     public int selectUi(){
-     	 logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-     	System.out.println("書籍を追加する場合は１、削除する場合は２を入力してください。");
+    public int selectUi(){
+     	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+     	  System.out.println("書籍を追加する場合は１、削除する場合は２を入力してください。");
         int select = new java.util.Scanner(System.in).nextInt();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return select;
+	      return select;
     }
 
     public int addInventoryUi(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-     	System.out.println("追加する書籍数を入力してください");
-    	int addInventory = new java.util.Scanner(System.in).nextInt();
-    	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return addInventory;
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+     	  System.out.println("追加する書籍数を入力してください");
+    	  int addInventory = new java.util.Scanner(System.in).nextInt();
+    	  logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+	      return addInventory;
     }
 
     public int deInventoryUi(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-     	System.out.println("削除する書籍数を入力してください");
-    	int deInventory = new java.util.Scanner(System.in).nextInt();
-    	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return deInventory;
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+     	  System.out.println("削除する書籍数を入力してください");
+    	  int deInventory = new java.util.Scanner(System.in).nextInt();
+    	  logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+	      return deInventory;
     }
 
     public int addBorrowedAmountUi(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-     	System.out.println("2.その書籍の貸出数を入力してください");
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+     	  System.out.println("2.その書籍の貸出数を入力してください");
         int addBorrowedAmount = new java.util.Scanner(System.in).nextInt();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return addBorrowedAmount;
+	      return addBorrowedAmount;
     }
-		
+
     public int returnMenuUi(){
 
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.println("編集メニューに戻る場合は１、編集・更新を始める場合は２を入力してください");
         int returnMainMenu = new java.util.Scanner(System.in).nextInt();
         switch(returnMainMenu){
