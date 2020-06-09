@@ -1,4 +1,3 @@
-
 //貸し出された本
 public class CheckOutBook{
     private int checkOutNumber;
