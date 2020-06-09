@@ -1,3 +1,4 @@
+import java.text.BreakIterator;
 import java.util.logging.Logger;
 
 /**
@@ -76,32 +77,50 @@ public class MainMenu{
 
                     case selectedAdmin1:
                         // 図書登録
-                        adminMenu.registerBook();
-                        break;
-
+                        if(meunUI.returnMenuUi()==1){
+                            break;
+                        }else{
+                            adminMenu.registerBook();
+                            break;
+                        }
                     case selectedAdmin2:
                         // 図書削除
-                        adminMenu.deleteBook();
-                        break;
-
+                        if(meunUI.returnMenuUi()==1){
+                            break;
+                        }else{
+                            adminMenu.deleteBook();
+                            break;
+                        } 
                     case selectedAdmin3:
                         // 登録変更
-                        adminMenu.updataBook();
-                        break;
-
+                        if(meunUI.returnMenuUi()==1){
+                            break;
+                        }else{
+                            adminMenu.updataBook();
+                            break;
+                        } 
                     case selectedAdmin4:
                         // 貸出承認
-                        adminMenu.allowBorrowBook();
-                        break;
-
+                        if(meunUI.returnMenuUi()==1){
+                            break;
+                        }else{
+                            adminMenu.allowBorrowBook();
+                            break;
+                        } 
                     case selectedAdmin5:
                         // 返却申請
-                        adminMenu.returnBook();
-                        break;
-
+                        if(meunUI.returnMenuUi()==1){
+                            break;
+                        }else{
+                            adminMenu.returnBook();
+                            break;
+                        }
                     case selectedAdmin6:
                         System.out.println("終了");
                         break loop;
+                    default:
+                        System.out.println("再度入力してください");
+                    break; 
                 }
             }
         } finally {
@@ -135,6 +154,9 @@ public class MainMenu{
                     case selectedUser3:
                         System.out.println("終了");
                         break loop;
+                    default:
+                        System.out.println("再度入力してください");
+                    break; 
       	            }
                 }
         }
