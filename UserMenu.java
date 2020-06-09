@@ -25,7 +25,7 @@ public class UserMenu{
 
   /**
    *書籍名で書籍を検索し表示するメソッドの呼び出し
-   *@param bookTitle
+   *
    */
     public void searchBooksByTitle() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -39,7 +39,7 @@ public class UserMenu{
 
   /**
    *著者名で書籍を検索し表示するメソッドの呼び出し
-   *@param bookAuthor
+   *
    */
     public void searchBooksByAuthor() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -53,7 +53,7 @@ public class UserMenu{
 
   /**
    *分野で書籍を検索し表示するメソッドの呼び出し
-   *@param bookField
+   *
    */
     public void searchBooksByField() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
