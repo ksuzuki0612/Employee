@@ -349,4 +349,24 @@ public class UI{
 	    return addBorrowedAmount;
 	    
     }
+    public int returnMenuUi(){
+
+    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+        System.out.println("編集メニューに戻る場合は１、編集・更新を始める場合は２を入力してください");
+        int returnMainMenu = new java.util.Scanner(System.in).nextInt();
+        switch(returnMainMenu){
+            case 1:
+                logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+                return returnMainMenu;
+            case 2:
+                logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+                return returnMainMenu;
+            default:
+                System.out.println("再度入力してください");
+            break; 
+        }
+        
+        
+    }
+
 }
