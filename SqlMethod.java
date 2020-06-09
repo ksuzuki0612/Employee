@@ -35,7 +35,7 @@ public class SqlMethod{
      * 
      */
    
-    public  void sqlRegister(long ISBN, String title, String publisher, 
+    public  void registerBook(long ISBN, String title, String publisher, 
                                     String publishDate, String field, List<String> authors,
                                     int inventory, int borrowedAmount){
         
@@ -253,7 +253,7 @@ public class SqlMethod{
      * 
      */
     
-     public void sqlSearchAuthor(){
+     public void searchAuthor(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
         System.out.println("著者名を入力してください。");
@@ -307,7 +307,7 @@ public class SqlMethod{
      * 
      */
     
-     public void sqlSearchField(){
+     public void searchField(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
         System.out.println("分野を入力してください。");
@@ -360,7 +360,7 @@ public class SqlMethod{
      * 
      */
     
-     public void sqlSearch(){
+     public void searchTitle(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	 
         Scanner keyboard = new Scanner(System.in);
@@ -415,7 +415,7 @@ public class SqlMethod{
      * 
      */
     
-     public void sqlReturnbook(long isbn,int id){
+     public void returnBook(long isbn,int id){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	
         try{
@@ -446,7 +446,7 @@ public class SqlMethod{
          
     }
     
-    public void sqlDeleteBook(){ 
+    public void deleteBook(){ 
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
         System.out.println("削除したい書籍のISBNを入力してください。 ");
