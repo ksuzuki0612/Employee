@@ -70,117 +70,117 @@ public class UserMenu{
    *@param saveFile
    */
     public void saveBooksByTitle(String saveFile) {
-       logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-       try{
-           File csv = new File(saveFile);
-           BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-           List<Book> titleList = new ArrayList<>();
-           titleList = sql.getSearchRecordTitle();
-           for(Book t : titleList){
-               bw.write(
-                   String.format(
-                       "ISBN, %d,"+
-                       "Title, %s,"+
-                       "Publisher, %s,"+
-                       "PublishDate, %s,"+
-                       "Authors, %s,"+
-                       "Field, %s,"+
-                       "Inventory, %d,"+
-                       "BorrowedAmount, %d"+
-                       ","+
-                       t.getStringISBN(),
-                       t.getTitle(),
-                       t.getPublisher(),
-                       new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate()),
-                       t.getStringAuthors(),
-                       t.getField(),
-                       t.getInventory(),
-                       t.getBorrowedAmount())+
-                       "\n");
-           }
-           bw.close();
-       }catch(IOException e){
-           errorNum = 1;    //日付の型が正しくありません
-           e.printStackTrace();
-           logger.severe("SEVERE");
-       }
-       logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-   }
+        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+        try{
+            File csv = new File(saveFile);
+            BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
+            List<Book> titleList = new ArrayList<>();
+            titleList = sql.getSearchRecordTitle();
+            for(Book t : titleList){
+                bw.write(
+                    String.format(
+                        "ISBN, %d,"+
+                        "Title, %s,"+
+                        "Publisher, %s,"+
+                        "PublishDate, %s,"+
+                        "Authors, %s,"+
+                        "Field, %s,"+
+                        "Inventory, %d,"+
+                        "BorrowedAmount, %d"+
+                        ","+
+                        t.getStringISBN(),
+                        t.getTitle(),
+                        t.getPublisher(),
+                        new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate()),
+                        t.getStringAuthors(),
+                        t.getField(),
+                        t.getInventory(),
+                        t.getBorrowedAmount())+
+                        "\n");
+            }
+            bw.close();
+        }catch(IOException e){
+            errorNum = 1;    //日付の型が正しくありません
+            e.printStackTrace();
+            logger.severe("SEVERE");
+        }
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+    }
 
     public void saveBooksByAuthors(String saveFile) {
-      logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-      try{
-          File csv = new File(saveFile);
-          BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-          List<Book> authorList = new ArrayList<>();
-          authorList = sql.getSearchRecordAuthor();
-          for(Book a : authorList){
-              bw.write(
-                  String.format(
-                      "ISBN, %d,"+
-                      "Title, %s,"+
-                      "Publisher, %s,"+
-                      "PublishDate, %s,"+
-                      "Authors, %s,"+
-                      "Field, %s,"+
-                      "Inventory, %d,"+
-                      "BorrowedAmount, %d"+
-                      ","+
-                      a.getStringISBN(),
-                      a.getTitle(),
-                      a.getPublisher(),
-                      new SimpleDateFormat("yyyy/MM/dd").format(a.getPublishDate()),
-                      a.getStringAuthors(),
-                      a.getField(),
-                      a.getInventory(),
-                      a.getBorrowedAmount())+
-                      "\n");
-          }
-          bw.close();
-      }catch(IOException e){
-          errorNum = 1;    //日付の型が正しくありません
-          e.printStackTrace();
-          logger.severe("SEVERE");
-      }
-      logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-  }
+        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+        try{
+            File csv = new File(saveFile);
+            BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
+            List<Book> authorList = new ArrayList<>();
+            authorList = sql.getSearchRecordAuthor();
+            for(Book a : authorList){
+                bw.write(
+                    String.format(
+                        "ISBN, %d,"+
+                        "Title, %s,"+
+                        "Publisher, %s,"+
+                        "PublishDate, %s,"+
+                        "Authors, %s,"+
+                        "Field, %s,"+
+                        "Inventory, %d,"+
+                        "BorrowedAmount, %d"+
+                        ","+
+                        a.getStringISBN(),
+                        a.getTitle(),
+                        a.getPublisher(),
+                        new SimpleDateFormat("yyyy/MM/dd").format(a.getPublishDate()),
+                        a.getStringAuthors(),
+                        a.getField(),
+                        a.getInventory(),
+                        a.getBorrowedAmount())+
+                        "\n");
+            }
+            bw.close();
+        }catch(IOException e){
+            errorNum = 1;    //日付の型が正しくありません
+            e.printStackTrace();
+            logger.severe("SEVERE");
+        }
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+    }
 
     public void saveBooksByField(String saveFile) {
-       logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-       try{
-           File csv = new File(saveFile);
-           BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-           List<Book> fieldList = new ArrayList<>();
-           fieldList = sql.getSearchRecordField();
-           for(Book f : fieldList){
-               bw.write(
-                   String.format(
-                       "ISBN, %d,"+
-                       "Title, %s,"+
-                       "Publisher, %s,"+
-                       "PublishDate, %s,"+
-                       "Authors, %s,"+
-                       "Field, %s,"+
-                       "Inventory, %d,"+
-                       "BorrowedAmount, %d"+
-                       ","+
-                       f.getStringISBN(),
-                       f.getTitle(),
-                       f.getPublisher(),
-                       new SimpleDateFormat("yyyy/MM/dd").format(f.getPublishDate()),
-                       f.getStringAuthors(),
-                       f.getField(),
-                       f.getInventory(),
-                       f.getBorrowedAmount())+
-                       "\n");
-           }
-           bw.close();
-       }catch(IOException e){
-           errorNum = 1;    //日付の型が正しくありません
-           e.printStackTrace();
-           logger.severe("SEVERE");
-       }
-       logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-   }
+        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+        try{
+            File csv = new File(saveFile);
+            BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
+            List<Book> fieldList = new ArrayList<>();
+            fieldList = sql.getSearchRecordField();
+            for(Book f : fieldList){
+                bw.write(
+                    String.format(
+                        "ISBN, %d,"+
+                        "Title, %s,"+
+                        "Publisher, %s,"+
+                        "PublishDate, %s,"+
+                        "Authors, %s,"+
+                        "Field, %s,"+
+                        "Inventory, %d,"+
+                        "BorrowedAmount, %d"+
+                        ","+
+                        f.getStringISBN(),
+                        f.getTitle(),
+                        f.getPublisher(),
+                        new SimpleDateFormat("yyyy/MM/dd").format(f.getPublishDate()),
+                        f.getStringAuthors(),
+                        f.getField(),
+                        f.getInventory(),
+                        f.getBorrowedAmount())+
+                        "\n");
+            }
+            bw.close();
+        }catch(IOException e){
+            errorNum = 1;    //日付の型が正しくありません
+            e.printStackTrace();
+            logger.severe("SEVERE");
+        }
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+    }
 
 }
