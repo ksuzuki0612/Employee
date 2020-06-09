@@ -151,7 +151,7 @@ public class SqlMethod{
                     Statement st5 = con.createStatement();
                     int count2 = st5.executeUpdate(query5);
 
-                    System.out.println("書籍の貸出は承認されました。")
+                    System.out.println("書籍の貸出は承認されました。");
                 }
                                                                  
             }

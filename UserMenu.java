@@ -27,7 +27,7 @@ public class UserMenu{
    *書籍名で書籍を検索し表示するメソッドの呼び出し
    *@param bookTitle
    */
-    public void searchBooksByTitle(String bookTitle) {
+    public void searchBooksByTitle() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             sql.sqlSearch();
@@ -41,7 +41,7 @@ public class UserMenu{
    *著者名で書籍を検索し表示するメソッドの呼び出し
    *@param bookAuthor
    */
-    public void searchBooksByAuthor(String bookAuthor) {
+    public void searchBooksByAuthor() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             sql.sqlSearchAuthor();
@@ -55,7 +55,7 @@ public class UserMenu{
    *分野で書籍を検索し表示するメソッドの呼び出し
    *@param bookField
    */
-    public void searchBooksByField(String bookField) {
+    public void searchBooksByField() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
         sql.sqlSearchField();
@@ -86,7 +86,8 @@ public class UserMenu{
                        "Authors, %s,"+
                        "Field, %s,"+
                        "Inventory, %d,"+
-                       "BorrowedAmount, %d",+
+                       "BorrowedAmount, %d"+
+                       ","+
                        t.getStringISBN(),
                        t.getTitle(),
                        t.getPublisher(),
@@ -123,7 +124,8 @@ public class UserMenu{
                       "Authors, %s,"+
                       "Field, %s,"+
                       "Inventory, %d,"+
-                      "BorrowedAmount, %d",+
+                      "BorrowedAmount, %d"+
+                      ","+
                       a.getStringISBN(),
                       a.getTitle(),
                       a.getPublisher(),
@@ -160,7 +162,8 @@ public class UserMenu{
                        "Authors, %s,"+
                        "Field, %s,"+
                        "Inventory, %d,"+
-                       "BorrowedAmount, %d",+
+                       "BorrowedAmount, %d"+
+                       ","+
                        f.getStringISBN(),
                        f.getTitle(),
                        f.getPublisher(),
