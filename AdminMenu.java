@@ -68,26 +68,15 @@ public class AdminMenu{
      * DBにある書籍の在庫を変更するメソッド
      */
     public void updataBook(){
-     	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         loop:while (true){
-			      int selected = ui.selectedUi();
-		        switch(selected){
-			          case 1:
+			int selected = ui.selectedUi();
+		    switch(selected){
+			    case 1:
                     long allowISBN = ui.isbnUi();
-                    int select = ui.selectUi();
-                    if(select==1){
-                        int addInventory = ui.addInventoryUi();
-                        sql.dbUpdataInventory( allowISBN,addInventory );
-                    }else if (select ==2){
-    	             	    int deInventory = ui.deInventoryUi();
-    	                  int deleteInventory = 0;
-    	                  deleteInventory -= deInventory;
-    	                  sql.dbUpdataInventory( allowISBN,deleteInventory );
-    	              }else{
-    	             	    System.out.println("最初からやり直してください");
-                    }
+                    int addInventory = ui.addInventoryUi();
+                    sql.dbUpdataInventory( allowISBN,addInventory );
                     break;
-
                 case 2:
                     long aISBN = ui.isbnUi();
                     int addBorrowedAmount =ui.addBorrowedAmountUi();
@@ -97,8 +86,8 @@ public class AdminMenu{
                     break loop;
                 default:
                     System.out.println("再度入力してください");
-                break;
-            }
+                    break;
+                }
         }
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
