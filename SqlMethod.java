@@ -94,7 +94,6 @@ public class SqlMethod{
             String query = "SELECT * FROM bookinfo "+
                             "WHERE"+
                             " ISBN = '" + isbn + "'";
-            //String query2 ="SELECT * FROM employee WHERE employee_id = '" + empid + "'";
             
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
@@ -127,7 +126,7 @@ public class SqlMethod{
                 String query3 ="SELECT COUNT('employee_name') FROM checkout WHERE employee_id='" + id + "'  ";
                 Statement st3 = con.createStatement();
                 ResultSet rs3 = st3.executeQuery(query3);
-                rs.next();
+                rs3.next();
                 int empcount = rs3.getInt(1);
                  
                 if(empcount == 10){
@@ -259,7 +258,6 @@ public class SqlMethod{
         Scanner keyboard = new Scanner(System.in);
         System.out.println("著者名を入力してください。");
         String author = keyboard.nextLine();
-        keyboard.close();
 
         try{
            
@@ -315,8 +313,7 @@ public class SqlMethod{
         Scanner keyboard = new Scanner(System.in);
         System.out.println("分野を入力してください。");
         String searchField = keyboard.nextLine();
-        keyboard.close();
-
+        
         try{
            
             String query = "SELECT * FROM bookinfo "+
@@ -371,7 +368,6 @@ public class SqlMethod{
         Scanner keyboard = new Scanner(System.in);
         System.out.println("タイトルを入力してください。");
         String searchtitle = keyboard.nextLine();
-        keyboard.close();
         
         try{
             
