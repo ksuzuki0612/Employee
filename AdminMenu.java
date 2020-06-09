@@ -12,9 +12,7 @@ public class AdminMenu{
 	UI ui =new UI();
     
      /**
-     * このプログラムの最初のメソッド
-     * 本の詳細の入力を促しSqlMethodクラスのsqlRegisterメソッドを呼び出し
-     　て入力した情報をDBに登録する。 
+     * 著者の入力を促し、その情報を同クラスのregisterBookメソッドに返す。 
      */
     public List<String> registerauthors(int i){
         List<String> authorsList = new ArrayList<String>();
@@ -34,8 +32,10 @@ public class AdminMenu{
         while(i == 1);
         return authorsList ;
     }
-
-
+    /**
+     * 本の詳細の入力を促しSqlMethodクラスのsqlRegisterメソッドを呼び出し
+     　て入力した情報をDBに登録する。 
+     */
     public void registerBook(){
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{ 
