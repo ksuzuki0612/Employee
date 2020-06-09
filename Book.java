@@ -1,5 +1,11 @@
 import java.util.*;
 
+/**
+ * ブッククラス
+ * @author　平松、渡邉
+ *
+ */
+
 public class Book {
     private long ISBN;
     private String title;
@@ -14,7 +20,7 @@ public class Book {
                 String field,List<String>authors,int inventory){
         this.ISBN = ISBN;
         this.title = title;
-    	this.publisher = publisher;
+    	  this.publisher = publisher;
         this.publishDate = publishDate;
         this.field = field;
         this.authors = authors;
@@ -22,60 +28,70 @@ public class Book {
         this.borrowedAmount = 0; //初期値：0
     }
 
-    //getter
+  /**
+   * getterメソッド
+   */
     public long getISBN(){
-    	return this.ISBN;
+    	  return this.ISBN;
     }
 
     public String getTitle(){
-    	return this.title;
+    	  return this.title;
     }
 
     public String getPublisher(){
-    	return this.publisher;
+    	  return this.publisher;
     }
 
     public Date getPublishDate(){
-    	return this.publishDate;
+    	  return this.publishDate;
     }
 
     public String getField(){
-    	return this.field;
+    	  return this.field;
     }
 
     public List<String> getAuthors(){
-    	return this.authors;
+    	  return this.authors;
     }
 
     public int getInventory(){
-    	return this.inventory;
+    	  return this.inventory;
     }
 
     public int getBorrowedAmount(){
         return this.borrowedAmount;
     }
 
-	//setter
+	/**
+   * setterメソッド
+   */
     public void setInventory(int numOfInventory){
-    	this.inventory = numOfInventory;
+    	  this.inventory = numOfInventory;
     }
 
     public void setBorrowedAmount(int numOfBorrowed){
         this.borrowedAmount = numOfBorrowed;
     }
 
-  //ISBNのlong値を文字列に変換
+  /**
+   * ISBNのlong値を文字列に変換
+   */
     public String ISBNToString(long ISBN){
         String s = Long.toString(this.ISBN);
         return s;
     }
 
-  //ISBNのlong値を文字列に変換したものを取り出す
+  /**
+   * ISBNのlong値を文字列に変換したものを取り出す
+   */
     public String getStringISBN(){
         return ISBNToString(this.ISBN);
     }
 
-  //著者名のリストを文字列に変換
+  /**
+   * 著者名のリストを文字列に変換
+   */
     public String authorsListToString(List<String> list){
         StringBuilder sb = new StringBuilder();
         for (String s : list){
@@ -83,12 +99,16 @@ public class Book {
             sb.append(",");
             sb.setLength(sb.length()-1);
         }
-      //著者のリストを一つの文字列にする。
+      /**
+       * 著者のリストを一つの文字列にする。
+       */
         String s = sb.toString();
         return s;
     }
 
-  //著者のリストを文字列に変換したものを取り出す
+  /**
+   * 著者のリストを文字列に変換したものを取り出す
+   */
     public String getStringAuthors(){
         return authorsListToString(this.authors);
     }
