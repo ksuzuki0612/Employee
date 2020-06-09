@@ -67,7 +67,10 @@ public class SqlMethod{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
-            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+            finally{
+                    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+                }
+            
     }
     /**
      * 書籍を貸出承認メソッド
@@ -148,7 +151,10 @@ public class SqlMethod{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
-            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+            finally{
+                    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+                }
+           
     }
     public int dbCheckLogin(int empID,String password){
             logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -262,7 +268,10 @@ public class SqlMethod{
             }
 
         }catch(Exception e) { System.out.println(e);}
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+        finally{
+                logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+            }
+        
 
     }
 
@@ -313,7 +322,10 @@ public class SqlMethod{
             }
 
         }catch(Exception e) { System.out.println(e);}
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+        finally{
+            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+            }
+        
 
 
     }
@@ -366,7 +378,10 @@ public class SqlMethod{
             }
 
         }catch(Exception e) { System.out.println(e);}
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+        finally{
+                logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+            }
+        
 
     }
 
@@ -417,8 +432,11 @@ public class SqlMethod{
             System.out.println("書籍を削除しました。");
             st.close();
             con.close();
-            }catch(Exception e) { System.out.println(e);}  
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+            }catch(Exception e) { System.out.println(e);}
+            finally{
+                    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+                }  
+        
 
     }
     
@@ -444,7 +462,10 @@ public class SqlMethod{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+            finally{
+                    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+                }
+        
     }
     /**
      * 書籍の貸出数を更新するメソッド
@@ -467,7 +488,10 @@ public class SqlMethod{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+            finally{
+                    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+                }
+        
     }
     /**
      * パスワードを更新するメソッド
