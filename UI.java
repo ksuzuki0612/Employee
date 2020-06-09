@@ -120,7 +120,7 @@ public class UI{
                 System.out.println("検索結果を保存しますか？");
                 System.out.println("1.はい");
                 System.out.println("2.前の画面に戻る");
-                String s1 = new java.util.Scanner(str).nextLine();
+                String s1 = new java.util.Scanner(System.in).nextLine();
                 selected = Integer.parseInt(s1);
                 if(selected == 1){
                     saveBooksByTitleUI();
@@ -134,7 +134,7 @@ public class UI{
                 System.out.println("検索結果を保存しますか？");
                 System.out.println("1.はい");
                 System.out.println("2.前の画面に戻る");
-                String s2 = new java.util.Scanner(str).nextLine();
+                String s2 = new java.util.Scanner(System.in).nextLine();
                 selected = Integer.parseInt(s2);
                 if(selected == 1){
                     saveBooksByAuthorsUI();
@@ -148,7 +148,7 @@ public class UI{
                 System.out.println("検索結果を保存しますか？");
                 System.out.println("1.はい");
                 System.out.println("2.前の画面に戻る");
-                String s3 = new java.util.Scanner(str).nextLine();
+                String s3 = new java.util.Scanner(System.in).nextLine();
                 selected = Integer.parseInt(s3);
                 if(selected == 1){
                     saveBooksByFieldUI();
