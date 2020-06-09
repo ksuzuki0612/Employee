@@ -150,6 +150,8 @@ public class SqlMethod{
                     String query5 ="UPDATE bookinfo SET borrowed =borrowed+1 WHERE ISBN='" + isbn + "'";
                     Statement st5 = con.createStatement();
                     int count2 = st5.executeUpdate(query5);
+
+                    System.out.println("書籍の貸出は承認されました。")
                 }
                                                                  
             }
@@ -420,10 +422,17 @@ public class SqlMethod{
                             "WHERE"+
                             " employee_id = " + id + " && ISBN = " + isbn + ";";
 
+            String query2 ="UPDATE bookinfo SET borrowed = borrowed -1 WHERE ISBN = " + isbn + ";";
+
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, userName, pwd); 
             Statement st = con.createStatement();
-            int count = st.executeUpdate(query);      
+            int count = st.executeUpdate(query);
+            
+            Statement st2 = con.createStatement();
+            int count2 = st.executeUpdate(query2);
+
+            System.out.println("書籍の貸出は削除されました。");
             
             st.close();
             con.close();
@@ -452,7 +461,7 @@ public class SqlMethod{
             Statement st = con.createStatement();
             int count = st.executeUpdate(query);  
         
-            System.out.println("書籍を削除しました。");
+            System.out.println("書籍は削除されました。");
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
@@ -482,7 +491,7 @@ public class SqlMethod{
             Statement st = con.createStatement();
             int count = st.executeUpdate(query);  
         
-            System.out.println("在庫数を更新しました。");
+            System.out.println("在庫数は更新されました。");
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
@@ -510,7 +519,7 @@ public class SqlMethod{
             Statement st = con.createStatement();
             int count = st.executeUpdate(query);  
         
-            //System.out.println(count + " row(s) affected");
+            System.out.println("貸出数は更新されました。");
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
@@ -526,7 +535,8 @@ public class SqlMethod{
      */
     
      public void dbUpdatePassword(int empID,String password){
-    try{
+    
+        try{
        
         String query = "UPDATE passwordlist SET employee_id = '" + empID + "'"+
                         " WHERE"+
@@ -537,7 +547,7 @@ public class SqlMethod{
         Statement st = con.createStatement();
         int count = st.executeUpdate(query);  
     
-        System.out.println("パスワードを更新しました。");
+        System.out.println("パスワードは更新されました。");
         st.close();
         con.close();
         }catch(Exception e) { System.out.println(e);}
