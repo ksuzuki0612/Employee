@@ -7,6 +7,7 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
 public class UI{
 	Logger logger = Logger.getLogger(UI.class.getName());
     public void loginUI(){
@@ -365,6 +366,7 @@ public class UI{
                 System.out.println("再度入力してください");
             break; 
         }
+        return returnMainMenu;
         
         
     }

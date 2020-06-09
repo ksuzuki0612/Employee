@@ -1,4 +1,4 @@
-import java.text.BreakIterator;
+
 import java.util.logging.Logger;
 
 /**
@@ -72,12 +72,12 @@ public class MainMenu{
 
             loop: while (true) {
                 int selected = menuUI.adminMenuUI();
-
+               
                 switch (selected) {
-
                     case selectedAdmin1:
                         // 図書登録
-                        if(meunUI.returnMenuUi()==1){
+                        int rb=menuUI.returnMenuUi();
+                        if(rb==1){
                             break;
                         }else{
                             adminMenu.registerBook();
@@ -85,7 +85,8 @@ public class MainMenu{
                         }
                     case selectedAdmin2:
                         // 図書削除
-                        if(meunUI.returnMenuUi()==1){
+                        int db=menuUI.returnMenuUi();
+                        if(db==1){
                             break;
                         }else{
                             adminMenu.deleteBook();
@@ -93,7 +94,8 @@ public class MainMenu{
                         } 
                     case selectedAdmin3:
                         // 登録変更
-                        if(meunUI.returnMenuUi()==1){
+                        int ub=menuUI.returnMenuUi();
+                        if(ub==1){
                             break;
                         }else{
                             adminMenu.updataBook();
@@ -101,7 +103,8 @@ public class MainMenu{
                         } 
                     case selectedAdmin4:
                         // 貸出承認
-                        if(meunUI.returnMenuUi()==1){
+                        int abb=menuUI.returnMenuUi();
+                        if(abb==1){
                             break;
                         }else{
                             adminMenu.allowBorrowBook();
@@ -109,7 +112,8 @@ public class MainMenu{
                         } 
                     case selectedAdmin5:
                         // 返却申請
-                        if(meunUI.returnMenuUi()==1){
+                        int reb=menuUI.returnMenuUi();
+                        if(reb==1){
                             break;
                         }else{
                             adminMenu.returnBook();
