@@ -7,7 +7,7 @@ import java.util.logging.Logger;
  * @see Login
  */
 public class MainMenu{
-	static Logger logger = Logger.getLogger(PasswordList.class.getName());
+	static Logger logger = Logger.getLogger( MainMenu.class.getName());
     static UI menuUI = new UI();
     static AdminMenu adminMenu = new AdminMenu();
     static UserMenu userMenu = new UserMenu();
