@@ -7,80 +7,62 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 public class User{
-	Logger logger = Logger.getLogger(User.class.getName());
-  private int employeeID;
-  private String employeeName;
-  private int phoneNumber;
-  private String email;
-  private boolean administratorRight;
+	  Logger logger = Logger.getLogger(User.class.getName());
+    private int employeeID;
+    private String employeeName;
+    private int phoneNumber;
+    private String email;
+    private boolean administratorRight;
 
-  public User(
-		int employeeID,
-		String employeeName,
-		int phoneNumber,
-    String email,
-		boolean administratorRight){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-      this.employeeID = employeeID;
-      this.employeeName = employeeName;
-      this.phoneNumber = phoneNumber;
-      this.email = email;
-      this.administratorRight = administratorRight;
-      logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+    public User(
+		    int employeeID,
+		    String employeeName,
+		    int phoneNumber,
+        String email,
+		    boolean administratorRight){
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+        this.employeeID = employeeID;
+        this.employeeName = employeeName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.administratorRight = administratorRight;
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 
     public int getEmployeeID(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-      return this.employeeID;
+        return this.employeeID;
     }
 
     public String getEmployeeName(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-      return this.employeeName;
+        return this.employeeName;
     }
 
     public int getPhoneNumber(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-      return this.phoneNumber;
+        return this.phoneNumber;
     }
 
     public String getEmail(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-      return this.email;
+        return this.email;
     }
 
     public boolean getAdministratorRight(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-      return this.administratorRight;
+        return this.administratorRight;
     }
 
     public void setnewEmployeeName(String newEmployeeName){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	this.employeeName = newEmployeeName;
-    	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  this.employeeName = newEmployeeName;
     }
 
     public void setnewPhonenumber(int newPhoneNumber){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	this.phoneNumber = newPhoneNumber;
-    	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  this.phoneNumber = newPhoneNumber;
     }
 
     public void setNewEmail(String newEmail){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	this.email = newEmail;
-    	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  this.email = newEmail;
 		}
 
     public void setNewAdministratorRight(boolean newAdministaratorRight){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	this.administratorRight = newAdministaratorRight;
-    	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+      	this.administratorRight = newAdministaratorRight;
     }
 
 }
