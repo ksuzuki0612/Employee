@@ -18,7 +18,8 @@ import java.text.*;
  */
 
 public class SqlMethod{
-	Logger logger = Logger.getLogger(AdminMenu.class.getName());
+    
+    Logger logger = Logger.getLogger(AdminMenu.class.getName());
 	List searchRecordTitle = new ArrayList<>();
 	List searchRecordField = new ArrayList<>();
 	List searchRecordAuthor = new ArrayList<>();
@@ -37,7 +38,9 @@ public class SqlMethod{
     public  void sqlRegister(long ISBN, String title, String publisher, 
                                     String publishDate, String field, List<String> authors,
                                     int inventory, int borrowedAmount){
+        
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+        
         try{
             
             String query = "INSERT INTO bookinfo (ISBN," +
@@ -67,6 +70,7 @@ public class SqlMethod{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
+            
             finally{
                     logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                 }
@@ -77,9 +81,11 @@ public class SqlMethod{
      * 書籍が全部貸出されたら終わる。
      * 従業員は既に10冊を貸出しているなら貸出不可能
      * 
+    
      */
     public void borrowBook(long isbn){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+        
+        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	Scanner keyboard = new Scanner(System.in);
         try{
             
@@ -151,11 +157,13 @@ public class SqlMethod{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
+            
             finally{
                     logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                 }
            
     }
+    
     public int dbCheckLogin(int empID,String password){
             logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
             
@@ -186,12 +194,14 @@ public class SqlMethod{
           
             
             }catch(Exception e) { System.out.println(e);}
+            
             finally{
                     
                     logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                     return empID;
                 }
     }
+    
     public boolean dbCheckRight(int empID){
             logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
@@ -218,6 +228,7 @@ public class SqlMethod{
 
             
             }catch(Exception e) { System.out.println(e);}
+            
             finally{
                 logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                 return true;
@@ -228,7 +239,8 @@ public class SqlMethod{
      * 書籍を著者ごと検索するメソッド
      * 
      */
-    public void sqlSearchAuthor(){
+    
+     public void sqlSearchAuthor(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
         System.out.println("著者名を入力してください。");
@@ -268,6 +280,7 @@ public class SqlMethod{
             }
 
         }catch(Exception e) { System.out.println(e);}
+        
         finally{
                 logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
             }
@@ -282,7 +295,8 @@ public class SqlMethod{
      * 書籍を分野ごと検索メソッド
      * 
      */
-    public void sqlSearchField(){
+    
+     public void sqlSearchField(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
         System.out.println("分野を入力してください。");
@@ -322,6 +336,7 @@ public class SqlMethod{
             }
 
         }catch(Exception e) { System.out.println(e);}
+        
         finally{
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
             }
@@ -337,7 +352,8 @@ public class SqlMethod{
      * 書籍をタイトルごと検索メソッド
      * 
      */
-    public void sqlSearch(){
+    
+     public void sqlSearch(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	 
         Scanner keyboard = new Scanner(System.in);
@@ -378,6 +394,7 @@ public class SqlMethod{
             }
 
         }catch(Exception e) { System.out.println(e);}
+        
         finally{
                 logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
             }
@@ -393,7 +410,8 @@ public class SqlMethod{
      * 入力されたISBNと従業員IDと一致する行を貸出中のDBから削除する
      * 
      */
-    public void sqlReturnbook(long isbn,int id){
+    
+     public void sqlReturnbook(long isbn,int id){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	
         try{
@@ -410,8 +428,13 @@ public class SqlMethod{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName()); //finally
+            
+            finally{
+                    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+                }
+         
     }
+    
     public void sqlDeleteBook(){ 
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
@@ -433,6 +456,7 @@ public class SqlMethod{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
+            
             finally{
                     logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                 }  
@@ -462,6 +486,7 @@ public class SqlMethod{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
+            
             finally{
                     logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                 }
@@ -471,7 +496,8 @@ public class SqlMethod{
      * 書籍の貸出数を更新するメソッド
      * 
      */
-    public void dbAddBorrowedAmount(long ISBN,int addBorrowedAmount ){
+    
+     public void dbAddBorrowedAmount(long ISBN,int addBorrowedAmount ){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             
@@ -488,6 +514,7 @@ public class SqlMethod{
             st.close();
             con.close();
             }catch(Exception e) { System.out.println(e);}
+           
             finally{
                     logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                 }
@@ -497,7 +524,8 @@ public class SqlMethod{
      * パスワードを更新するメソッド
      * 
      */
-    public void dbUpdatePassword(int empID,String password){
+    
+     public void dbUpdatePassword(int empID,String password){
     try{
        
         String query = "UPDATE passwordlist SET employee_id = '" + empID + "'"+
