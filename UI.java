@@ -8,6 +8,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+/**
+ * UIクラス
+ * @author 鈴木戒生
+ * @see LibarayMain,adminMain,MainMenu,UserMenu
+ */
 public class UI{
 	Logger logger = Logger.getLogger(UI.class.getName());
     public void loginUI(){
@@ -26,6 +31,8 @@ public class UI{
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         return ans;
     }
+
+
 
     public int getEmpID(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -366,7 +373,6 @@ public class UI{
                 System.out.println("再度入力してください");
             break; 
         }
-        return returnMainMenu;
         
         
     }
