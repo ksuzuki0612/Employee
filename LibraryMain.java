@@ -39,12 +39,12 @@ public class LibraryMain {
                 System.out.println("1か2を選択してください");
                 login.begin();
             }
-
+            //二回目にloginCheck()を呼び出せてない
             final int checkEmpID = login.loginCheck();
 
             if (checkEmpID == 0) {
                 System.out.println("IDとパスワードが一致していません");
-                login.loginCheck();
+                login.begin();
             }
             else{
                 final boolean checkRight = login.checkRight(checkEmpID);
@@ -55,8 +55,6 @@ public class LibraryMain {
                     mainMenu.choiceMenuUser();
                 }
             }
-
-           
         } catch (final ParseException e) {
             e.printStackTrace();
         }
