@@ -12,6 +12,9 @@ import java.util.logging.SimpleFormatter;
  */
 public class LibraryMain {
     static Logger logger = Logger.getLogger(LibraryMain.class.getName());
+    static UI mainUI = new UI();
+    static Login login = new Login();
+    static MainMenu mainMenu = new MainMenu();
 
     public static void main(final String[] args) throws SecurityException, IOException {
         // Create a file handler object
@@ -22,15 +25,14 @@ public class LibraryMain {
             // ログレベルの設定
             logger.setLevel(Level.FINER);
 
-            final Login login = new Login();
-            final MainMenu mainMenu = new MainMenu();
-
             final int loginChoice = login.begin();
 
             if (loginChoice == 1) {
-                login.loginCheck();
+                // login.loginCheck();
             } else if (loginChoice == 2) {
-                login.resetPassword();
+                boolean passChangeResult = login.resetPassword();
+                login.resultChangePassword(passChangeResult);
+
             } else {
                 System.out.println("1か2を選択してください");
                 login.begin();

@@ -5,6 +5,7 @@ import java.util.*;
  * アドミンメニュークラス
  * @author　鈴木戒生
  * @see MainMenu
+ * @version 2.0
  */
 
 public class AdminMenu{
@@ -105,6 +106,8 @@ public class AdminMenu{
 
     /**
      *返却処理するメソッド
+     *返却された書籍のISBN、従業員IDの入力を促しsqlmethodクラスのreturnBookメソッド
+     　に与える。
      */
     public void returnBook(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());

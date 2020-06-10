@@ -26,7 +26,7 @@ public class MainMenu{
                 adminMainMenu();
             } else {
                 System.out.println("1か2を入力してください");
-                choiceMenuAdmin();
+                menuUI.loginUI();
             }
         } finally {
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -46,10 +46,10 @@ public class MainMenu{
                 userMainMenu();
             } else if (choice == 2) {
                 System.out.println("管理者権限がありません");
-                choiceMenuUser();
+                return;
             } else {
                 System.out.println("1か2を入力してください");
-                choiceMenuUser();
+                menuUI.loginUI();
             }
         } finally {
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());

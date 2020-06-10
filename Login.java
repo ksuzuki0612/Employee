@@ -23,7 +23,7 @@ public class Login{
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try {
             uiLogin.loginUI();
-            int loginChoice = new java.util.Scanner(System.in).nextInt();
+            final int loginChoice = new java.util.Scanner(System.in).nextInt();
             // ログイン=1,パスワードの再設定=2
             return loginChoice;
         }
@@ -38,9 +38,9 @@ public class Login{
     public int loginCheck(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
-            int empID = uiLogin.getEmpID();
-            String password = uiLogin.getPassword();
-            int checkEmpID = sqlmethod.dbCheckLogin(empID,password);
+            final int empID = uiLogin.getEmpID();
+            final String password = uiLogin.getPassword();
+            final int checkEmpID = sqlmethod.dbCheckLogin(empID,password);
 
             return checkEmpID;
         }
@@ -54,11 +54,11 @@ public class Login{
      * @param empID
      * @return boolean adminRight
      */
-    public boolean checkRight(int empID){
+    public boolean checkRight(final int empID){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
-            int checkID = empID;
-            boolean adminRight = sqlmethod.dbCheckRight(checkID);
+            final int checkID = empID;
+            final boolean adminRight = sqlmethod.dbCheckRight(checkID);
             return adminRight;
         }
         finally{
@@ -67,46 +67,51 @@ public class Login{
     }
 
     /**
-     * パスワードをリセットするメソッド
-     * パスワードの再設定が終わるとbegin()に戻る
+     * パスワードをリセットするメソッド パスワードの再設定が終わるとbegin()に戻る
+     * 
+     * @throws ParseException
      */
-    public void resetPassword(){
-        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        try{
-            System.out.println("パスワード再設定画面");
-            int empID = uiLogin.getEmpID();
-            String password = uiLogin.getPassword();
-            String checkPassword = uiLogin.getCheckPassword();
+    public boolean resetPassword(){
+        System.out.println("パスワード再設定画面");
+        final int ans = uiLogin.resetPassUI();
 
-            int ans = uiLogin.resetPassUI();
-            //ans = 1 パスワードを再設定する
-            if(ans == 1){
-                if(password.equals(checkPassword)){
-                    sqlmethod.dbUpdatePassword(empID, password);
-                    System.out.println("パスワードが更新されました。");
-                    begin();
-                }
-                else{
-                    System.out.println("入力されたパスワードが一致していません。");
-                    begin();
-                    }
+        if(ans == 1){
+            final int empID = uiLogin.getEmpID();
+            final String password = uiLogin.getPassword();
+            final String checkPassword = uiLogin.getCheckPassword();
+            final boolean checkResult = checkResetPass(empID, password, checkPassword);
+            return checkResult;
+        }
+        else{
+            boolean checkResult = false;
+            return checkResult;
+        } 
+    }
+
+    public boolean checkResetPass(final int ID,final String pass,final String checkPass){
+        final int empID = ID;
+        final String password = pass;
+        final String checkPassword = checkPass;
+
+        if(password.equals(checkPassword)){
+            sqlmethod.dbUpdatePassword(empID, password);
+            return true;
+        }
+        else{
+            return false;
             }
-            //ans = 2:パスワードを再設定しない
-            else if(ans == 2){
+        }
+
+        public void resultChangePassword(boolean checkResult) throws ParseException {
+            boolean passChangeResult = checkResult;
+
+            if(passChangeResult == true ){
+                System.out.println("パスワードが更新されました"); //UI化
                 begin();
             }
             else{
-                System.out.println("1か2を入力してください");
-                resetPassword();
+                System.out.pritnln("パスワードは更新されていません");
+                begin();
             }
         }
-        catch(ParseException e){
-    		e.printStackTrace();
-	 	}
-        finally{
-            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-        }
     }
-
-
-}
