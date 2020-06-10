@@ -77,7 +77,7 @@ public class Login{
 
         if(ans == 1){
             final int empID = uiLogin.getEmpID();
-            final String password = uiLogin.getPassword();
+            final String password = uiLogin.getNewPassword();
             final String checkPassword = uiLogin.getCheckPassword();
             final boolean checkResult = checkResetPass(empID, password, checkPassword);
             return checkResult;
@@ -110,7 +110,7 @@ public class Login{
                 begin();
             }
             else{
-                System.out.pritnln("パスワードは更新されていません");
+                System.out.println("パスワードは更新されていません");
                 begin();
             }
         }

@@ -12,7 +12,7 @@ import java.util.logging.SimpleFormatter;
  * UIクラス
  * @author 鈴木戒生
  * @see LibarayMain,adminMain,MainMenu,UserMenu
- * @version 2.0
+ * @version 2.1
  */
 public class UI{
 	  Logger logger = Logger.getLogger(UI.class.getName());
@@ -60,6 +60,17 @@ public class UI{
         String password = new java.util.Scanner(System.in).nextLine();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         return password;
+    }
+/**
+*新しいパスワードの入力を促すメソッド。
+*@return password
+*/ 
+    public String getNewPassword(){
+        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+        System.out.print("新しいパスワード:");
+        String newPassword = new java.util.Scanner(System.in).nextLine();
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+        return newPassword;
     }
 /**
 *確認用パスワードの入力を促すメソッド。
