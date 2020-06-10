@@ -16,6 +16,7 @@ import java.io.*;
 public class UserMenu{
     Logger logger = Logger.getLogger(UserMenu.class.getName());
     SqlMethod sql =new SqlMethod();
+    List<Book> titleList = new ArrayList<>();
 
   //カンマ
     private final String COMMA = ",";
@@ -30,7 +31,17 @@ public class UserMenu{
     public void searchBooksByTitle() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
-            sql.searchTitle();
+            
+            titleList = sql.searchTitle();
+            for(Book t : titleList){
+                System.out.println(String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s",
+                                            "ISBN","Title","Publisher","Publishdate","Field",
+                                            "Author","Inventory","Lent out"));
+                String bookData =  String.format("%-15d %-15s %-15s %-15s %-15s %-15s %-15d %-15d",
+                                        t.getStringISBN() ,t.getTitle() , t.getPublisher() , new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate()) ,
+                                        t.getStringAuthors() , t.getField() , t.getInventory(), t.getBorrowedAmount() );
+                System.out.println(bookData);
+            }
         }catch(Exception e){
             logger.severe("SEVERE");
         }
@@ -75,7 +86,7 @@ public class UserMenu{
             File csv = new File(saveFile);
             BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
             List<Book> titleList = new ArrayList<>();
-            titleList = sql.getSearchRecordTitle();
+            titleList = sql.searchTitle();
             for(Book t : titleList){
                 bw.write(
                     String.format(
