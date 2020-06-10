@@ -19,19 +19,35 @@ public class MainMenu{
     public void choiceMenuAdmin() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try {
-            final int choice = menuUI.choiceMenuUI();
-            // 1,利用者メニュー 2,管理者メニュー
-            if (choice == 1) {
-                userMainMenu();
-            } else if (choice == 2) {
-                adminMainMenu();
-            } else {
-                System.out.println("1か2を入力してください");
-                menuUI.loginUI();
-            }
-        } finally {
-            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-        }
+            loop: while (true) {
+                int selected=0;
+                int rb =0;
+               do{
+                   rb =0;
+                   selected = menuUI.choiceMenuUI();
+                   rb = menuUI.returnMenuUi();
+               }
+               while(rb == 1) ;
+               // 1,利用者メニュー 2,管理者メニュー
+               switch (selected) {
+                   case 1:
+                           userMainMenu();
+                           break;
+                   case 2:
+                           adminMainMenu();
+                           break;
+                   case 3:
+                       System.out.println("終了");
+                       break loop;
+                   default:
+                       System.out.println("再度入力してください");
+                       break;
+               }
+           }
+       } finally {
+           logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+       }
+ 
     }
 
     /**
@@ -42,6 +58,7 @@ public class MainMenu{
         try {
             final int choice = menuUI.choiceMenuUI();
             // 1,利用者メニュー 2,管理者メニュー
+            
             if (choice == 1) {
                 userMainMenu();
             } else if (choice == 2) {
@@ -70,54 +87,35 @@ public class MainMenu{
              */
 
             loop: while (true) {
-                final int selected = menuUI.adminMenuUI();
-
+                 int selected=0;
+                 int rb =0;
+                do{
+                    rb =0;
+                    selected = menuUI.adminMenuUI();
+                    rb = menuUI.returnMenuUi();
+                }
+                while(rb == 1) ;
                 switch (selected) {
                     case AdminMenuNum.RegisterBook:
                         // 図書登録
-                        final int rb = menuUI.returnMenuUi();
-                        if (rb == 1) {
-                            break;
-                        } else {
                             adminMenu.registerBook();
                             break;
-                        }
                     case AdminMenuNum.DeleteBook:
                         // 図書削除
-                        final int db = menuUI.returnMenuUi();
-                        if (db == 1) {
-                            break;
-                        } else {
                             adminMenu.deleteBook();
                             break;
-                        }
                     case AdminMenuNum.ChangeBookInfo:
                         // 登録変更
-                        final int ub = menuUI.returnMenuUi();
-                        if (ub == 1) {
-                            break;
-                        } else {
                             adminMenu.updataBook();
                             break;
-                        }
                     case AdminMenuNum.LoanAproval:
                         // 貸出承認
-                        final int abb = menuUI.returnMenuUi();
-                        if (abb == 1) {
-                            break;
-                        } else {
                             adminMenu.allowBorrowBook();
                             break;
-                        }
                     case AdminMenuNum.ReturnApplication:
                         // 返却申請
-                        final int reb = menuUI.returnMenuUi();
-                        if (reb == 1) {
-                            break;
-                        } else {
                             adminMenu.returnBook();
                             break;
-                        }
                     case AdminMenuNum.EndProgram:
                         System.out.println("終了");
                         break loop;
