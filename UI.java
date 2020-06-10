@@ -12,7 +12,7 @@ import java.util.logging.SimpleFormatter;
  * UIクラス
  * @author 鈴木戒生
  * @see LibarayMain,adminMain,MainMenu,UserMenu
- * @version 2.1
+ * @version 2.0
  */
 public class UI{
 	  Logger logger = Logger.getLogger(UI.class.getName());
@@ -21,8 +21,8 @@ public class UI{
 * ログイン画面を表示するメソッド。
 */      
     public void loginUI(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-    	System.out.println("ログイン画面");
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  System.out.println("ログイン画面");
         System.out.println("ログインしますか？それともパスワードの再設定をしますか？");
         System.out.println("1.ログイン  2.再設定");
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -32,7 +32,7 @@ public class UI{
 *@return ans
 */  
     public int resetPassUI(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.println("パスワードを再設定しますか？");
         System.out.println("1,はい　2,いいえ");
         int ans = new java.util.Scanner(System.in).nextInt();
@@ -44,7 +44,7 @@ public class UI{
 *@return empID
 */ 
     public int getEmpID(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.print("従業員ID:");
         int empID = new java.util.Scanner(System.in).nextInt();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -55,29 +55,18 @@ public class UI{
 *@return password
 */ 
     public String getPassword(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.print("パスワード:");
         String password = new java.util.Scanner(System.in).nextLine();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         return password;
     }
 /**
-*新しいパスワードの入力を促すメソッド。
-*@return password
-*/ 
-    public String getNewPassword(){
-        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        System.out.print("新しいパスワード:");
-        String newPassword = new java.util.Scanner(System.in).nextLine();
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-        return newPassword;
-    }
-/**
 *確認用パスワードの入力を促すメソッド。
 *@return ans
 */ 
     public String getCheckPassword(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.print("確認用パスワード:");
         String checkPassword = new java.util.Scanner(System.in).nextLine();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -89,7 +78,7 @@ public class UI{
 *@return choice
 */
     public int choiceMenuUI(){
-     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+     	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.println("機能を選択してください");
         System.out.println("1,図書館利用者機能");
         System.out.println("2,図書館管理者機能");
@@ -330,17 +319,11 @@ public class UI{
 *@return  authorAdd
 */
     public int authorAddUi(){
-        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        int authorAdd=0;    
-        do{
-            authorAdd = 0;
-            System.out.println("著者を追加する場合は１、行わない場合は２を入力してください");
-             authorAdd = new java.util.Scanner(System.in).nextInt();
-        }
-        while(!(authorAdd ==1 ||authorAdd ==2));
-            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-            return authorAdd;
-        
+    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	System.out.println("著者を追加する場合は１を入力してください");
+        int authorAdd = new java.util.Scanner(System.in).nextInt();
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+	    return authorAdd;
     }
 /**
 *在庫数の入力を促すメソッド。
@@ -419,11 +402,11 @@ public class UI{
 *@return addInventory
 */
     public int addInventoryUi(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-     	System.out.println("書籍数を入力してください");
-    	int addInventory = new java.util.Scanner(System.in).nextInt();
-    	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return addInventory;
+    	  logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+     	  System.out.println("書籍数を入力してください");
+    	  int addInventory = new java.util.Scanner(System.in).nextInt();
+    	  logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+	      return addInventory;
     }
 /**
 *書籍の貸出数の入力を促すメソッド。
