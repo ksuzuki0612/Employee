@@ -54,10 +54,13 @@ public class Login {
 
     /**
      * ユーザーが管理者権限を持っているかを確認するメソッド
+     * 
      * @param empID
      * @return boolean adminRight
+     * @throws SQLException
+     * @throws ClassNotFoundException
      */
-    public boolean checkRight(final int empID){
+    public boolean checkRight(final int empID) throws ClassNotFoundException, SQLException {
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             final int checkID = empID;
