@@ -23,11 +23,12 @@ public class SqlMethod{
 	List searchRecordTitle = new ArrayList<>();
 	List searchRecordField = new ArrayList<>();
 	List searchRecordAuthor = new ArrayList<>();
-    final String url = "jdbc:mysql://localhost:3306/librarysystem" +
+        final String url = "jdbc:mysql://localhost:3306/librarysystem" +
                         "?useUnicode=true&useJDBCCompliantTimezoneShift" + 
                         "=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     final String userName = "MateEngler";
     final String pwd = "keyblade24";
+
     
     /**
      * 書籍を登録するメソッド。
