@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -7,6 +8,7 @@ import java.util.logging.SimpleFormatter;
 
 /**
  * メインクラス
+ * 
  * @author 平松和貴
  * @see Login MainMenu
  */
@@ -16,7 +18,7 @@ public class LibraryMain {
     static Login login = new Login();
     static MainMenu mainMenu = new MainMenu();
 
-    public static void main(final String[] args) throws SecurityException, IOException {
+    public static void main(final String[] args) throws SecurityException, IOException, SQLException {
         // Create a file handler object
         try {
             final FileHandler handler = new FileHandler("log.txt");
@@ -44,14 +46,17 @@ public class LibraryMain {
                 System.out.println("IDとパスワードが一致していません");
                 login.loginCheck();
             }
-
-            final boolean checkRight = login.checkRight(checkEmpID);
-
-            if (checkRight == true) {
-                mainMenu.choiceMenuAdmin();
-            } else {
-                mainMenu.choiceMenuUser();
+            else{
+                final boolean checkRight = login.checkRight(checkEmpID);
+                
+                if (checkRight == true) {
+                    mainMenu.choiceMenuAdmin();
+                } else {
+                    mainMenu.choiceMenuUser();
+                }
             }
+
+           
         } catch (final ParseException e) {
             e.printStackTrace();
         }

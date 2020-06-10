@@ -1,22 +1,24 @@
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.*;
 import java.util.logging.Logger;
 
 /**
  * ログインクラス
+ * 
  * @author 平松和貴
  * @see LibarayMain
  */
 
-public class Login{
-	Logger logger = Logger.getLogger(AdminMenu.class.getName());
+public class Login {
+    Logger logger = Logger.getLogger(AdminMenu.class.getName());
     UI uiLogin = new UI();
     SqlMethod sqlmethod = new SqlMethod();
 
     /**
-     * このプログラムの最初のメソッド
-     * ログインかパスワードの再設定を選択する
-     * @return　loginChoice
+     * このプログラムの最初のメソッド ログインかパスワードの再設定を選択する
+     * 
+     * @return loginChoice
      * @throws ParseException
      */
     public int begin() throws ParseException {
@@ -26,16 +28,18 @@ public class Login{
             final int loginChoice = new java.util.Scanner(System.in).nextInt();
             // ログイン=1,パスワードの再設定=2
             return loginChoice;
-        }
-        finally{
+        } finally {
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }
     }
+
     /**
      * ログインのための従業員IDとパスワードを確認するメソッド
+     * 
      * @return checkEmpId
+     * @throws SQLException
      */
-    public int loginCheck(){
+    public int loginCheck() throws SQLException {
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             final int empID = uiLogin.getEmpID();
