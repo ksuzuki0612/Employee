@@ -169,23 +169,22 @@ public class SqlMethod{
            
     }
     /**
-     * @author Kazutaka Hiramatsu
-     * ログインする時従業員IDとパスワードを確認するメソッド
+     * @author Kazutaka Hiramatsu ログインする時従業員IDとパスワードを確認するメソッド
+     * @throws SQLException
      * 
      */
-    
-     public int dbCheckLogin(int empID,String password){
+
+    public int dbCheckLogin(int empID, String password) throws SQLException {
             logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
             
         try{
-            
             Connection con = DriverManager.getConnection(url, userName, pwd); 
              
             int ID = empID;
             String pass = password;
     
             String query = "SELECT COUNT('employee_id') FROM passwords WHERE"+
-                            " employee_id='" + empID + "'&& password = '"+ pass + "'  ";
+                            " employee_id='" + ID + "'&& password = '"+ pass + "'  ";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
             rs.next();
@@ -195,29 +194,25 @@ public class SqlMethod{
             con.close();
     
             if(empcount == 0){
-                System.out.println("初号機");
                 return 0;
             }
             else{
-                return empID;
+                return ID;
             }         
-          
-            }catch(Exception e) { System.out.println(e);}
-            
-            finally{
-                    
-                    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-                    return empID;  //?????
-                }
+        }
+        finally{
+            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+        }
     }
     
-    /** 
-     * @author Kazutaka Hiramatsu
-     * ログインの後、利用者は管理者権限があるか否確認するメソッド
+    /**
+     * @author Kazutaka Hiramatsu ログインの後、利用者は管理者権限があるか否確認するメソッド
+     * @throws ClassNotFoundException
+     * @throws SQLException
      * 
-    */
-    
-    public boolean dbCheckRight(int empID){
+     */
+
+    public boolean dbCheckRight(int empID) throws ClassNotFoundException, SQLException {
             logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             
@@ -227,7 +222,7 @@ public class SqlMethod{
             int checkID = empID;
 
             String query = "SELECT administrator_right FROM employee WHERE"+
-                            " employee_id='" + empID + "'";
+                            " employee_id='" + checkID + "'";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
             String admin = rs.getString("administrator_right");
@@ -240,14 +235,10 @@ public class SqlMethod{
             else{
                 return false;
             }
- 
-            }catch(Exception e) { System.out.println(e);}
-            
-            finally{
-                logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-                return true;
-            }
-           
+        }
+        finally{
+            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+        }
     }
     /**
      * 書籍を著者ごと検索するメソッド
