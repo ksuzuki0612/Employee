@@ -183,42 +183,36 @@ public class SqlMethod{
      *
      */
 
-     public int dbCheckLogin(int empID,String password){
-            logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    public int dbCheckLogin(int empID, String password) throws SQLException {
+        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+        
+    try{
+        Connection con = DriverManager.getConnection(url, userName, pwd); 
+         
+        int ID = empID;
+        String pass = password;
 
-        try{
+        String query = "SELECT COUNT('employee_id') FROM passwords WHERE"+
+                        " employee_id='" + ID + "'&& password = '"+ pass + "'  ";
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        rs.next();
+        int empcount = rs.getInt(1);
+        System.out.println(empcount);
+        st.close();
+        con.close();
 
-            Connection con = DriverManager.getConnection(url, userName, pwd);
-
-            int ID = empID;
-            String pass = password;
-
-            String query = "SELECT COUNT('employee_id') FROM passwords WHERE"+
-                            " employee_id='" + empID + "'&& password = '"+ pass + "'  ";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            rs.next();
-            int empcount = rs.getInt(1);
-            System.out.println(empcount);
-            st.close();
-            con.close();
-
-            if(empcount == 0){
-                System.out.println("初号機");
-                return 0;
-            }
-            else{
-                return empID;
-            }
-
-            }catch(Exception e) { System.out.println(e);}
-
-            finally{
-
-                    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-                    return empID;  //?????
-                }
+        if(empcount == 0){
+            return 0;
+        }
+        else{
+            return ID;
+        }         
     }
+    finally{
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+    }
+}
 
     /**
      * @author Kazutaka Hiramatsu
@@ -226,38 +220,35 @@ public class SqlMethod{
      *
     */
 
-    public boolean dbCheckRight(int empID){
-            logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        try{
+    public boolean dbCheckRight(int empID) throws ClassNotFoundException, SQLException {
+        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    try{
+        
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(url, userName, pwd); 
 
-            
-            Connection con = DriverManager.getConnection(url, userName, pwd);
+        int checkID = empID;
 
-            int checkID = empID;
-
-            String query = "SELECT administrator_right FROM employee WHERE"+
-                            " employee_id='" + empID + "'";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            String admin = rs.getString("administrator_right");
-            String check = "Y";
-            st.close();
-            con.close();
-            if(admin.equals(check)){
-                return true;
-            }
-            else{
-                return false;
-            }
-
-            }catch(Exception e) { System.out.println(e);}
-
-            finally{
-                logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-                return true;
-            }
-
+        String query = "SELECT administrator_right FROM employee WHERE"+
+                        " employee_id='" + checkID + "'";
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        rs.next();
+        String admin = rs.getString("administrator_right");
+        String check = "Y";
+        st.close();
+        con.close();
+        if(admin.equals(check)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
+    finally{
+        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+    }
+}
     /**
      * 書籍を著者ごと検索するメソッド
      *
@@ -285,7 +276,17 @@ public class SqlMethod{
             Connection con = DriverManager.getConnection(url, userName, pwd);
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
-            String bookData = "";
+
+            Statement st2 = con.createStatement();
+            ResultSet rs2 = st2.executeQuery(query2);
+            rs2.next();
+            int authorCount = rs2.getInt(1);
+            
+            if(authorCount == 0){
+                System.out.println("探している著者の本がありません。");
+            }else{
+
+                String bookData = "";
             
             while(rs.next()){
                 Book book = new Book(
@@ -297,7 +298,10 @@ public class SqlMethod{
                     this.splitList(rs.getString(6)),
                     rs.getInt(7));
                 books.add(book);
+               }
             }
+            
+            
 
         }catch(Exception e) { 
             System.out.println(e);
@@ -327,12 +331,26 @@ public class SqlMethod{
             String query = "SELECT * FROM bookinfo "+
                             "WHERE"+
                             " field_ = '" + searchField + "'";
+            String query2 = "SELECT COUNT('category') FROM bookinfo"+
+                            " WHERE"+
+                            " category='" + searchField + "'  ";
+            
 
             
             Connection con = DriverManager.getConnection(url, userName, pwd);
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
-            String bookData = "";
+            
+            Statement st2 = con.createStatement();
+            ResultSet rs2 = st2.executeQuery(query2);
+            rs2.next();
+            int categoryCount = rs2.getInt(1);
+
+            if(categoryCount == 0){
+                System.out.println("探している分野の本がありません。");
+            }else{
+
+                String bookData = "";
 
             while(rs.next()){
                 Book book = new Book(
@@ -344,7 +362,10 @@ public class SqlMethod{
                     this.splitList(rs.getString(6)),
                     rs.getInt(7));
                 books.add(book);
+               }
             }
+            
+            
 
         }catch(Exception e) { 
             System.out.println(e);
@@ -373,12 +394,25 @@ public class SqlMethod{
             String query = "SELECT * FROM bookinfo"+
                             " WHERE"+
                             " title = '" + searchtitle + "'";
+            String query2 = "SELECT COUNT('title') FROM bookinfo"+
+                            " WHERE"+
+                            " title='" + searchtitle + "'  ";
 
             
             Connection con = DriverManager.getConnection(url, userName, pwd);
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
-            //String bookData = "";
+            
+            Statement st2 = con.createStatement();
+            ResultSet rs2 = st2.executeQuery(query2);
+            rs2.next();
+            int titleCount = rs2.getInt(1);
+
+            if(titleCount == 0){
+                System.out.print("探している本がありません。");
+            }else{
+
+                //String bookData = "";
 
             while(rs.next()){
                 Book book = new Book(
@@ -390,7 +424,10 @@ public class SqlMethod{
                     this.splitList(rs.getString(6)),
                     rs.getInt(7));
                 books.add(book);
+              }
             }
+            
+            
 
         } catch(Exception e) {
             System.out.println(e);
