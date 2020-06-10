@@ -142,9 +142,14 @@ public class MainMenu{
                 final int selected = menuUI.userMenuUI();
 		        switch(selected){
                     case UserMenuNum.SearchBook:
-           	            menuUI.userMenu();
+                        final int sb = menuUI.returnMenuUi();
+                        if (sb == 1) {
                         break;
-        
+                        } 
+                        else {
+                            menuUI.userMenu();
+                            break;
+                    }
                     case UserMenuNum.CancelReservation:
                         System.out.println("2，予約取消");
                         break;
