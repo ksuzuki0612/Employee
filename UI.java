@@ -12,7 +12,7 @@ import java.util.logging.SimpleFormatter;
  * UIクラス
  * @author 鈴木戒生
  * @see LibarayMain,adminMain,MainMenu,UserMenu
- * @version 2.1
+ * @version 2.2
  */
 public class UI{
 	  Logger logger = Logger.getLogger(UI.class.getName());
@@ -449,7 +449,7 @@ public class UI{
             if(count>1){
                 System.out.println("再度入力してください");
             }
-            System.out.println("編集メニューに戻る場合は１、編集・更新を始める場合は２を入力してください");
+            System.out.println("ひとつ前のメニューに戻る場合は１、作業を始める場合は２を入力してください");
             returnMainMenu = new java.util.Scanner(System.in).nextInt();
         }
         while(!(returnMainMenu == 1||returnMainMenu == 2));
