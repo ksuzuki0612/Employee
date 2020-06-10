@@ -14,6 +14,7 @@ public class AdminMenu{
 	UI ui =new UI();
      /**
      * 著者の入力を促し、その情報を同クラスのregisterBookメソッドに返す。
+     * @return authorsList
      */
     public List<String> registerauthors(int i){
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -24,7 +25,8 @@ public class AdminMenu{
             if(authorsList.contains(str4)){
                 System.out.println("既にその著者名は登録されています。");
                 i += 1;
-            }else{
+            }
+            else{
                 authorsList.add(str4);
                 int authorAdd = ui.authorAddUi();
                 i += authorAdd;
@@ -47,7 +49,8 @@ public class AdminMenu{
             int i = 0;
             authorList = this.registerauthors(i);
             int borrowedAmount = 0;
-            sql.registerBook(ui.isbnUi(),ui.titleUi(),ui.publisherUi(), publishDate,ui.fieldUi(),authorList,ui.inventoryUi(),borrowedAmount);
+            sql.registerBook(ui.isbnUi(),ui.titleUi(),ui.publisherUi(), 
+                publishDate,ui.fieldUi(),authorList,ui.inventoryUi(),borrowedAmount);
         }
         catch(Exception e){
     		e.printStackTrace();

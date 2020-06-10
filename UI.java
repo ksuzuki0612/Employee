@@ -11,7 +11,7 @@ import java.util.logging.SimpleFormatter;
 /**
  * UIクラス
  * @author 鈴木戒生
- * @see LibarayMain,adminMain,MainMenu,UserMenu
+ * @see LibarayMain,AdminMain,MainMenu,UserMenu,
  * @version 2.2
  */
 public class UI{

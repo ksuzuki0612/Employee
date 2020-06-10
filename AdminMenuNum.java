@@ -1,3 +1,8 @@
+/**
+ * AdminMenuNumクラス
+ * @author 平松和貴
+ * @see MainMenu
+ */
 public class AdminMenuNum{
     final static int RegisterBook = 1;
     final static int DeleteBook = 2;

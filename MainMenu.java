@@ -21,13 +21,13 @@ public class MainMenu{
         try {
             loop: while (true) {
                 int selected=0;
-                int rb =0;
+                int rmu =0;
                do{
-                   rb =0;
+                   rmu =0;
                    selected = menuUI.choiceMenuUI();
-                   rb = menuUI.returnMenuUi();
+                   rmu = menuUI.returnMenuUi();
                }
-               while(rb == 1) ;
+               while(rmu == 1) ;
                // 1,利用者メニュー 2,管理者メニュー
                switch (selected) {
                    case 1:
@@ -87,8 +87,8 @@ public class MainMenu{
              */
 
             loop: while (true) {
-                 int selected=0;
-                 int rb =0;
+                int selected=0;
+                int rb =0;
                 do{
                     rb =0;
                     selected = menuUI.adminMenuUI();
@@ -98,24 +98,24 @@ public class MainMenu{
                 switch (selected) {
                     case AdminMenuNum.RegisterBook:
                         // 図書登録
-                            adminMenu.registerBook();
-                            break;
+                        adminMenu.registerBook();
+                        break;
                     case AdminMenuNum.DeleteBook:
                         // 図書削除
-                            adminMenu.deleteBook();
-                            break;
+                        adminMenu.deleteBook();
+                        break;
                     case AdminMenuNum.ChangeBookInfo:
                         // 登録変更
-                            adminMenu.updataBook();
-                            break;
+                        adminMenu.updataBook();
+                        break;
                     case AdminMenuNum.LoanAproval:
                         // 貸出承認
-                            adminMenu.allowBorrowBook();
-                            break;
+                        adminMenu.allowBorrowBook();
+                        break;
                     case AdminMenuNum.ReturnApplication:
                         // 返却申請
-                            adminMenu.returnBook();
-                            break;
+                        adminMenu.returnBook();
+                        break;
                     case AdminMenuNum.EndProgram:
                         System.out.println("終了");
                         break loop;
@@ -124,7 +124,8 @@ public class MainMenu{
                         break;
                 }
             }
-        } finally {
+        } 
+        finally {
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }
     }
@@ -134,7 +135,6 @@ public class MainMenu{
      */
     public static void userMainMenu() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-
         try {
             loop: while (true) {
                 final int selected = menuUI.userMenuUI();
