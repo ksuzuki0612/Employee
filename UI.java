@@ -19,7 +19,7 @@ public class UI{
 
 /**
 * ログイン画面を表示するメソッド。
-*/      
+*/
     public void loginUI(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	System.out.println("ログイン画面");
@@ -30,7 +30,7 @@ public class UI{
 /**
 *パスワード再設定行為の是非メソッド。
 *@return ans
-*/  
+*/
     public int resetPassUI(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.println("パスワードを再設定しますか？");
@@ -42,7 +42,7 @@ public class UI{
 /**
 *従業員IDの入力を促すメソッド。
 *@return empID
-*/ 
+*/
     public int getEmpID(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.print("従業員ID:");
@@ -53,7 +53,7 @@ public class UI{
 /**
 *パスワードの入力を促すメソッド。
 *@return password
-*/ 
+*/
     public String getPassword(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.print("パスワード:");
@@ -64,7 +64,7 @@ public class UI{
 /**
 *新しいパスワードの入力を促すメソッド。
 *@return password
-*/ 
+*/
     public String getNewPassword(){
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.print("新しいパスワード:");
@@ -75,7 +75,7 @@ public class UI{
 /**
 *確認用パスワードの入力を促すメソッド。
 *@return ans
-*/ 
+*/
     public String getCheckPassword(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.print("確認用パスワード:");
@@ -136,7 +136,7 @@ public class UI{
     private static UserMenu userMenu = new UserMenu();
 /**
 *図書検索機能の選択を促すメソッド。
-*/    
+*/
     public  void userMenu(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         int selected=0;
@@ -144,6 +144,7 @@ public class UI{
         System.out.println("1.タイトル");
         System.out.println("2.著者");
         System.out.println("3.分野");
+				System.out.println("4.前の画面に戻る");
         String str = new java.util.Scanner(System.in).nextLine();
         selected = Integer.parseInt(str);
         switch(selected){
@@ -189,6 +190,9 @@ public class UI{
                 }
                 logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                 break;
+						case 4:
+						    userMenuUI();
+								break;
         }
 
     }
@@ -331,7 +335,7 @@ public class UI{
 */
     public int authorAddUi(){
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        int authorAdd=0;    
+        int authorAdd=0;
         do{
             authorAdd = 0;
             System.out.println("著者を追加する場合は１、行わない場合は２を入力してください");
@@ -340,7 +344,7 @@ public class UI{
         while(!(authorAdd ==1 ||authorAdd ==2));
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
             return authorAdd;
-        
+
     }
 /**
 *在庫数の入力を促すメソッド。
