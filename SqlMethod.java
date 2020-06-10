@@ -173,7 +173,6 @@ public class SqlMethod{
      * @throws SQLException
      * 
      */
-
     public int dbCheckLogin(int empID, String password) throws SQLException {
             logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
             
