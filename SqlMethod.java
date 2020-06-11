@@ -67,7 +67,8 @@ public class SqlMethod{
             " '" + field + "',"+
             " '" + authors + "',"+
             " '" + inventory + "',"+
-            " '" + borrowedAmount + "');";
+            " '" + borrowedAmount + "') ON DUPLICATE KEY"+
+            " inventory = inventory +1;";
 
             
             Connection con = DriverManager.getConnection(url, userName, pwd);
