@@ -28,24 +28,16 @@ public class LibraryMain {
             // ログレベルの設定
             logger.setLevel(Level.FINER);
 
-            int loginChoice = login.begin();
-            int checkEmpID = login.menuResult(loginChoice);
+            int checkEmpID = login.begin();
 
-            if (checkEmpID == 0) {
-                System.out.println("ログインし直してください");
-                login.begin();
-            }
-            else{
-                boolean checkRight = login.checkRight(checkEmpID);
+            boolean checkRight = login.checkRight(checkEmpID);
                 
-                if (checkRight == true) {
-                    mainMenu.choiceMenuAdmin();
-                } else {
-                    mainMenu.choiceMenuUser();
-                }
+            if (checkRight == true) {
+                mainMenu.choiceMenuAdmin();
+            } 
+            else {
+                mainMenu.choiceMenuUser();
             }
-        } catch (final ParseException e) {
-            e.printStackTrace();
         }
         finally{
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
