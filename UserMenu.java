@@ -33,14 +33,15 @@ public class UserMenu{
         try{
             
             titleList = sql.searchTitle();
+           
             for(Book t : titleList){
+                
                 System.out.println(String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s",
                                             "ISBN","Title","Publisher","Publishdate","Field",
                                             "Author","Inventory","Lent out"));
-                String bookData =  String.format("%-15d %-15s %-15s %-15s %-15s %-15s %-15d %-15d",
+                System.out.println(  String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s",
                                         t.getStringISBN() ,t.getTitle() , t.getPublisher() , new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate()) ,
-                                        t.getStringAuthors() , t.getField() , t.getInventory(), t.getBorrowedAmount() );
-                System.out.println(bookData);
+                                        t.getStringAuthors() , t.getField() , t.getInventory(), t.getBorrowedAmount() ));
             }
         }catch(Exception e){
             logger.severe("SEVERE");

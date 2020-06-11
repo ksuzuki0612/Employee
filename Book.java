@@ -27,6 +27,17 @@ public class Book {
         this.inventory = inventory;
         this.borrowedAmount = 0; //初期値：0
     }
+    public Book(long ISBN,String title,String publisher,Date publishDate,
+                String field,List<String>authors,int inventory,int borrowedAmount){
+        this.ISBN = ISBN;
+        this.title = title;
+    	  this.publisher = publisher;
+        this.publishDate = publishDate;
+        this.field = field;
+        this.authors = authors;
+        this.inventory = inventory;
+        this.borrowedAmount = borrowedAmount; 
+    }
 
   /**
    * getterメソッド
