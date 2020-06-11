@@ -18,7 +18,8 @@ public class LibraryMain {
     static Login login = new Login();
     static MainMenu mainMenu = new MainMenu();
 
-    public static void main(final String[] args) throws SecurityException, IOException, SQLException {
+    public static void main(final String[] args) throws SecurityException, IOException, SQLException,
+            ClassNotFoundException {
         // Create a file handler object
         try {
             final FileHandler handler = new FileHandler("log.txt");
