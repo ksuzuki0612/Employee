@@ -32,7 +32,7 @@ public class MainMenu{
                         break;
                     case 3:
                         boolean result = resetPassword();
-                        resultChangePass(result);
+                        menuUI.resultChangePass(result);
                         break;
                     case 4:
                         System.out.println("終了");
