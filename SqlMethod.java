@@ -412,7 +412,7 @@ public class SqlMethod{
             }else{
 
                 //String bookData = "";
-
+                System.out.println(1);
             while(rs.next()){
                 Book book = new Book(
                     rs.getLong(1),
@@ -427,6 +427,8 @@ public class SqlMethod{
             }
             
             
+            
+            
 
         } catch(Exception e) {
             System.out.println(e);
@@ -435,7 +437,7 @@ public class SqlMethod{
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
 
         }
-
+        System.out.println(books.size());
         return books;
     }
 
@@ -511,8 +513,6 @@ public class SqlMethod{
             finally{
                     logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                 }
-
-
     }
 
     /**
