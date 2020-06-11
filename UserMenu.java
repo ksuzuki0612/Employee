@@ -17,6 +17,7 @@ public class UserMenu{
     Logger logger = Logger.getLogger(UserMenu.class.getName());
     SqlMethod sql =new SqlMethod();
     List<Book> titleList = new ArrayList<>();
+    UI ui =new UI();
 
   //カンマ
     private final String COMMA = ",";
@@ -31,19 +32,28 @@ public class UserMenu{
     public void searchBooksByTitle() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
-            
             titleList = sql.searchTitle();
            
             for(Book t : titleList){
-                
                 System.out.println(String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s",
                                             "ISBN","Title","Publisher","Publishdate","Field",
                                             "Author","Inventory","Lent out"));
                 System.out.println(  String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s",
                                         t.getStringISBN() ,t.getTitle() , t.getPublisher() , new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate()) ,
                                         t.getStringAuthors() , t.getField() , t.getInventory(), t.getBorrowedAmount() ));
+            
             }
-        }catch(Exception e){
+            System .out.println("検索結果を保存しますか？");
+            System.out.println("1.はい");
+            System.out.println("2.前の画面に戻る");
+            String s1 = new java.util.Scanner(System.in).nextLine();
+            int selected = Integer.parseInt(s1);
+            if(selected == 1){
+                String saveFile =ui.saveBooksByTitleUI();
+                saveBooksByTitle(saveFile,titleList);
+            }
+        }
+        catch(Exception e){
             logger.severe("SEVERE");
         }
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -81,37 +91,16 @@ public class UserMenu{
    *書籍を保存するメソッド
    *@param saveFile
    */
-    public void saveBooksByTitle(String saveFile) {
+   public void saveBooksByTitle(String saveFile,List<Book> titleList) {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             File csv = new File(saveFile);
             BufferedWriter bw = new BufferedWriter(new FileWriter(csv));
-            List<Book> titleList = new ArrayList<>();
-            titleList = sql.searchTitle();
             for(Book t : titleList){
                 bw.write("ISBN,"+t.getStringISBN()+",Title,"+ t.getTitle()+",Publisher,"+t.getPublisher()+",PublishDate,"
                 +new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate())+",Authors,"+ t.getStringAuthors()+",Field, "
                 + t.getField()+",Inventory,"+ t.getInventory()+",BorrowedAmount," +t.getBorrowedAmount());
                 bw.newLine();
-
-                      //  "ISBN, %d,"+
-                      //  "Title, %s,"+
-                      //  "Publisher, %s,"+
-                      //  "PublishDate, %s,"+
-                      //  "Authors, %s,"+
-                      //  "Field, %s,"+
-                      //  "Inventory, %d,"+
-                      //  "BorrowedAmount, %d"+
-                      //  ","+
-                     //   t.getStringISBN(),
-                     //   t.getTitle(),
-                     //   t.getPublisher(),
-                     //   new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate()),
-                     //   t.getStringAuthors(),
-                     //   t.getField(),
-                     //   t.getInventory(),
-                     //   t.getBorrowedAmount())+
-                     //   "\n");
             }
             bw.close();
         }catch(IOException e){
