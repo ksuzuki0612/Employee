@@ -60,14 +60,12 @@ public class MainMenu{
                    case 2:
                            System.out.println("管理者権限がありません");
                            return;
-                           break;
                    case 3:
                        System.out.println("終了");
                        break loop;
                    default:
                        System.out.println("再度入力してください");
                        return;
-                       break;
                }
            }
         } finally {
