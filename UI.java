@@ -165,28 +165,12 @@ public class UI{
                     break;
                 case 2:
                     userMenu.searchBooksByAuthor();
-                    System.out.println("検索結果を保存しますか？");
-                    System.out.println("1.はい");
-                    System.out.println("2.前の画面に戻る");
-                    String s2 = new java.util.Scanner(System.in).nextLine();
-                    selected = Integer.parseInt(s2);
-                    if(selected == 1){
-                        saveBooksByAuthorsUI();
-                    }else{
-                    }
+                    
                     logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                     break;
                 case 3:
                     userMenu.searchBooksByField();
-                    System.out.println("検索結果を保存しますか？");
-                    System.out.println("1.はい");
-                    System.out.println("2.前の画面に戻る");
-                    String s3 = new java.util.Scanner(System.in).nextLine();
-                    selected = Integer.parseInt(s3);
-                    if(selected == 1){
-                        saveBooksByFieldUI();
-                    }else{
-                    }
+                    
                     logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                     break;
                 case 4:
@@ -252,23 +236,7 @@ public class UI{
 }
 
 
-//ファイルの保存(著者名)
-    public  void saveBooksByAuthorsUI(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        System.out.println("書籍を保存するファイル名を入力してください。");
-        String saveFile = new java.util.Scanner(System.in).nextLine();
-        userMenu.saveBooksByAuthors(saveFile);
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-    }
 
-//ファイルの保存(分野)
-    public  void saveBooksByFieldUI(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        System.out.println("書籍を保存するファイル名を入力してください。");
-        String saveFile = new java.util.Scanner(System.in).nextLine();
-        userMenu.saveBooksByField(saveFile);
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-    }
 
 //AdminMenuUi
 /**
