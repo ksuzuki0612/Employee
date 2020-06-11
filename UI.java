@@ -153,15 +153,6 @@ public class UI{
             switch(selected){
                 case 1:
                     userMenu.searchBooksByTitle();
-                    System .out.println("検索結果を保存しますか？");
-                    System.out.println("1.はい");
-                    System.out.println("2.前の画面に戻る");
-                    String s1 = new java.util.Scanner(System.in).nextLine();
-                    selected = Integer.parseInt(s1);
-                    if(selected == 1){
-                        saveBooksByTitleUI();
-                    }else{
-                    }
                     logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                     break;
                 case 2:
