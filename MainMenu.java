@@ -11,6 +11,7 @@ public class MainMenu{
     static UI menuUI = new UI();
     static AdminMenu adminMenu = new AdminMenu();
     static UserMenu userMenu = new UserMenu();
+    SqlMethod sqlmethod = new SqlMethod();
     //static AdminMenuNum adMenu = new AdminMenuNum();
     
     /**
@@ -21,20 +22,25 @@ public class MainMenu{
         try {
             loop: while (true) {
                 int choice = menuUI.choiceMenuUI();
-               // 1,利用者メニュー 2,管理者メニュー3,終了
+               // 1,利用者メニュー 2,管理者メニュー3,パスワードの再設定4,終了
                switch (choice) {
-                   case 1:
-                           userMainMenu();
-                           break;
-                   case 2:
-                           adminMainMenu();
-                           break;
-                   case 3:
-                       System.out.println("終了");
-                       break loop;
+                    case 1:
+                        userMainMenu();
+                        break;
+                    case 2:
+                        adminMainMenu();
+                        break;
+                    case 3:
+                        boolean result = resetPassword();
+                        menuUI.resultChangePass(result);
+                        break;
+                    case 4:
+                        System.out.println("終了");
+                        break loop;
+
                    default:
                        System.out.println("再度入力してください");
-                       break;
+                       continue;
                }
            }
         }
@@ -54,16 +60,20 @@ public class MainMenu{
                 int choice = menuUI.choiceMenuUI();
                // 1,利用者メニュー 2,管理者メニュー3,終了
                switch (choice) {
-                   case 1:
-                           userMainMenu();
-                           break;
-                   case 2:
-                           System.out.println("管理者権限がありません");
-                           return;
-                   case 3:
+                    case 1:
+                        userMainMenu();
+                        break;
+                    case 2:
+                        System.out.println("管理者権限がありません");
+                        continue;
+                    case 3:
+                        boolean result = resetPassword();
+                        menuUI.resultChangePass(result);
+                        break;
+                    case 4:
                        System.out.println("終了");
                        break loop;
-                   default:
+                    default:
                        System.out.println("再度入力してください");
                        return;
                }
@@ -72,6 +82,41 @@ public class MainMenu{
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }
     }
+    /**
+     * パスワードをリセットするメソッド
+     * 
+     * @throws ParseException
+     */
+    public boolean resetPassword(){
+        System.out.println("パスワード再設定画面");
+        final int ans = menuUI.resetPassUI();
+
+        if(ans == 1){
+            final int empID = menuUI.getEmpID();
+            final String password = menuUI.getNewPassword();
+            final String checkPassword = menuUI.getCheckPassword();
+            final boolean checkResult = checkResetPass(empID, password, checkPassword);
+            return checkResult;
+        }
+        else{
+            boolean checkResult = false;
+            return checkResult;
+        } 
+    }
+
+    public boolean checkResetPass(final int ID,final String pass,final String checkPass){
+        int empID = ID;
+        String password = pass;
+        String checkPassword = checkPass;
+
+        if(password.equals(checkPassword)){
+            sqlmethod.dbUpdatePassword(empID, password);
+            return true;
+        }
+        else{
+            return false;
+            }
+        }
 
     /**
      * 管理者メニューを選択するメソッド
