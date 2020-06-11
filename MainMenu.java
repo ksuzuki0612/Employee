@@ -58,7 +58,7 @@ public class MainMenu{
                            userMainMenu();
                            break;
                    case 2:
-                           System.out.println("管理者権限がありません")
+                           System.out.println("管理者権限がありません");
                            return;
                            break;
                    case 3:
