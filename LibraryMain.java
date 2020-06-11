@@ -29,7 +29,6 @@ public class LibraryMain {
             logger.setLevel(Level.FINER);
 
             int checkEmpID = login.begin();
-
             boolean checkRight = login.checkRight(checkEmpID);
                 
             if (checkRight == true) {

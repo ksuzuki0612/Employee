@@ -86,18 +86,4 @@ public class Login {
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }
     }
-
-
-
-        public void resultChangePassword(boolean checkResult) throws ParseException {
-            boolean passChangeResult = checkResult;
-            if(passChangeResult == true ){
-                System.out.println("パスワードが更新されました"); //UI化
-                begin();
-            }
-            else{
-                System.out.println("パスワードは更新されていません");
-                begin();
-            }
-        }
-    }
+}

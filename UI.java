@@ -23,8 +23,6 @@ public class UI{
     public void loginUI(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	System.out.println("ログイン画面");
-        System.out.println("ログインしますか？それともパスワードの再設定をしますか？");
-        System.out.println("1.ログイン  2.再設定");
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
 /**
@@ -93,11 +91,21 @@ public class UI{
         System.out.println("機能を選択してください");
         System.out.println("1,図書館利用者機能");
         System.out.println("2,図書館管理者機能");
-        System.out.println("3,終了");
+        System.out.println("3,パスワードの再設定");
+        System.out.println("4,終了");
 
         int choice = new java.util.Scanner(System.in).nextInt();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         return choice;
+    }
+
+    public void resultChangePass(boolean result){
+        if(result == true){
+            System.out.println("パスワードが更新されました");
+        }
+        else{
+            System.out.println("パスワードの更新に失敗しました");
+        }
     }
 /**
 *各管理者機能の選択を促すメソッド。

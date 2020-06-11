@@ -68,7 +68,7 @@ public class MainMenu{
                         continue;
                     case 3:
                         boolean result = resetPassword();
-                        resultChangePass(result);
+                        menuUI.resultChangePass(result);
                         break;
                     case 4:
                        System.out.println("終了");
@@ -117,16 +117,6 @@ public class MainMenu{
             return false;
             }
         }
-    //UIへ
-    public void resultChangePass(boolean result){
-        if(result == true){
-            System.out.println("パスワードが更新されました");
-        }
-        else{
-            System.out.println("パスワードの更新に失敗しました");
-        }
-        
-    }
 
     /**
      * 管理者メニューを選択するメソッド
