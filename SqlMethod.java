@@ -20,11 +20,12 @@ import java.text.*;
 public class SqlMethod{
 
     Logger logger = Logger.getLogger(AdminMenu.class.getName());
-     final String url = "jdbc:mysql://localhost:3306/library" +
-                       "?useUnicode=true&useJDBCCompliantTimezoneShift" +
-                       "=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    final String userName = "root";
-    final String pwd = "password06";
+    final String url = "jdbc:mysql://localhost:3306/librarysystem" +
+                        "?useUnicode=true&useJDBCCompliantTimezoneShift" +
+                        "=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    final String userName = "MateEngler";
+    final String pwd = "keyblade24";
+
     public void InitializeDriver() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -54,7 +55,7 @@ public class SqlMethod{
             "title,"+
             "publisher,"+
             "publish_date,"+
-            "field_," +
+            "category," +
             "author,"+
             "inventory," +
             "borrowed)"+
@@ -101,10 +102,23 @@ public class SqlMethod{
                             "FROM bookinfo "+
                             "WHERE"+
                             " ISBN = '" + isbn + "'";
+            String query2 = "SELECT COUNT('ISBN') FROM bookinfo"+
+                            " WHERE"+
+                            " ISBN ='" + isbn + "'  ";
             
             
             Connection con = DriverManager.getConnection(url, userName, pwd);
-            Statement st = con.createStatement();
+            
+            Statement st2 = con.createStatement();
+            ResultSet rs2 = st2.executeQuery(query2);
+            rs2.next();
+            int isbncheck = rs2.getInt(1);
+
+            if(isbncheck == 0){
+                System.out.println("探している本がありません。");
+            }else{
+
+                Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
             rs.next();
             int inv = rs.getInt("inventory");
@@ -124,24 +138,24 @@ public class SqlMethod{
                 String end = keyboard.nextLine();
                 //keyboard.close();
 
-                String query2 = "SELECT employee_name FROM employee"+
+                String query3 = "SELECT employee_name FROM employee"+
                                 " WHERE"+
                                 " employee_id = '" + id + "'";
-                Statement st2 = con.createStatement();
-                ResultSet rs2 = st2.executeQuery(query2);
-                rs2.next();
-                String ename = rs2.getString("employee_name");
-
-                String query3 ="SELECT COUNT('employee_name') FROM checkout WHERE employee_id='" + id + "'  ";
                 Statement st3 = con.createStatement();
                 ResultSet rs3 = st3.executeQuery(query3);
-                rs.next();
-                int empcount = rs3.getInt(1);
+                rs3.next();
+                String ename = rs3.getString("employee_name");
+
+                String query4 ="SELECT COUNT('employee_name') FROM checkout WHERE employee_id='" + id + "'  ";
+                Statement st4 = con.createStatement();
+                ResultSet rs4 = st4.executeQuery(query4);
+                rs4.next();
+                int empcount = rs4.getInt(1);
 
                 if(empcount == 10){
                     System.out.println("One employee can only borrow 10 books maximum!");
                 }else{
-                    String query4 =
+                    String query5 =
                     "INSERT INTO checkout (ISBN,"+
                     " title,"+
                     " employee_id,"+
@@ -155,20 +169,25 @@ public class SqlMethod{
                     "'" + ename + "',"+
                     " '" + start + "', '" + end + "')";
 
-                    Statement st4 = con.createStatement();
-                    int count = st4.executeUpdate(query4);
-
-                    String query5 ="UPDATE bookinfo SET borrowed =borrowed+1 WHERE ISBN='" + isbn + "'";
                     Statement st5 = con.createStatement();
-                    int count2 = st5.executeUpdate(query5);
+                    int count = st5.executeUpdate(query5);
+
+                    String query6 ="UPDATE bookinfo SET borrowed =borrowed+1 WHERE ISBN='" + isbn + "'";
+                    Statement st6 = con.createStatement();
+                    int count2 = st6.executeUpdate(query6);
 
                     System.out.println("書籍の貸出は承認されました。");
-                }
+                    }
 
-            }
+                }
 
             st.close();
             con.close();
+            }
+
+            
+            
+            
             }catch(Exception e) { System.out.println(e);}
 
             finally{
@@ -197,7 +216,6 @@ public class SqlMethod{
         ResultSet rs = st.executeQuery(query);
         rs.next();
         int empcount = rs.getInt(1);
-        System.out.println(empcount);
         st.close();
         con.close();
 
@@ -259,8 +277,7 @@ public class SqlMethod{
         System.out.println("著者名を入力してください。");
         String author = keyboard.nextLine();
         List<Book> books = new ArrayList<Book>();
-        keyboard.close();
-
+        
         try{
 
             String query =  "SELECT ISBN, title, publisher, publish_date, category, author, inventory, borrowed"+
@@ -323,13 +340,12 @@ public class SqlMethod{
         System.out.println("分野を入力してください。");
         String searchField = keyboard.nextLine();
         List<Book> books = new ArrayList<Book>();
-        keyboard.close();
 
         try{
 
             String query = "SELECT * FROM bookinfo "+
                             "WHERE"+
-                            " field_ = '" + searchField + "'";
+                            " category = '" + searchField + "'";
             String query2 = "SELECT COUNT('category') FROM bookinfo"+
                             " WHERE"+
                             " category='" + searchField + "'  ";
@@ -412,7 +428,7 @@ public class SqlMethod{
             }else{
 
                 //String bookData = "";
-                System.out.println(1);
+
             while(rs.next()){
                 Book book = new Book(
                     rs.getLong(1),
@@ -421,12 +437,11 @@ public class SqlMethod{
                     rs.getDate(4),
                     rs.getString(5),
                     this.splitList(rs.getString(6)),
-                    rs.getInt(7));
+                    rs.getInt(7),
+                    rs.getInt(8));
                 books.add(book);
               }
             }
-            
-            
             
             
 
@@ -437,7 +452,7 @@ public class SqlMethod{
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
 
         }
-        System.out.println(books.size());
+
         return books;
     }
 
@@ -467,7 +482,9 @@ public class SqlMethod{
                             "WHERE"+
                             " employee_id = " + id + " && ISBN = " + isbn + ";";
 
-            String query2 ="UPDATE bookinfo SET borrowed = borrowed -1 WHERE ISBN = " + isbn + ";";
+            String query2 ="UPDATE bookinfo SET borrowed = borrowed -1 "+
+                            "WHERE "+
+                            "ISBN = " + isbn + ";";
 
             
             Connection con = DriverManager.getConnection(url, userName, pwd);
@@ -498,21 +515,37 @@ public class SqlMethod{
 
         try{
 
-            String query = "DELETE FROM bookinfo WHERE ISBN = '" + isbn + "'";
-
+            
+            String query = "SELECT COUNT('ISBN') FROM bookinfo"+
+                            " WHERE"+
+                            " ISBN='" + isbn + "'  ";
+            String query2 = "DELETE FROM bookinfo "+
+                            "WHERE"+
+                            " ISBN = '" + isbn + "'";
             
             Connection con = DriverManager.getConnection(url, userName, pwd);
+            
             Statement st = con.createStatement();
-            int count = st.executeUpdate(query);
+            ResultSet rs = st.executeQuery(query);
+            rs.next();
+            int delete = rs.getInt(1);
+            
+            if(delete == 0){
+                System.out.println("削除したい本がありません。");
+            }else{
+
+                Statement st2 = con.createStatement();
+            int count = st2.executeUpdate(query2);
 
             System.out.println("書籍は削除されました。");
             st.close();
             con.close();
-            }catch(Exception e) { System.out.println(e);}
+            }                       
+                }catch(Exception e) { System.out.println(e);}
 
             finally{
                     logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-                }
+        }
     }
 
     /**
@@ -524,18 +557,34 @@ public class SqlMethod{
       	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
 
-            String query = "UPDATE bookinfo SET inventory = '" + Inventory + "' "+
+            
+            String query = "SELECT COUNT('title') FROM bookinfo"+
+                            " WHERE"+
+                            " ISBN='" + ISBN + "'  ";
+            String query2 = "UPDATE bookinfo SET inventory = '" + Inventory + "' "+
                             "WHERE"+
                             " ISBN = '" + ISBN +"'";
-
             
             Connection con = DriverManager.getConnection(url, userName, pwd);
+            
             Statement st = con.createStatement();
-            int count = st.executeUpdate(query);
+            ResultSet rs = st.executeQuery(query);
+            rs.next();
+            int update = rs.getInt(1);
 
-            System.out.println("在庫数は更新されました。");
-            st.close();
-            con.close();
+            if(update == 0){
+                System.out.println("更新したい本がありません。");
+            }else{
+
+                Statement st2 = con.createStatement();
+                int count = st2.executeUpdate(query2);
+
+                System.out.println("在庫数は更新されました。");
+                st.close();
+                con.close();
+                }
+            
+            
             }catch(Exception e) { System.out.println(e);}
 
             finally{
@@ -552,18 +601,34 @@ public class SqlMethod{
 
         try{
 
-            String query = "UPDATE bookinfo SET borrowed = '" + addBorrowedAmount + "' "+
+            String query = "SELECT COUNT('title') FROM bookinfo"+
+                            " WHERE"+
+                            " ISBN='" + ISBN + "'  ";
+            String query2 = "UPDATE bookinfo SET borrowed = '" + addBorrowedAmount + "' "+
                             "WHERE"+
                             " ISBN = '" + ISBN +"'";
 
             
             Connection con = DriverManager.getConnection(url, userName, pwd);
-            Statement st = con.createStatement();
-            int count = st.executeUpdate(query);
 
-            System.out.println("貸出数は更新されました。");
-            st.close();
-            con.close();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            rs.next();
+            int update = rs.getInt(1);
+
+            if(update == 0){
+                System.out.println("更新したい本がありません。");
+            }else{
+
+                Statement st2 = con.createStatement();
+                int count = st.executeUpdate(query2);
+
+                System.out.println("貸出数は更新されました。");
+                st.close();
+                con.close();
+                }
+
+            
             }catch(Exception e) { System.out.println(e);}
 
             finally{
@@ -580,19 +645,36 @@ public class SqlMethod{
 
         try{
 
-        String query = "UPDATE passwords SET password = '" + password + "'"+
-                        " WHERE"+
-                        " employee_id = '" + empID +"'";
+            String query = "SELECT COUNT('employee_id') FROM passwords"+
+                            " WHERE"+
+                            " employee_id = '" + empID + "'  ";
+            String query2 = "UPDATE passwords SET password = '" + password + "'"+
+                            " WHERE"+
+                            " employee_id = '" + empID +"'";
 
         
         Connection con = DriverManager.getConnection(url, userName, pwd);
+        
         Statement st = con.createStatement();
-        int count = st.executeUpdate(query);
+        ResultSet rs = st.executeQuery(query);
+        rs.next();
+        int update = rs.getInt(1);
+
+        if(update == 0){
+            System.out.println("従業員が存在しません。");
+        }else{
+
+            Statement st2 = con.createStatement();
+            int count = st2.executeUpdate(query2);
 
 
-        st.close();
-        con.close();
+            st.close();
+            con.close();
+            }
+
+        
+        
         }catch(Exception e) { System.out.println(e);}
-}
+    }
 
 }
