@@ -24,17 +24,17 @@ public class MainMenu{
                 int choice = menuUI.choiceMenuUI();
                // 1,利用者メニュー 2,管理者メニュー3,パスワードの再設定4,終了
                switch (choice) {
-                    case 1:
+                    case FeaturesMenu.UserMenu:
                         userMainMenu();
                         break;
-                    case 2:
+                    case FeaturesMenu.AdminMenu:
                         adminMainMenu();
                         break;
-                    case 3:
+                    case FeaturesMenu.ResetPass:
                         boolean result = resetPassword();
                         menuUI.resultChangePass(result);
                         break;
-                    case 4:
+                    case FeaturesMenu.EndProgram:
                         System.out.println("終了");
                         break loop;
 
@@ -60,17 +60,17 @@ public class MainMenu{
                 int choice = menuUI.choiceMenuUI();
                // 1,利用者メニュー 2,管理者メニュー3,終了
                switch (choice) {
-                    case 1:
+                    case FeaturesMenu.UserMenu:
                         userMainMenu();
                         break;
-                    case 2:
+                    case FeaturesMenu.AdminMenu:
                         System.out.println("管理者権限がありません");
                         continue;
-                    case 3:
+                    case FeaturesMenu.ResetPass:
                         boolean result = resetPassword();
                         menuUI.resultChangePass(result);
                         break;
-                    case 4:
+                    case FeaturesMenu.EndProgram:
                        System.out.println("終了");
                        break loop;
                     default:
