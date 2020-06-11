@@ -93,6 +93,7 @@ public class UI{
         System.out.println("機能を選択してください");
         System.out.println("1,図書館利用者機能");
         System.out.println("2,図書館管理者機能");
+        System.out.println("3,終了");
 
         int choice = new java.util.Scanner(System.in).nextInt();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());

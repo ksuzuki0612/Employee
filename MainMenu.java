@@ -20,16 +20,9 @@ public class MainMenu{
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try {
             loop: while (true) {
-                int selected=0;
-                int rmu =0;
-               do{
-                   rmu =0;
-                   selected = menuUI.choiceMenuUI();
-                   rmu = menuUI.returnMenuUi();
-               }
-               while(rmu == 1) ;
-               // 1,利用者メニュー 2,管理者メニュー
-               switch (selected) {
+                int choice = menuUI.choiceMenuUI();
+               // 1,利用者メニュー 2,管理者メニュー3,終了
+               switch (choice) {
                    case 1:
                            userMainMenu();
                            break;
@@ -44,7 +37,8 @@ public class MainMenu{
                        break;
                }
            }
-       } finally {
+        }
+        finally {
            logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
        }
  
@@ -56,18 +50,26 @@ public class MainMenu{
     public void choiceMenuUser() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try {
-            final int choice = menuUI.choiceMenuUI();
-            // 1,利用者メニュー 2,管理者メニュー
-            
-            if (choice == 1) {
-                userMainMenu();
-            } else if (choice == 2) {
-                System.out.println("管理者権限がありません");
-                return;
-            } else {
-                System.out.println("1か2を入力してください");
-                menuUI.loginUI();
-            }
+            loop: while (true) {
+                int choice = menuUI.choiceMenuUI();
+               // 1,利用者メニュー 2,管理者メニュー3,終了
+               switch (choice) {
+                   case 1:
+                           userMainMenu();
+                           break;
+                   case 2:
+                           System.out.println("管理者権限がありません")
+                           return;
+                           break;
+                   case 3:
+                       System.out.println("終了");
+                       break loop;
+                   default:
+                       System.out.println("再度入力してください");
+                       return;
+                       break;
+               }
+           }
         } finally {
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }
