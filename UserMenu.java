@@ -39,7 +39,7 @@ public class UserMenu{
                                             "ISBN","Title","Publisher","Publishdate","Field",
                                             "Author","Inventory","Lent out"));
                 System.out.println(  String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s",
-                                        t.getStringISBN() ,t.getTitle() , t.getPublisher() , new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate()) ,
+                                        t.getISBN() ,t.getTitle() , t.getPublisher() , new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate()) ,
                                         t.getStringAuthors() , t.getField() , t.getInventory(), t.getBorrowedAmount() ));
             
             }
@@ -97,7 +97,7 @@ public class UserMenu{
             File csv = new File(saveFile);
             BufferedWriter bw = new BufferedWriter(new FileWriter(csv));
             for(Book t : titleList){
-                bw.write("ISBN,"+t.getStringISBN()+",Title,"+ t.getTitle()+",Publisher,"+t.getPublisher()+",PublishDate,"
+                bw.write("ISBN,"+t.getISBN()+",Title,"+ t.getTitle()+",Publisher,"+t.getPublisher()+",PublishDate,"
                 +new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate())+",Authors,"+ t.getStringAuthors()+",Field, "
                 + t.getField()+",Inventory,"+ t.getInventory()+",BorrowedAmount," +t.getBorrowedAmount());
                 bw.newLine();
@@ -130,7 +130,7 @@ public class UserMenu{
                         "Inventory, %d,"+
                         "BorrowedAmount, %d"+
                         ","+
-                        a.getStringISBN(),
+                        a.getISBN(),
                         a.getTitle(),
                         a.getPublisher(),
                         new SimpleDateFormat("yyyy/MM/dd").format(a.getPublishDate()),
@@ -168,7 +168,7 @@ public class UserMenu{
                         "Inventory, %d,"+
                         "BorrowedAmount, %d"+
                         ","+
-                        f.getStringISBN(),
+                        f.getISBN(),
                         f.getTitle(),
                         f.getPublisher(),
                         new SimpleDateFormat("yyyy/MM/dd").format(f.getPublishDate()),

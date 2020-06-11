@@ -78,12 +78,12 @@ public class AdminMenu{
 			int selected = ui.selectedUi();
 		    switch(selected){
 			    case 1:
-                    long allowISBN = ui.isbnUi();
+                    String allowISBN = ui.isbnUi();
                     int addInventory = ui.addInventoryUi();
                     sql.dbUpdataInventory( allowISBN,addInventory );
                     break;
                 case 2:
-                    long aISBN = ui.isbnUi();
+                    String aISBN = ui.isbnUi();
                     int addBorrowedAmount =ui.addBorrowedAmountUi();
                     sql.dbAddBorrowedAmount( aISBN,addBorrowedAmount);
                     break;
@@ -102,7 +102,7 @@ public class AdminMenu{
      */
     public void allowBorrowBook(){
      	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        long allowISBN = ui.isbnUi();
+        String allowISBN = ui.isbnUi();
         sql.borrowBook(allowISBN);
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }
@@ -115,7 +115,7 @@ public class AdminMenu{
     public void returnBook(){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	int id = ui.employeeUi();
-    	long isbn =ui.isbnUi();
+    	String isbn =ui.isbnUi();
         sql.returnBook(isbn,id);
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
     }		

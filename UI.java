@@ -275,13 +275,12 @@ public class UI{
 *ISBNの入力を促すメソッド。
 *@return ISBN
 */
-    public long isbnUi(){
+    public String isbnUi(){
      	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
 	    System.out.println("ISBNを入力してください。");
         String isbn = new java.util.Scanner(System.in).nextLine();
-        long ISBN = Long.parseLong(isbn);
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-        return ISBN;
+        return isbn;
     }
 /**
 *タイトルの入力を促すメソッド。
@@ -396,13 +395,12 @@ public class UI{
 *@return deleteBook
 */
     //delete
-    public long deleteBookUi(){
+    public String deleteBookUi(){
      	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
      	System.out.println("削除する本のISBMを入力してください");
         String deleteISBN = new java.util.Scanner(System.in).nextLine();
-        long deleteBook = Long.parseLong(deleteISBN);
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    return deleteBook;
+	    return deleteISBN;
     }
 /**
 *削除する本のISBMの入力を促すメソッド。

@@ -27,7 +27,7 @@ public class Book {
         this.inventory = inventory;
         this.borrowedAmount = 0; //初期値：0
     }
-    public Book(long ISBN,String title,String publisher,Date publishDate,
+    public Book(String ISBN,String title,String publisher,Date publishDate,
                 String field,List<String>authors,int inventory,int borrowedAmount){
         this.ISBN = ISBN;
         this.title = title;
