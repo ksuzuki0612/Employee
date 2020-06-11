@@ -124,7 +124,7 @@ public class UserMenu{
             File csv = new File(saveFile);
             BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
             List<Book> authorList = new ArrayList<>();
-            authorList = sql.getSearchRecordAuthor();
+            authorList = sql.searchAuthor();
             for(Book a : authorList){
                 bw.write(
                     String.format(
@@ -162,7 +162,7 @@ public class UserMenu{
             File csv = new File(saveFile);
             BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
             List<Book> fieldList = new ArrayList<>();
-            fieldList = sql.getSearchRecordField();
+            fieldList = sql.searchField();
             for(Book f : fieldList){
                 bw.write(
                     String.format(

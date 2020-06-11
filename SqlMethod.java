@@ -20,12 +20,11 @@ import java.text.*;
 public class SqlMethod{
 
     Logger logger = Logger.getLogger(AdminMenu.class.getName());
-    final String url = "jdbc:mysql://localhost:3306/librarysystem" +
-                        "?useUnicode=true&useJDBCCompliantTimezoneShift" +
-                        "=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    final String userName = "MateEngler";
-    final String pwd = "keyblade24";
-
+     final String url = "jdbc:mysql://localhost:3306/library" +
+                       "?useUnicode=true&useJDBCCompliantTimezoneShift" +
+                       "=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    final String userName = "root";
+    final String pwd = "password06";
     public void InitializeDriver() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
