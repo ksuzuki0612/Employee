@@ -138,65 +138,73 @@ public class UI{
 /**
 *図書検索機能の選択を促すメソッド。
 */
+        
     public  void userMenu(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         int selected=0;
-        System.out.println("検索する項目を選んでください");
-        System.out.println("1.タイトル");
-        System.out.println("2.著者");
-        System.out.println("3.分野");
-				System.out.println("4.前の画面に戻る");
-        String str = new java.util.Scanner(System.in).nextLine();
-        selected = Integer.parseInt(str);
-        switch(selected){
-            case 1:
-                userMenu.searchBooksByTitle();
-                System.out.println("検索結果を保存しますか？");
-                System.out.println("1.はい");
-                System.out.println("2.前の画面に戻る");
-                String s1 = new java.util.Scanner(System.in).nextLine();
-                selected = Integer.parseInt(s1);
-                if(selected == 1){
-                    saveBooksByTitleUI();
-                }else{
-                    userMenu();
-                }
-                logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-                break;
-            case 2:
-                userMenu.searchBooksByAuthor();
-                System.out.println("検索結果を保存しますか？");
-                System.out.println("1.はい");
-                System.out.println("2.前の画面に戻る");
-                String s2 = new java.util.Scanner(System.in).nextLine();
-                selected = Integer.parseInt(s2);
-                if(selected == 1){
-                    saveBooksByAuthorsUI();
-                }else{
-                    userMenu();
-                }
-                logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-                break;
-            case 3:
-                userMenu.searchBooksByField();
-                System.out.println("検索結果を保存しますか？");
-                System.out.println("1.はい");
-                System.out.println("2.前の画面に戻る");
-                String s3 = new java.util.Scanner(System.in).nextLine();
-                selected = Integer.parseInt(s3);
-                if(selected == 1){
-                    saveBooksByFieldUI();
-                }else{
-                    userMenu();
-                }
-                logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-                break;
-						case 4:
-						    userMenuUI();
-								break;
-        }
-
+        loop:while (true){
+            System.out.println("検索する項目を選んでください");
+            System.out.println("1.タイトル");
+            System.out.println("2.著者");
+            System.out.println("3.分野");
+            System.out.println("4.前の画面に戻る");
+            String str = new java.util.Scanner(System.in).nextLine();
+            selected = Integer.parseInt(str);
+            switch(selected){
+                case 1:
+                    userMenu.searchBooksByTitle();
+                    System .out.println("検索結果を保存しますか？");
+                    System.out.println("1.はい");
+                    System.out.println("2.前の画面に戻る");
+                    String s1 = new java.util.Scanner(System.in).nextLine();
+                    selected = Integer.parseInt(s1);
+                    if(selected == 1){
+                        saveBooksByTitleUI();
+                    }else{
+                    }
+                    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+                    break;
+                case 2:
+                    userMenu.searchBooksByAuthor();
+                    System.out.println("検索結果を保存しますか？");
+                    System.out.println("1.はい");
+                    System.out.println("2.前の画面に戻る");
+                    String s2 = new java.util.Scanner(System.in).nextLine();
+                    selected = Integer.parseInt(s2);
+                    if(selected == 1){
+                        saveBooksByAuthorsUI();
+                    }else{
+                    }
+                    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+                    break;
+                case 3:
+                    userMenu.searchBooksByField();
+                    System.out.println("検索結果を保存しますか？");
+                    System.out.println("1.はい");
+                    System.out.println("2.前の画面に戻る");
+                    String s3 = new java.util.Scanner(System.in).nextLine();
+                    selected = Integer.parseInt(s3);
+                    if(selected == 1){
+                        saveBooksByFieldUI();
+                    }else{
+                    }
+                    logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
+                    break;
+                case 4:
+                    break loop;
+                default:
+                    System.out.println("再度入力してください");
+                    break;
+            }
+        }                
     }
+
+
+
+
+
+
+
 
   //書籍名で書籍の検索
 
@@ -236,13 +244,14 @@ public class UI{
     }
 */
 //ファイルの保存(書籍名)
-    public  void saveBooksByTitleUI(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    public  String saveBooksByTitleUI(){
+        logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         System.out.println("書籍を保存するファイル名を入力してください。");
         String saveFile = new java.util.Scanner(System.in).nextLine();
-        userMenu.saveBooksByTitle(saveFile);
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-    }
+        return saveFile;
+}
+
 
 //ファイルの保存(著者名)
     public  void saveBooksByAuthorsUI(){
