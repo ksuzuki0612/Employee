@@ -85,30 +85,33 @@ public class UserMenu{
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             File csv = new File(saveFile);
-            BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(csv));
             List<Book> titleList = new ArrayList<>();
             titleList = sql.searchTitle();
             for(Book t : titleList){
-                bw.write(
-                    String.format(
-                        "ISBN, %d,"+
-                        "Title, %s,"+
-                        "Publisher, %s,"+
-                        "PublishDate, %s,"+
-                        "Authors, %s,"+
-                        "Field, %s,"+
-                        "Inventory, %d,"+
-                        "BorrowedAmount, %d"+
-                        ","+
-                        t.getStringISBN(),
-                        t.getTitle(),
-                        t.getPublisher(),
-                        new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate()),
-                        t.getStringAuthors(),
-                        t.getField(),
-                        t.getInventory(),
-                        t.getBorrowedAmount())+
-                        "\n");
+                bw.write("ISBN,"+t.getStringISBN()+",Title,"+ t.getTitle()+",Publisher,"+t.getPublisher()+",PublishDate,"
+                +new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate())+",Authors,"+ t.getStringAuthors()+",Field, "
+                + t.getField()+",Inventory,"+ t.getInventory()+",BorrowedAmount," +t.getBorrowedAmount());
+                bw.newLine();
+
+                      //  "ISBN, %d,"+
+                      //  "Title, %s,"+
+                      //  "Publisher, %s,"+
+                      //  "PublishDate, %s,"+
+                      //  "Authors, %s,"+
+                      //  "Field, %s,"+
+                      //  "Inventory, %d,"+
+                      //  "BorrowedAmount, %d"+
+                      //  ","+
+                     //   t.getStringISBN(),
+                     //   t.getTitle(),
+                     //   t.getPublisher(),
+                     //   new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate()),
+                     //   t.getStringAuthors(),
+                     //   t.getField(),
+                     //   t.getInventory(),
+                     //   t.getBorrowedAmount())+
+                     //   "\n");
             }
             bw.close();
         }catch(IOException e){
