@@ -44,7 +44,7 @@ public class Login {
             final int empID = uiLogin.getEmpID();
             final String password = uiLogin.getPassword();
             final int checkEmpID = sqlmethod.dbCheckLogin(empID,password);
-
+//test
             return checkEmpID;
         }
         finally{
