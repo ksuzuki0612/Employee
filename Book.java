@@ -7,7 +7,7 @@ import java.util.*;
  */
 
 public class Book {
-    private long ISBN;
+    private String ISBN;
     private String title;
     private String publisher;
     private Date publishDate;
@@ -16,7 +16,7 @@ public class Book {
     private int inventory; //在庫数
     private int borrowedAmount; //貸出数　初期値：0
 
-    public Book(long ISBN,String title,String publisher,Date publishDate,
+    public Book(String ISBN,String title,String publisher,Date publishDate,
                 String field,List<String>authors,int inventory){
         this.ISBN = ISBN;
         this.title = title;
@@ -42,7 +42,7 @@ public class Book {
   /**
    * getterメソッド
    */
-    public long getISBN(){
+    public String getISBN(){
     	  return this.ISBN;
     }
 
@@ -85,20 +85,7 @@ public class Book {
         this.borrowedAmount = numOfBorrowed;
     }
 
-  /**
-   * ISBNのlong値を文字列に変換
-   */
-    public String ISBNToString(long ISBN){
-        String s = Long.toString(this.ISBN);
-        return s;
-    }
-
-  /**
-   * ISBNのlong値を文字列に変換したものを取り出す
-   */
-    public String getStringISBN(){
-        return ISBNToString(this.ISBN);
-    }
+  
 
   /**
    * 著者名のリストを文字列に変換

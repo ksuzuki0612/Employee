@@ -42,7 +42,7 @@ public class SqlMethod{
      *
      */
 
-    public  void registerBook(long ISBN, String title, String publisher,
+    public  void registerBook(String ISBN, String title, String publisher,
                                     String publishDate, String field, List<String> authors,
                                     int inventory, int borrowedAmount){
 
@@ -92,7 +92,7 @@ public class SqlMethod{
 
      */
 
-     public void borrowBook(long isbn){
+     public void borrowBook(String isbn){
 
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
     	Scanner keyboard = new Scanner(System.in);
@@ -283,10 +283,10 @@ public class SqlMethod{
             String query =  "SELECT ISBN, title, publisher, publish_date, category, author, inventory, borrowed"+
                             " FROM bookinfo "+
                             "WHERE"+
-                            " author = '" + author + "'";
+                            " author LIKE '%"+ author +"%'";
             String query2 = "SELECT COUNT('author') FROM bookinfo"+
                             " WHERE"+
-                            " author='" + author + "'  ";
+                            " author LIKE '%"+ author +"%'";
 
             
             Connection con = DriverManager.getConnection(url, userName, pwd);
@@ -306,13 +306,14 @@ public class SqlMethod{
             
             while(rs.next()){
                 Book book = new Book(
-                    rs.getLong(1),
+                    rs.getString(1),
                     rs.getString(2),
                     rs.getString(3),
                     rs.getDate(4),
                     rs.getString(5),
                     this.splitList(rs.getString(6)),
-                    rs.getInt(7));
+                    rs.getInt(7),
+                    rs.getInt(8));
                 books.add(book);
                }
             }
@@ -345,10 +346,10 @@ public class SqlMethod{
 
             String query = "SELECT * FROM bookinfo "+
                             "WHERE"+
-                            " category = '" + searchField + "'";
+                            " category LIKE '%"+ searchField +"%'";
             String query2 = "SELECT COUNT('category') FROM bookinfo"+
                             " WHERE"+
-                            " category='" + searchField + "'  ";
+                            " category LIKE '%"+ searchField +"%'";
             
 
             
@@ -369,13 +370,14 @@ public class SqlMethod{
 
             while(rs.next()){
                 Book book = new Book(
-                    rs.getLong(1),
+                    rs.getString(1),
                     rs.getString(2),
                     rs.getString(3),
                     rs.getDate(4),
                     rs.getString(5),
                     this.splitList(rs.getString(6)),
-                    rs.getInt(7));
+                    rs.getInt(7),
+                    rs.getInt(8));
                 books.add(book);
                }
             }
@@ -408,10 +410,10 @@ public class SqlMethod{
         try{
             String query = "SELECT * FROM bookinfo"+
                             " WHERE"+
-                            " title = '" + searchtitle + "'";
+                            " title LIKE '%"+ searchtitle +"%'";
             String query2 = "SELECT COUNT('title') FROM bookinfo"+
                             " WHERE"+
-                            " title='" + searchtitle + "'  ";
+                            " title LIKE '%"+ searchtitle +"%'";
 
             
             Connection con = DriverManager.getConnection(url, userName, pwd);
@@ -431,7 +433,7 @@ public class SqlMethod{
 
             while(rs.next()){
                 Book book = new Book(
-                    rs.getLong(1),
+                    rs.getString(1),
                     rs.getString(2),
                     rs.getString(3),
                     rs.getDate(4),
@@ -473,7 +475,7 @@ public class SqlMethod{
      *
      */
 
-     public void returnBook(long isbn,int id){
+     public void returnBook(String isbn,int id){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
 
         try{
@@ -510,7 +512,7 @@ public class SqlMethod{
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         Scanner keyboard = new Scanner(System.in);
         System.out.println("削除したい書籍のISBNを入力してください。 ");
-        long isbn = keyboard.nextLong();
+        String isbn = keyboard.nextLine();
         keyboard.nextLine();
 
         try{
@@ -553,7 +555,7 @@ public class SqlMethod{
      *
      */
 
-      public void dbUpdataInventory(long ISBN,int Inventory ){
+      public void dbUpdataInventory(String ISBN,int Inventory ){
       	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
 
@@ -596,7 +598,7 @@ public class SqlMethod{
      *
      */
 
-     public void dbAddBorrowedAmount(long ISBN,int addBorrowedAmount ){
+     public void dbAddBorrowedAmount(String ISBN,int addBorrowedAmount ){
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
 
         try{
