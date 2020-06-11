@@ -344,7 +344,7 @@ public class SqlMethod{
 
         try{
 
-            String query = "SELECT * FROM bookinfo "+
+            String query = "SELECT ISBN, title, publisher, publish_date, category, author, inventory, borrowed"+
                             "WHERE"+
                             " category LIKE '%"+ searchField +"%'";
             String query2 = "SELECT COUNT('category') FROM bookinfo"+
@@ -408,7 +408,7 @@ public class SqlMethod{
         //keyboard.close();
 
         try{
-            String query = "SELECT * FROM bookinfo"+
+            String query = "SELECT ISBN, title, publisher, publish_date, category, author, inventory, borrowed"+
                             " WHERE"+
                             " title LIKE '%"+ searchtitle +"%'";
             String query2 = "SELECT COUNT('title') FROM bookinfo"+
