@@ -28,27 +28,15 @@ public class LibraryMain {
             // ログレベルの設定
             logger.setLevel(Level.FINER);
 
-            final int loginChoice = login.begin();
-
-            if (loginChoice == 1) {
-                // login.loginCheck();
-            } else if (loginChoice == 2) {
-                boolean passChangeResult = login.resetPassword();
-                login.resultChangePassword(passChangeResult);
-
-            } else {
-                System.out.println("1か2を選択してください");
-                login.begin();
-            }
-            //二回目にloginCheck()を呼び出せてない
-            final int checkEmpID = login.loginCheck();
+            int loginChoice = login.begin();
+            int checkEmpID = login.menuResult(loginChoice);
 
             if (checkEmpID == 0) {
-                System.out.println("IDとパスワードが一致していません");
+                System.out.println("ログインし直してください");
                 login.begin();
             }
             else{
-                final boolean checkRight = login.checkRight(checkEmpID);
+                boolean checkRight = login.checkRight(checkEmpID);
                 
                 if (checkRight == true) {
                     mainMenu.choiceMenuAdmin();

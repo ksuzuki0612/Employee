@@ -18,13 +18,12 @@ public class Login {
      * このプログラムの最初のメソッド ログインかパスワードの再設定を選択する
      * 
      * @return loginChoice
-     * @throws ParseException
      */
-    public int begin() throws ParseException {
+    public int begin() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try {
             uiLogin.loginUI();
-            final int loginChoice = new java.util.Scanner(System.in).nextInt();
+            int loginChoice = new java.util.Scanner(System.in).nextInt();
             // ログイン=1,パスワードの再設定=2
             return loginChoice;
         } finally {
@@ -33,6 +32,25 @@ public class Login {
         }
     }
 
+    public int menuResult(int choice) throws SQLException, ParseException {
+        if(choice == 1){
+            int ID = loginCheck();
+            return ID;
+        }
+        else if(choice == 2){
+            boolean passChangeResult =resetPassword();
+            resultChangePassword(passChangeResult);
+            begin();
+            return 0;
+        }
+        else{
+            System.out.println("1か2を選択してください");
+            begin();
+            return 0;
+        }
+    }
+    
+    
     /**
      * ログインのための従業員IDとパスワードを確認するメソッド
      * 
@@ -45,7 +63,6 @@ public class Login {
             final int empID = uiLogin.getEmpID();
             final String password = uiLogin.getPassword();
             final int checkEmpID = sqlmethod.dbCheckLogin(empID,password);
-//test
             return checkEmpID;
         }
         finally{
@@ -61,7 +78,7 @@ public class Login {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public boolean checkRight(final int empID) throws ClassNotFoundException, SQLException {
+    public boolean checkRight(int empID) throws ClassNotFoundException, SQLException {
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try{
             final int checkID = empID;
@@ -70,12 +87,11 @@ public class Login {
         }
         finally{
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-	    //Git test
         }
     }
 
     /**
-     * パスワードをリセットするメソッド パスワードの再設定が終わるとbegin()に戻る
+     * パスワードをリセットするメソッド
      * 
      * @throws ParseException
      */
@@ -112,7 +128,6 @@ public class Login {
 
         public void resultChangePassword(boolean checkResult) throws ParseException {
             boolean passChangeResult = checkResult;
-
             if(passChangeResult == true ){
                 System.out.println("パスワードが更新されました"); //UI化
                 begin();
