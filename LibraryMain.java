@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,10 +12,11 @@ import java.util.logging.SimpleFormatter;
  * @see Login MainMenu
  */
 public class LibraryMain {
-    static Logger logger = Logger.getLogger(LibraryMain.class.getName());
+	static Logger logger = Logger.getLogger(LibraryMain.class.getName());
     static UI mainUI = new UI();
     static Login login = new Login();
     static MainMenu mainMenu = new MainMenu();
+    public static int loginID = 0;
 
     public static void main(final String[] args) throws SecurityException, IOException, SQLException,
             ClassNotFoundException {
@@ -29,6 +29,7 @@ public class LibraryMain {
             logger.setLevel(Level.FINER);
 
             int checkEmpID = login.begin();
+            loginID = checkEmpID;
             boolean checkRight = login.checkRight(checkEmpID);
                 
             if (checkRight == true) {
