@@ -207,7 +207,7 @@ public class UI{
 		result = saveFileName.indexOf(deleteExtension );
         }
         while (result != -1);
-        String saveFile = saveFileName +".txt";
+        String saveFile = saveFileName +".csv";
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         return saveFile;
     }
