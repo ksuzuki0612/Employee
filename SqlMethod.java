@@ -68,7 +68,7 @@ public class SqlMethod{
             " '" + authors + "',"+
             " '" + inventory + "',"+
             " '" + borrowedAmount + "') ON DUPLICATE KEY"+
-            " inventory = inventory +1;";
+            " UPDATE inventory = inventory +1;";
 
             
             Connection con = DriverManager.getConnection(url, userName, pwd);
@@ -485,11 +485,11 @@ public class SqlMethod{
 
             String query = "DELETE FROM checkout "+
                             "WHERE"+
-                            " employee_id = " + id + " && ISBN = " + isbn + ";";
+                            " employee_id = '" + id + "' && ISBN = '" + isbn + "';";
 
             String query2 ="UPDATE bookinfo SET borrowed = borrowed -1 "+
                             "WHERE "+
-                            "ISBN = " + isbn + ";";
+                            "ISBN = '" + isbn + "';";
 
             
             Connection con = DriverManager.getConnection(url, userName, pwd);
@@ -516,7 +516,7 @@ public class SqlMethod{
         Scanner keyboard = new Scanner(System.in);
         System.out.println("削除したい書籍のISBNを入力してください。 ");
         String isbn = keyboard.nextLine();
-        keyboard.nextLine();
+        
 
         try{
 
