@@ -199,14 +199,15 @@ public class UI{
     public  String saveBooksByTitleUI(){
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         int result =0;
-        String saveFile ;
+        String saveFileName;
         do{
         System.out.println("書籍を保存するファイル名を入力してください。(拡張子なし)");
-        saveFile = new java.util.Scanner(System.in).nextLine();
+        saveFileName = new java.util.Scanner(System.in).nextLine();
         String deleteExtension = ".";   
-		result = saveFile.indexOf(deleteExtension );
+		result = saveFileName.indexOf(deleteExtension );
         }
         while (result != -1);
+        String saveFile = saveFileName +".txt";
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         return saveFile;
     }
