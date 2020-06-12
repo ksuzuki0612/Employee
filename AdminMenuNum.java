@@ -9,5 +9,5 @@ public class AdminMenuNum{
     final static int ChangeBookInfo = 3;
     final static int LoanAproval = 4;
     final static int ReturnApplication = 5;
-    final static int EndProgram = 6;
+    final static int ReturnProgram = 6;
 }

@@ -119,7 +119,7 @@ public class UI{
 		System.out.println(String.format("%d, 登録変更", AdminMenuNum.ChangeBookInfo));
 		System.out.println(String.format("%d, 貸出承認", AdminMenuNum.LoanAproval));
 		System.out.println(String.format("%d, 返却受取", AdminMenuNum.ReturnApplication));
-		System.out.println(String.format("%d, 終了", AdminMenuNum.EndProgram));
+		System.out.println(String.format("%d, 戻る", AdminMenuNum.ReturnProgram));
 	    System.out.println("メニュー番号を入力してください。");
         int selected = new java.util.Scanner(System.in).nextInt();
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -134,7 +134,7 @@ public class UI{
         System.out.println("メニュー画面");
 		System.out.println(String.format("%d, 検索", UserMenuNum.SearchBook));
         System.out.println(String.format("%d, 予約取消", UserMenuNum.CancelReservation));
-        System.out.println(String.format("%d, 終了", UserMenuNum.EndProgram));
+        System.out.println(String.format("%d, 戻る", UserMenuNum.ReturnProgram));
       	System.out.println("メニュー番号を入力してください。");
         int selected = new java.util.Scanner(System.in).nextInt();
 	 	logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -181,49 +181,6 @@ public class UI{
     }
 
 
-
-
-
-
-
-
-  //書籍名で書籍の検索
-
-/*
-   public  void searchBooksByTitleUI(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        System.out.println("検索したいタイトル名を入力してください");
-        String bookTitle = new java.util.Scanner(System.in).nextLine();
-        for(int i = 0 ; i < userMenu.searchBooksByTitle(bookTitle).size() ; i++){
-        	  System.out.println(userMenu.searchBooksByTitle(bookTitle).get(i).toString());
-        }
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-    }
-
-//著者名で書籍の検索
-    public  void searchBooksByAuthorUI(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        System.out.println("検索したい著者名を入力してください。");
-        String bookAuthor = new java.util.Scanner(System.in).nextLine();
-        ArrayList<Book> booksByAuthor = new ArrayList<Book>();
-        booksByAuthor = userMenu.searchBooksByAuthor(bookAuthor);
-        for(int i = 0 ; i < booksByAuthor.size() ; i++){
-        	System.out.println(booksByAuthor.get(i).toString());
-        }
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-    }
-
-//分野で書籍の検索
-    public  void searchBooksByFieldUI(){
-    	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        System.out.println("検索したい分野名を入力してください");
-        String bookField = new java.util.Scanner(System.in).nextLine();
-        for(int i = 0 ; i < userMenu.searchBooksByField(bookField).size() ; i++){
-             System.out.println(userMenu.searchBooksByField(bookField).get(i).toString());
-        }
-        logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
-    }
-*/
 //ファイルの保存(書籍名)
     public  String saveBooksByTitleUI(){
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
@@ -232,9 +189,6 @@ public class UI{
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         return saveFile;
 }
-
-
-
 
 //AdminMenuUi
 /**

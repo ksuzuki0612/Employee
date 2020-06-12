@@ -34,8 +34,8 @@ public class MainMenu{
                         boolean result = resetPassword();
                         menuUI.resultChangePass(result);
                         break;
-                    case FeaturesMenu.EndProgram:
-                        System.out.println("終了");
+                    case FeaturesMenu.ReturnProgram:
+                        System.out.println("3,戻る");
                         break loop;
 
                    default:
@@ -70,8 +70,8 @@ public class MainMenu{
                         boolean result = resetPassword();
                         menuUI.resultChangePass(result);
                         break;
-                    case FeaturesMenu.EndProgram:
-                       System.out.println("終了");
+                    case FeaturesMenu.ReturnProgram:
+                       System.out.println("3,戻る");
                        break loop;
                     default:
                        System.out.println("再度入力してください");
@@ -162,7 +162,7 @@ public class MainMenu{
                         adminMenu.returnBook();
                         break;
                     case AdminMenuNum.EndProgram:
-                        System.out.println("終了");
+                        System.out.println("3,戻る");
                         break loop;
                     default:
                         System.out.println("再度入力してください");
@@ -198,7 +198,7 @@ public class MainMenu{
                         break;
          
                     case UserMenuNum.EndProgram:
-                        System.out.println("終了");
+                        System.out.println("3,戻る");
                         break loop;
                     default:
                         System.out.println("再度入力してください");
