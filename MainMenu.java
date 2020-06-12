@@ -75,7 +75,7 @@ public class MainMenu{
                        break loop;
                     default:
                        System.out.println("再度入力してください");
-                       return;
+                       continue;
                }
            }
         } finally {
@@ -166,7 +166,7 @@ public class MainMenu{
                         break loop;
                     default:
                         System.out.println("再度入力してください");
-                        break;
+                        continue;
                 }
             }
         } 
