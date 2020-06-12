@@ -11,7 +11,7 @@ import java.util.logging.SimpleFormatter;
 /**
  * UIクラス
  * @author 鈴木戒生
- * @see LibarayMain,AdminMain,MainMenu,UserMenu,
+ *@see LibarayMain AdminMain MainMenu UserMenu Login
  * @version 2.2
  */
 public class UI{
@@ -180,15 +180,36 @@ public class UI{
         }                
     }
 
-
-//ファイルの保存(書籍名)
+/**
+*検索結果をファイルに保存の是非を問うメソッド。
+*@return select
+*/
+    public int saveApproval(){
+        System .out.println("検索結果を保存しますか？");
+        System.out.println("1.はい");
+        System.out.println("2.前の画面に戻る");
+        String s1 = new java.util.Scanner(System.in).nextLine();
+        int select = Integer.parseInt(s1);
+        return select;
+    }
+/**
+*ファイルの保存(書籍名)。
+*@return saveFile
+*/
     public  String saveBooksByTitleUI(){
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
-        System.out.println("書籍を保存するファイル名を入力してください。");
-        String saveFile = new java.util.Scanner(System.in).nextLine();
+        int result =0;
+        String saveFile ;
+        do{
+        System.out.println("書籍を保存するファイル名を入力してください。(拡張子なし)");
+        saveFile = new java.util.Scanner(System.in).nextLine();
+        String deleteExtension = ".";   
+		result = saveFile.indexOf(deleteExtension );
+        }
+        while (result != -1);
         logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         return saveFile;
-}
+    }
 
 //AdminMenuUi
 /**
