@@ -58,7 +58,8 @@ public class Login {
             int choice = new java.util.Scanner(System.in).nextInt();
 
             if(choice == 1){
-                loginCheck();
+                int reEnter = begin();
+                return reEnter;
             }
             else{
                 System.exit(0);
