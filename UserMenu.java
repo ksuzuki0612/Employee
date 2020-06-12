@@ -52,11 +52,10 @@ public class UserMenu{
             }
             for(Book t : titleList){
                 System.out.println(String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s",
-                                            "ISBN","Title","Publisher","Publishdate","Field",
-                                            "Author","Inventory","Lent out"));
+                    "ISBN","Title","Publisher","Publishdate","Author","category","Inventory","Lent out"));
                 System.out.println(  String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s",
-                                        t.getISBN() ,t.getTitle() , t.getPublisher() , new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate()) ,
-                                        t.getStringAuthors() , t.getField() , t.getInventory(), t.getBorrowedAmount() ));
+                    t.getISBN() ,t.getTitle() , t.getPublisher() , new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate()),
+                    t.getStringAuthors() , t.getField() , t.getInventory(), t.getBorrowedAmount() ));
             
             }
             System .out.println("検索結果を保存しますか？");
@@ -90,8 +89,8 @@ public class UserMenu{
             BufferedWriter bw = new BufferedWriter(new FileWriter(csv));
             for(Book t : titleList){
                 bw.write("ISBN,"+t.getISBN()+",Title,"+ t.getTitle()+",Publisher,"+t.getPublisher()+",PublishDate,"
-                +new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate())+",Authors,"+ t.getStringAuthors()+",Field, "
-                + t.getField()+",Inventory,"+ t.getInventory()+",BorrowedAmount," +t.getBorrowedAmount());
+                +new SimpleDateFormat("yyyy/MM/dd").format(t.getPublishDate())+",Authors,"+ t.getStringAuthors()+
+                ",category, "+ t.getField()+",Inventory,"+ t.getInventory()+",BorrowedAmount," +t.getBorrowedAmount());
                 bw.newLine();
             }
             bw.close();
