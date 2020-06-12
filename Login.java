@@ -39,6 +39,7 @@ public class Login {
      */
     public int loginCheck() throws SQLException {
     	logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
+    	
         try{
             final int empID = uiLogin.getEmpID();
             final String password = uiLogin.getPassword();
