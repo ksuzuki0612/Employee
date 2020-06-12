@@ -160,17 +160,15 @@ public class UI{
             selected = Integer.parseInt(str);
             switch(selected){
                 case 1:
-                    userMenu.searchBooksByTitle();
+                    userMenu.searchBooks(selected);
                     logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                     break;
                 case 2:
-                    userMenu.searchBooksByAuthor();
-                    
+                    userMenu.searchBooks(selected);               
                     logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                     break;
                 case 3:
-                    userMenu.searchBooksByField();
-                    
+                    userMenu.searchBooks(selected);       
                     logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
                     break;
                 case 4:
