@@ -43,8 +43,8 @@ public class SqlMethod{
      */
 
     public  void registerBook(String ISBN, String title, String publisher,
-                                    String publishDate, String field, List<String> authors,
-                                    int inventory, int borrowedAmount){
+                              String publishDate, String field, List<String> authors,
+                               int inventory, int borrowedAmount){
 
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
 
@@ -540,7 +540,7 @@ public class SqlMethod{
             }else{
 
                 Statement st2 = con.createStatement();
-            int count = st2.executeUpdate(query2);
+                int count = st2.executeUpdate(query2);
 
             System.out.println("書籍は削除されました。");
             st.close();
