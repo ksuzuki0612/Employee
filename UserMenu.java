@@ -65,7 +65,7 @@ public class UserMenu{
             int select = Integer.parseInt(s1);
             if(select == 1){
                 String saveFile =ui.saveBooksByTitleUI();
-                saveBooks(saveFile,titleList);
+                this.saveBooks(saveFile,titleList);
             }
         }
         catch(Exception e){
