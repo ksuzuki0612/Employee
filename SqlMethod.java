@@ -330,7 +330,8 @@ public class SqlMethod{
                 books.add(book);
                }
             }
-            
+            st.close();
+            con.close();
             
 
         }catch(Exception e) { 
@@ -401,7 +402,8 @@ public class SqlMethod{
                 books.add(book);
                }
             }
-            
+            st.close();
+            con.close();
             
 
         }catch(Exception e) { 
@@ -472,7 +474,8 @@ public class SqlMethod{
                 books.add(book);
               }
             }
-            
+            st.close();
+            con.close();
             
 
         } catch(Exception e) {
