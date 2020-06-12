@@ -12,7 +12,6 @@ public class MainMenu{
     static AdminMenu adminMenu = new AdminMenu();
     static UserMenu userMenu = new UserMenu();
     SqlMethod sqlmethod = new SqlMethod();
-    //static AdminMenuNum adMenu = new AdminMenuNum();
     
     /**
      * 管理者がメニューを選択するメソッド
@@ -75,13 +74,14 @@ public class MainMenu{
                        break loop;
                     default:
                        System.out.println("再度入力してください");
-                       return;
+                       continue;
                }
            }
         } finally {
             logger.exiting(LogUtil.getClassName(), LogUtil.getMethodName());
         }
     }
+
     /**
      * パスワードをリセットするメソッド
      * 
@@ -93,10 +93,17 @@ public class MainMenu{
 
         if(ans == 1){
             final int empID = menuUI.getEmpID();
-            final String password = menuUI.getNewPassword();
-            final String checkPassword = menuUI.getCheckPassword();
-            final boolean checkResult = checkResetPass(empID, password, checkPassword);
-            return checkResult;
+            boolean idCheck = checkLoginID(empID);
+            if(idCheck == true){
+                final String password = menuUI.getNewPassword();
+                final String checkPassword = menuUI.getCheckPassword();
+                final boolean checkResult = checkResetPass(empID, password, checkPassword);
+                return checkResult;
+            }
+            else{
+                System.out.println("ログインされたIDと入力されたIDが異なります");
+                return false;
+            }
         }
         else{
             boolean checkResult = false;
@@ -104,11 +111,17 @@ public class MainMenu{
         } 
     }
 
+    /**
+     * 変更したいパスワードと入力されたパスワードが一致しているかを確認するメソッド
+     * @param ID
+     * @param pass
+     * @param checkPass
+     * @return
+     */
     public boolean checkResetPass(final int ID,final String pass,final String checkPass){
         int empID = ID;
         String password = pass;
         String checkPassword = checkPass;
-
         if(password.equals(checkPassword)){
             sqlmethod.dbUpdatePassword(empID, password);
             return true;
@@ -117,6 +130,23 @@ public class MainMenu{
             return false;
             }
         }
+    
+    /**
+     * パスワードを変更しようとしているIDとログインしたパスワードが一致しているかを確認するメソッド
+     * @param ID
+     * @return
+     */
+    public boolean checkLoginID(int ID){
+        int id = ID;
+        int checkID = LibraryMain.loginID;
+        if(id == checkID){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 
     /**
      * 管理者メニューを選択するメソッド
@@ -124,13 +154,6 @@ public class MainMenu{
     public static void adminMainMenu() {
         logger.entering(LogUtil.getClassName(), LogUtil.getMethodName());
         try {
-            // 管理者メニュー番号
-            /*
-             * final int selectedAdmin1 = 1; final int selectedAdmin2 = 2; final int
-             * selectedAdmin3 = 3; final int selectedAdmin4 = 4; final int selectedAdmin5 =
-             * 5; final int selectedAdmin6 = 6;
-             */
-
             loop: while (true) {
                 int selected=0;
                 int rb =0;
@@ -166,7 +189,7 @@ public class MainMenu{
                         break loop;
                     default:
                         System.out.println("再度入力してください");
-                        break;
+                        continue;
                 }
             }
         } 
@@ -202,7 +225,7 @@ public class MainMenu{
                         break loop;
                     default:
                         System.out.println("再度入力してください");
-                    break; 
+                        continue; 
       	            }
                 }
         }
