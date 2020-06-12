@@ -12,8 +12,7 @@ public class MainMenu{
     static AdminMenu adminMenu = new AdminMenu();
     static UserMenu userMenu = new UserMenu();
     SqlMethod sqlmethod = new SqlMethod();
-    //static AdminMenuNum adMenu = new AdminMenuNum();
-    
+   
     /**
      * 管理者がメニューを選択するメソッド
      */
