@@ -147,7 +147,9 @@ public class SqlMethod{
                 rs3.next();
                 String ename = rs3.getString("employee_name");
 
-                String query4 ="SELECT COUNT('employee_name') FROM checkout WHERE employee_id='" + id + "'  ";
+                String query4 ="SELECT COUNT('employee_name') FROM checkout"+
+                                " WHERE"+
+                                " employee_id='" + id + "'  ";
                 Statement st4 = con.createStatement();
                 ResultSet rs4 = st4.executeQuery(query4);
                 rs4.next();
@@ -173,7 +175,9 @@ public class SqlMethod{
                     Statement st5 = con.createStatement();
                     int count = st5.executeUpdate(query5);
 
-                    String query6 ="UPDATE bookinfo SET borrowed =borrowed+1 WHERE ISBN='" + isbn + "'";
+                    String query6 ="UPDATE bookinfo SET borrowed =borrowed+1 "+
+                                    "WHERE"+
+                                    " ISBN='" + isbn + "'";
                     Statement st6 = con.createStatement();
                     int count2 = st6.executeUpdate(query6);
 
@@ -211,7 +215,8 @@ public class SqlMethod{
         int ID = empID;
         String pass = password;
 
-        String query = "SELECT COUNT('employee_id') FROM passwords WHERE"+
+        String query = "SELECT COUNT('employee_id') FROM passwords "+
+                        "WHERE"+
                         " employee_id='" + ID + "'&& password = '"+ pass + "'  ";
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(query);
@@ -281,7 +286,14 @@ public class SqlMethod{
         
         try{
 
-            String query =  "SELECT ISBN, title, publisher, publish_date, category, author, inventory, borrowed"+
+            String query =  "SELECT ISBN,"+
+                            " title, "+
+                            "publisher, "+
+                            "publish_date,"+
+                            " category,"+
+                            " author,"+
+                            " inventory,"+
+                            " borrowed"+
                             " FROM bookinfo "+
                             "WHERE"+
                             " author LIKE '%"+ author +"%'";
@@ -345,7 +357,13 @@ public class SqlMethod{
 
         try{
 
-            String query = "SELECT ISBN, title, publisher, publish_date, category, author, inventory, borrowed"+
+            String query = "SELECT ISBN, title,"+
+                            " publisher,"+
+                            " publish_date,"+
+                            " category,"+
+                            " author,"+
+                            " inventory,"+
+                            " borrowed"+
                             " FROM bookinfo "+
                             "WHERE"+
                             " category LIKE '%"+ searchField +"%'";
@@ -410,7 +428,14 @@ public class SqlMethod{
         //keyboard.close();
 
         try{
-            String query = "SELECT ISBN, title, publisher, publish_date, category, author, inventory, borrowed"+
+            String query = "SELECT ISBN, "+
+                            "title, "+
+                            "publisher,"+
+                            " publish_date,"+
+                            " category,"+
+                            " author,"+
+                            " inventory,"+
+                            " borrowed"+
                             " FROM bookinfo "+
                             " WHERE"+
                             " title LIKE '%"+ searchtitle +"%'";
